@@ -1,3 +1,7 @@
+"""All the views for the goodies app of the pos_vaiatea project."""
+
 from django.shortcuts import render
 
-# Create your views here.
+
+def goodies(request):
+    pass
