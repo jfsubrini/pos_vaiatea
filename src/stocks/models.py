@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the stocks app of the pos_vaiatea project.
 
     Models: Item, Drink, Goodies, Food and Stock.
@@ -113,7 +115,8 @@ class Stock(models.Model):
         "Quantité", blank=True, null=True)
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
-    trips = models.ManyToManyField(Trip)
+    trips = models.ManyToManyField(
+        Trip, related_name="stocks", verbose_name="stock")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

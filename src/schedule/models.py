@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the schedule app of the pos_vaiatea project.
 
     Models: Guest and Trip.
@@ -44,7 +46,7 @@ class Guest(models.Model):
         verbose_name = "Invité(e)"
 
     def __str__(self):
-        return f"Nom de l'invité(e) {self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
 
 
 class Trip(models.Model):
@@ -58,8 +60,8 @@ class Trip(models.Model):
     ending_date = models.DateField("Date d'arrivée du liveaboard")
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips")
-
-    guests = models.ManyToManyField(Guest)
+    guests = models.ManyToManyField(
+        Guest, related_name="trips", verbose_name="voyage")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
