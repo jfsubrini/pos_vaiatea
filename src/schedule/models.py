@@ -12,6 +12,20 @@ GENDER = (
     ("Male", "Male"),
     ("Female", "Female"),
 )
+NATIONALITY = (
+    ("Français", "Français"),
+    ("Anglais", "Anglais"),
+    ("Allemand", "Allemand"),
+    ("Belge", "Belge"),
+    ("Suisse", "Suisse"),
+    ("Néerlandais", "Néerlandais"),
+    ("Italien", "Italien"),
+    ("Espagnol", "Espagnol"),
+    ("Autre Europe", "Autre Europe"),
+    ("Nord-Américain", "Nord-Américain"),
+    ("Canadien", "Canadien"),
+    ("Autre Monde", "Autre Monde"),
+)
 DIVING_LEVEL = (
     ("Open Water", "Open Water"),
     ("Advanced OW", "Advanced OW"),
@@ -23,7 +37,10 @@ DIVING_LEVEL = (
 
 
 class Guest(models.Model):
-    """To create the Guest table."""
+    """
+    To create the Guest table in the database.
+    Gathering all the personal data of the guest.
+    """
 
     first_name = models.CharField("Prénom", max_length=40)
     last_name = models.CharField("Nom", max_length=40)
@@ -32,36 +49,44 @@ class Guest(models.Model):
     age = models.PositiveSmallIntegerField(
         "Age")
     nationality = models.CharField(
-        "Nationalité", max_length=30)
+        "Nationalité", max_length=25, choices=NATIONALITY)
     passport_number = models.CharField(
         "Numéro de passeport", max_length=15, blank=True, null=True)
     diving_level = models.CharField(
         "Niveau de plongée", max_length=20, choices=DIVING_LEVEL)
     dives_number = models.PositiveSmallIntegerField(
         "Nombre de plongées", blank=True, null=True)
-    email = models.CharField(
-        "Email", max_length=100)
+    email = models.EmailField(
+        "Email", max_length=100, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Invité(e)"
+        verbose_name = "Passager.ère"
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"Passager.ère {self.first_name} {self.last_name}"
 
 
 class Trip(models.Model):
-    """To create the Trip table."""
+    """
+    To create the Trip table in the database.
+    Gathering all the data for each liveaboard trip.
+    """
+
+    DURATION = [(i, duration)
+                for i, duration in enumerate(range(6, 22), start=1)]  # TODO
 
     itinerary = models.CharField(
-        "Itinéraire du liveaboard", max_length=40)
+        "Itinéraire du voyage", max_length=50)
     duration_days = models.PositiveSmallIntegerField(
-        "Durée en jours")
-    starting_date = models.DateField("Date de départ du liveaboard")
-    ending_date = models.DateField("Date d'arrivée du liveaboard")
+        "Durée du voyage en jours", choices=DURATION)
+    starting_date = models.DateField("Date de départ du voyage")
+    ending_date = models.DateField("Date d'arrivée du voyage")
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips", verbose_name="Utilisateur")
     guests = models.ManyToManyField(
-        Guest, related_name="trips", verbose_name="voyage")
+        Guest, related_name="trips", verbose_name="Passager")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -69,4 +94,4 @@ class Trip(models.Model):
         verbose_name = "Voyage"
 
     def __str__(self):
-        return f"Voyage {self.itinerary}"
+        return f"Itinéraire du voyage : {self.itinerary}"

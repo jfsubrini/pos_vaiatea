@@ -27,7 +27,7 @@ class GuestCreationForm(ModelForm):
         """Details of the GuestCreationForm form."""
 
         model = Guest
-        fields = "__all__"
+        exclude = ["created_at", "updated_at"]
         widgets = {
             "first_name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "firstName"}
@@ -35,10 +35,10 @@ class GuestCreationForm(ModelForm):
             "last_name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "lastName"}
             ),
-            # "nationality": Select(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "nationality"}
-            # ),
+            "nationality": Select(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "nationality"}
+            ),
             "passport_number": TextInput(
                 attrs={"class": "form-control form-control-lg",
                        "id": "passportNumber"}
@@ -50,7 +50,7 @@ class GuestCreationForm(ModelForm):
             "email": EmailInput(
                 attrs={
                     "class": "form-control form-control-lg",
-                    "id": "inputEmail",
+                    "id": "email",
                     "required": "required",
                 }
             ),
@@ -65,14 +65,15 @@ class TripCreationForm(ModelForm):
         """Details of the TripCreationForm form."""
 
         model = Trip
-        exclude = ["guests", "created_at", "updated_at"]
+        exclude = ["guests", "user", "created_at", "updated_at"]
         widgets = {
             "itinerary": Select(
                 attrs={"class": "form-control form-control-lg", "id": "itinerary"}
             ),
-            # "duration_days": Select(
-            #     attrs={"class": "form-control form-control-lg", "id": "durationDays"}
-            # ),
+            "duration_days": Select(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "durationDays"}
+            ),
             "starting_date": DateInputNicer(
                 attrs={"class": "form-control form-control-lg",
                        "id": "startingDate"}
@@ -82,3 +83,8 @@ class TripCreationForm(ModelForm):
                        "id": "endingDate"}
             ),
         }
+
+    def __init__(self, *args, **kwargs):  #  TODO
+        # To display all the existing itinerary in the database.
+        super().__init__(*args, **kwargs)
+        self.fields["itinerary"].queryset = Trip.objects.all()

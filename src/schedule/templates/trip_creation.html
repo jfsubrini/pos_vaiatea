@@ -7,7 +7,19 @@
 </head>
 
 <body>
-    <h1>Création d'un voyage</h1>
+    <h1>Création d'un itinéraire de voyage</h1>
+
+    {% if submitted %}
+    <p>Your message was submitted successfully. Thank you.</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Informations sur le voyage :</h2>
+        {{ trip_form.as_p }}
+        </br>
+        <input type="submit" value="Envoyer la fiche">
+    </form>
+    {% endif %}
 </body>
 
 </html>

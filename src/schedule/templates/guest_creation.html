@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>Formulaire pour le guest</h1>
+    <h1>Création d'une fiche passager.ère</h1>
 
     {% if submitted %}
     <p>Your message was submitted successfully. Thank you.</p>
@@ -16,10 +16,8 @@
         {% csrf_token %}
         <h2>Informations personnelles :</h2>
         {{ guest_form.as_p }}
-        <h2>Informations sur les voyages :</h2>
-        {{ trip_form.as_p }}
         </br>
-        <input type="submit" value="Envoyez le questionnaire">
+        <input type="submit" value="Envoyer la fiche">
     </form>
     {% endif %}
 </body>

@@ -22,7 +22,6 @@ def guest_creation(request):
     # What to render to the template.
     context = {
         "guest_form": guest_form,
-        "trip_form": trip_form,
         "submitted": submitted,
     }
 
@@ -45,7 +44,19 @@ def guest_list(request):
 def trip_creation(request):
     """View to the trip creation form page."""
     # To display the empty trip creation form.
-    return render(request, "trip_creation.html")
+    submitted = False
+    guest_form = GuestCreationForm()
+    trip_form = TripCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "trip_form": trip_form,
+        "submitted": submitted,
+    }
+
+    return render(request, "trip_creation.html", context)
 
 
 def trip_update(request):
