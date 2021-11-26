@@ -105,10 +105,26 @@ class Food(models.Model):
         return f"Nourriture de type {self.food_category}"
 
 
+class Miscellaneous(models.Model):
+    """
+    To create the Miscellaneous table.
+    Gathering data for each miscellaneous item.
+    """
+
+    price_unit_dollar = models.DecimalField(
+        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
+
+    class Meta:
+        verbose_name = "Autre article divers"
+
+    def __str__(self):
+        return f"Article divers au prix unitaire de vente en dollar (USD) de {self.price_unit_dollar}"
+
+
 class Item(models.Model):
     """
     To create the Item table.
-    Gathering the name for each drink, goodies or food item.
+    Gathering the name for each drink, goodies, food or miscellaneous item.
     """
 
     name = models.CharField("Nom de l'article", max_length=30)
@@ -118,6 +134,8 @@ class Item(models.Model):
         Goodies, on_delete=models.CASCADE, verbose_name="Goodies")
     food = models.OneToOneField(
         Food, on_delete=models.CASCADE, verbose_name="Nourriture")
+    miscellaneous = models.OneToOneField(
+        Miscellaneous, on_delete=models.CASCADE, verbose_name="Autre article divers")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
