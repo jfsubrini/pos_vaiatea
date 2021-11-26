@@ -39,7 +39,7 @@ DIVING_LEVEL = (
 class Trip(models.Model):
     """
     To create the Trip table in the database.
-    Gathering all the data for each liveaboard trip.
+    Gathering all data for each liveaboard trip.
     """
 
     DURATION = [(i, duration)

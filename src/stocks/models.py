@@ -50,7 +50,10 @@ TYPE_OF_ITEM = (
 
 
 class Drink(models.Model):
-    """To create the Drink table."""
+    """
+    To create the Drink table.
+    Gathering data for each drink item.
+    """
 
     price_unit_dollar = models.DecimalField(
         "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
@@ -63,7 +66,10 @@ class Drink(models.Model):
 
 
 class Goodies(models.Model):
-    """To create the Goodies table."""
+    """
+    To create the Goodies table.
+    Gathering data for each goodies item.
+    """
 
     category = models.CharField(
         "Catégorie", max_length=20, choices=GOODIES_CATEGORY)
@@ -84,7 +90,10 @@ class Goodies(models.Model):
 
 
 class Food(models.Model):
-    """To create the Food table."""
+    """
+    To create the Food table.
+    Gathering data for each food item.
+    """
 
     food_category = models.CharField(
         "Catégorie de nourriture", max_length=20, choices=FOOD_CATEGORY)
@@ -97,7 +106,10 @@ class Food(models.Model):
 
 
 class Item(models.Model):
-    """To create the Item table."""
+    """
+    To create the Item table.
+    Gathering the name for each drink, goodies or food item.
+    """
 
     name = models.CharField("Nom de l'article", max_length=30)
     drink = models.OneToOneField(
