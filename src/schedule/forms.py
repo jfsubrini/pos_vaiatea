@@ -54,7 +54,16 @@ class GuestCreationForm(ModelForm):
                     "required": "required",
                 }
             ),
+            "trips": Select(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "trips"}
+            ),  # TODO
         }
+
+    def __init__(self, *args, **kwargs):  #  TODO
+        # To display all the existing itinerary in the database.
+        super().__init__(*args, **kwargs)
+        self.fields["trips"].queryset = Trip.objects.all()
 
 
 # The trip form.
@@ -65,11 +74,11 @@ class TripCreationForm(ModelForm):
         """Details of the TripCreationForm form."""
 
         model = Trip
-        exclude = ["guests", "user", "created_at", "updated_at"]
+        exclude = ["user", "created_at", "updated_at"]
         widgets = {
             "itinerary": Select(
                 attrs={"class": "form-control form-control-lg", "id": "itinerary"}
-            ),
+            ),  # TODO
             "duration_days": Select(
                 attrs={"class": "form-control form-control-lg",
                        "id": "durationDays"}
@@ -83,8 +92,3 @@ class TripCreationForm(ModelForm):
                        "id": "endingDate"}
             ),
         }
-
-    def __init__(self, *args, **kwargs):  #  TODO
-        # To display all the existing itinerary in the database.
-        super().__init__(*args, **kwargs)
-        self.fields["itinerary"].queryset = Trip.objects.all()

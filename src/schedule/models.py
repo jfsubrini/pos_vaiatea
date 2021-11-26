@@ -36,6 +36,33 @@ DIVING_LEVEL = (
 )
 
 
+class Trip(models.Model):
+    """
+    To create the Trip table in the database.
+    Gathering all the data for each liveaboard trip.
+    """
+
+    DURATION = [(i, duration)
+                for i, duration in enumerate(range(6, 22), start=1)]  # TODO
+
+    itinerary = models.CharField(
+        "Itinéraire du voyage", max_length=50)
+    duration_days = models.PositiveSmallIntegerField(
+        "Durée du voyage en jours", choices=DURATION)
+    starting_date = models.DateField("Date de départ du voyage")
+    ending_date = models.DateField("Date d'arrivée du voyage")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips", verbose_name="Utilisateur")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Voyage"
+
+    def __str__(self):
+        return f"Itinéraire du voyage : {self.itinerary}"
+
+
 class Guest(models.Model):
     """
     To create the Guest table in the database.
@@ -58,6 +85,8 @@ class Guest(models.Model):
         "Nombre de plongées", blank=True, null=True)
     email = models.EmailField(
         "Email", max_length=100, unique=True)
+    trips = models.ManyToManyField(
+        Trip, related_name="guests", verbose_name="Voyage choisi")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -66,32 +95,3 @@ class Guest(models.Model):
 
     def __str__(self):
         return f"Passager.ère {self.first_name} {self.last_name}"
-
-
-class Trip(models.Model):
-    """
-    To create the Trip table in the database.
-    Gathering all the data for each liveaboard trip.
-    """
-
-    DURATION = [(i, duration)
-                for i, duration in enumerate(range(6, 22), start=1)]  # TODO
-
-    itinerary = models.CharField(
-        "Itinéraire du voyage", max_length=50)
-    duration_days = models.PositiveSmallIntegerField(
-        "Durée du voyage en jours", choices=DURATION)
-    starting_date = models.DateField("Date de départ du voyage")
-    ending_date = models.DateField("Date d'arrivée du voyage")
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips", verbose_name="Utilisateur")
-    guests = models.ManyToManyField(
-        Guest, related_name="trips", verbose_name="Passager")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = "Voyage"
-
-    def __str__(self):
-        return f"Itinéraire du voyage : {self.itinerary}"
