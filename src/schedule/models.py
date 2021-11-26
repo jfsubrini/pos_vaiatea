@@ -51,7 +51,7 @@ class Trip(models.Model):
         "Durée du voyage en jours", choices=DURATION)
     starting_date = models.DateField("Date de départ du voyage")
     ending_date = models.DateField("Date d'arrivée du voyage")
-    user = models.ForeignKey(
+    user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips", verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
