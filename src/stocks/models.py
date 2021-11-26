@@ -4,6 +4,7 @@
 
     Models: Item, Drink, Goodies, Food and Stock.
     """
+from django.conf import settings
 from django.db import models
 from schedule.models import Trip
 
@@ -128,13 +129,15 @@ class Item(models.Model):
     """
 
     name = models.CharField("Nom de l'article", max_length=30)
-    drink = models.OneToOneField(
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="items", verbose_name="Utilisateur")
+    drink_id = models.OneToOneField(
         Drink, on_delete=models.CASCADE, verbose_name="Boisson")
-    goodies = models.OneToOneField(
+    goodies_id = models.OneToOneField(
         Goodies, on_delete=models.CASCADE, verbose_name="Goodies")
-    food = models.OneToOneField(
+    food_id = models.OneToOneField(
         Food, on_delete=models.CASCADE, verbose_name="Nourriture")
-    miscellaneous = models.OneToOneField(
+    miscellaneous_id = models.OneToOneField(
         Miscellaneous, on_delete=models.CASCADE, verbose_name="Autre article divers")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

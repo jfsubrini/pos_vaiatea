@@ -27,14 +27,9 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orders", verbose_name="Passager")
-    miscellaneous = models.CharField(
-        "Autre divers", max_length=100, blank=True, null=True)
-    payment_mode = models.CharField(
-        "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
-    payment_done = models.BooleanField("Paiement effectué")
     # order_line = models.ManyToManyField(
     #     Item, related_name="orders", verbose_name="commande")  # TODO
-    # quantity ???
+    quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
 
     class Meta:
@@ -43,3 +38,23 @@ class Order(models.Model):
     def __str__(self):
         #  TODO changer au nom de l'article
         return f"Commande du passager : {self.guest_id}"
+
+
+class Payment(models.Model):
+    """
+    To create the Payment table in the database.
+    Gathering all data for each payment, for guest's order(s), at the end of the trip.
+    """
+
+    order_id = models.OneToOneField(
+        Order, on_delete=models.CASCADE, verbose_name="Commande")
+    payment_mode = models.CharField(
+        "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
+    payment_done = models.BooleanField("Paiement effectué")
+    date = models.DateTimeField("Date de la commande", auto_now=True)
+
+    class Meta:
+        verbose_name = "Paiement"
+
+    def __str__(self):
+        return f"Paiement de la commande {self.order_id} par {self.payment_mode}"
