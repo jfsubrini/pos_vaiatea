@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Food creation</title>
+</head>
+
+<body>
+    <h1>Création d'une fiche nourriture</h1>
+
+    {% if submitted %}
+    <p>Your message was submitted successfully. Thank you.</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Informations sur la nourriture :</h2>
+        {{ item_creation.as_p }}
+        {{ food_creation.as_p }}
+        </br>
+        <input type="submit" value="Envoyer la fiche">
+    </form>
+    {% endif %}
+</body>
+
+</html>
