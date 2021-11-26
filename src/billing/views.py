@@ -5,12 +5,25 @@
     """
 from django.shortcuts import render
 
+from .forms import OrderCreationForm
+
 
 # Order views
 def order_creation(request):
     """View to the order creation form page."""
     # To display the empty order creation form.
-    return render(request, "order_creation.html")
+    submitted = False
+    order_create = OrderCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "order_creation": order_create,
+        "submitted": submitted,
+    }
+
+    return render(request, "order_creation.html", context)
 
 
 def order_update(request):

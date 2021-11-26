@@ -23,19 +23,19 @@ class Order(models.Model):
     Gathering all data for each order from a guest during the trip.
     """
 
-    date = models.DateTimeField("Date de la commande", auto_now=True)
-    payment_mode = models.CharField(
-        "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
-    payment_done = models.BooleanField("Paiement effectué")
-    miscellaneous = models.CharField(
-        "Divers", max_length=50, blank=True, null=True)
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orders", verbose_name="Passager")
+    miscellaneous = models.CharField(
+        "Autre divers", max_length=100, blank=True, null=True)
+    payment_mode = models.CharField(
+        "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
+    payment_done = models.BooleanField("Paiement effectué")
     # order_line = models.ManyToManyField(
     #     Item, related_name="orders", verbose_name="commande")  # TODO
     # quantity ???
+    date = models.DateTimeField("Date de la commande", auto_now=True)
 
     class Meta:
         verbose_name = "Commande"

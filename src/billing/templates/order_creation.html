@@ -8,6 +8,18 @@
 
 <body>
     <h1>Création d'une commande</h1>
+
+    {% if submitted %}
+    <p>Your message was submitted successfully. Thank you.</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Informations sur la commande :</h2>
+        {{ order_creation.as_p }}
+        </br>
+        <input type="submit" value="Envoyer la fiche">
+    </form>
+    {% endif %}
 </body>
 
 </html>
