@@ -5,7 +5,12 @@
     """
 from django.shortcuts import render
 
-from .forms import DrinkCreationForm, GoodiesCreationForm, FoodCreationForm
+from .forms import (
+    ItemCreationForm,
+    DrinkCreationForm,
+    GoodiesCreationForm,
+    FoodCreationForm
+)
 
 
 # Drink views
@@ -13,13 +18,15 @@ def drink_creation(request):
     """View to the drink creation form page."""
     # To display the empty drink creation form.
     submitted = False
-    drink_creation = DrinkCreationForm()
+    item_create = ItemCreationForm()
+    drink_create = DrinkCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "drink_creation": drink_creation,
+        "item_creation": item_create,
+        "drink_creation": drink_create,
         "submitted": submitted,
     }
 
@@ -43,13 +50,15 @@ def goodies_creation(request):
     """View to the goodies creation form page."""
     # To display the empty goodies creation form.
     submitted = False
-    goodies_creation = GoodiesCreationForm()
+    item_create = ItemCreationForm()
+    goodies_create = GoodiesCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "goodies_creation": goodies_creation,
+        "item_creation": item_create,
+        "goodies_creation": goodies_create,
         "submitted": submitted,
     }
 
@@ -73,13 +82,15 @@ def food_creation(request):
     """View to the food creation form page."""
     # To display the empty food creation form.
     submitted = False
-    food_creation = FoodCreationForm()
+    item_create = ItemCreationForm()
+    food_create = FoodCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "food_creation": food_creation,
+        "item_creation": item_create,
+        "food_creation": food_create,
         "submitted": submitted,
     }
 

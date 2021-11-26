@@ -8,7 +8,24 @@ from django.forms import (
     TextInput,
     NumberInput,
 )
-from .models import Drink, Goodies, Food
+from .models import Item, Drink, Goodies, Food
+
+
+# Name input for the forms.
+class ItemCreationForm(ModelForm):
+    """Form to create the name data for the drink, goodies and food forms."""
+
+    class Meta:
+        """Details of the ItemCreationForm form."""
+
+        model = Item
+        exclude = ["drink", "goodies", "food", "created_at", "updated_at"]
+        widgets = {
+            "name": TextInput(
+                attrs={"class": "form-control form-control-lg", "id": "name",
+                       }
+            ),
+        }
 
 
 # The drink form.
@@ -19,7 +36,7 @@ class DrinkCreationForm(ModelForm):
         """Details of the DrinkCreationForm form."""
 
         model = Drink
-        exclude = ["created_at", "updated_at"]
+        fields = '__all__'
         widgets = {
             "price_unit_dollar": NumberInput(
                 attrs={"class": "form-control form-control-lg", "id": "priceUnitDollar",
@@ -36,7 +53,7 @@ class GoodiesCreationForm(ModelForm):
         """Details of the GoodiesCreationForm form."""
 
         model = Goodies
-        exclude = ["created_at", "updated_at"]
+        fields = '__all__'
         widgets = {
             "category": Select(
                 attrs={"class": "form-control form-control-lg",
@@ -68,7 +85,7 @@ class FoodCreationForm(ModelForm):
         """Details of the FoodCreationForm form."""
 
         model = Food
-        exclude = ["created_at", "updated_at"]
+        fields = '__all__'
         widgets = {
             "food_category": Select(
                 attrs={"class": "form-control form-control-lg",

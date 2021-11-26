@@ -15,6 +15,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <h2>Informations sur le goodies :</h2>
+        {{ item_creation.as_p }}
         {{ goodies_creation.as_p }}
         </br>
         <input type="submit" value="Envoyer la fiche">
