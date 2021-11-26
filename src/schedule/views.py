@@ -6,7 +6,7 @@
 from django.shortcuts import render
 
 from .forms import GuestCreationForm, TripCreationForm
-# from .models import Guest, Trip
+# from .models import Guest, Trip  # TODO
 
 
 # Guest views
@@ -15,7 +15,6 @@ def guest_creation(request):
     # To display the empty guest creation form.
     submitted = False
     guest_form = GuestCreationForm()
-    trip_form = TripCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
@@ -45,7 +44,6 @@ def trip_creation(request):
     """View to the trip creation form page."""
     # To display the empty trip creation form.
     submitted = False
-    guest_form = GuestCreationForm()
     trip_form = TripCreationForm()
     if "submitted" in request.GET:
         submitted = True

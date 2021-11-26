@@ -8,10 +8,11 @@ from django.db import models
 from schedule.models import Trip
 
 
-CATEGORY = (
+GOODIES_CATEGORY = (
     ("Tee-Shirt", "Tee-Shirt"),
     ("Sweat-Shirt", "Sweat-Shirt"),
     ("Cap", "Cap"),
+    ("Autre", "Autre"),
 )
 SIZE = (
     ("XS", "XS"),
@@ -20,6 +21,7 @@ SIZE = (
     ("L", "L"),
     ("XL", "XL"),
     ("XXL", "XXL"),
+    ("Autre", "Autre"),
 )
 GENDER = (
     ("Male", "Male"),
@@ -30,7 +32,15 @@ FOOD_CATEGORY = (
     ("Viande", "Viande"),
     ("Poisson", "Poisson"),
     ("Légumes", "Légumes"),
-    ("Blabla", "Blabla"),
+    ("Fruits", "Fruits"),
+    ("Boites", "Boites"),
+    ("Surgelés", "Surgelés"),
+    ("Epices", "Epices"),
+    ("Farine", "Farine"),
+    ("Lait", "Lait"),
+    ("Café & Thé", "Café & Thé"),
+    ("Autre épicerie", "Autre épicerie"),
+    ("Autre", "Autre"),
 )
 TYPE_OF_ITEM = (
     ("Bootle & Can", "Bootle & Can"),
@@ -43,20 +53,20 @@ class Drink(models.Model):
     """To create the Drink table."""
 
     price_unit_dollar = models.DecimalField(
-        "Prix unitaire en dollar", max_digits=5, decimal_places=2)
+        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
 
     class Meta:
         verbose_name = "Boisson"
 
     def __str__(self):
-        return f"Boisson au prix unitaire en dollar de {self.price_unit_dollar}"
+        return f"Boisson au prix unitaire de vente en dollar (USD) de {self.price_unit_dollar}"
 
 
 class Goodies(models.Model):
     """To create the Goodies table."""
 
     category = models.CharField(
-        "Catégorie", max_length=20, choices=CATEGORY)
+        "Catégorie", max_length=20, choices=GOODIES_CATEGORY)
     size = models.CharField(
         "Taille", max_length=5, choices=SIZE)
     color = models.CharField(
@@ -64,7 +74,7 @@ class Goodies(models.Model):
     gender = models.CharField(
         "Genre", max_length=10, choices=GENDER)
     price_unit_dollar = models.DecimalField(
-        "Prix unitaire en dollar", max_digits=5, decimal_places=2)
+        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
 
     class Meta:
         verbose_name = "Goodies"
@@ -83,7 +93,7 @@ class Food(models.Model):
         verbose_name = "Nourriture"
 
     def __str__(self):
-        return f"Nourriture de catégorie {self.food_category}"
+        return f"Nourriture de type {self.food_category}"
 
 
 class Item(models.Model):
@@ -116,7 +126,7 @@ class Stock(models.Model):
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
     trips = models.ManyToManyField(
-        Trip, related_name="stocks", verbose_name="stock")
+        Trip, related_name="stocks", verbose_name="Voyage")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

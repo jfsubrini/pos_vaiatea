@@ -5,6 +5,98 @@
     """
 from django.shortcuts import render
 
+from .forms import DrinkCreationForm, GoodiesCreationForm, FoodCreationForm
+
+
+# Drink views
+def drink_creation(request):
+    """View to the drink creation form page."""
+    # To display the empty drink creation form.
+    submitted = False
+    drink_creation = DrinkCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "drink_creation": drink_creation,
+        "submitted": submitted,
+    }
+
+    return render(request, "drink_creation.html", context)
+
+
+def drink_update(request):
+    """View to the drink update form page."""
+    # To display the empty drink update form.
+    return render(request, "drink_update.html")
+
+
+def drink_list(request):
+    """View to the drink list page."""
+    # To display the empty drink list.
+    return render(request, "drink_list.html")
+
+
+# Goodies views
+def goodies_creation(request):
+    """View to the goodies creation form page."""
+    # To display the empty goodies creation form.
+    submitted = False
+    goodies_creation = GoodiesCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "goodies_creation": goodies_creation,
+        "submitted": submitted,
+    }
+
+    return render(request, "goodies_creation.html", context)
+
+
+def goodies_update(request):
+    """View to the goodies update form page."""
+    # To display the empty goodies update form.
+    return render(request, "goodies_update.html")
+
+
+def goodies_list(request):
+    """View to the goodies list page."""
+    # To display the empty goodies list.
+    return render(request, "goodies_list.html")
+
+
+# Food views
+def food_creation(request):
+    """View to the food creation form page."""
+    # To display the empty food creation form.
+    submitted = False
+    food_creation = FoodCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "food_creation": food_creation,
+        "submitted": submitted,
+    }
+
+    return render(request, "food_creation.html", context)
+
+
+def food_update(request):
+    """View to the food update form page."""
+    # To display the empty food update form.
+    return render(request, "food_update.html")
+
+
+def food_list(request):
+    """View to the food list page."""
+    # To display the empty food list.
+    return render(request, "food_list.html")
+
 
 # Stock views
 def stock_initial(request):
@@ -29,22 +121,3 @@ def stock_list(request):
     """View to the stock list page."""
     # To display the empty stock list.
     return render(request, "stock_list.html")
-
-
-# Item views
-def item_creation(request):
-    """View to the item creation form page."""
-    # To display the empty item creation form.
-    return render(request, "item_creation.html")
-
-
-def item_update(request):
-    """View to the item update form page."""
-    # To display the empty item update form.
-    return render(request, "item_update.html")
-
-
-def item_list(request):
-    """View to the item list page."""
-    # To display the empty item list.
-    return render(request, "item_list.html")
