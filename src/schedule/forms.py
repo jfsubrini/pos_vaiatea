@@ -28,7 +28,7 @@ class GuestCreationForm(ModelForm):
         """Details of the GuestCreationForm form."""
 
         model = Guest
-        exclude = ["created_at", "updated_at"]
+        exclude = ["user_id", "created_at", "updated_at"]
         widgets = {
             "first_name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "firstName"}

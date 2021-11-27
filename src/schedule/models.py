@@ -85,6 +85,8 @@ class Guest(models.Model):
         "Nombre de plongées", blank=True, null=True)
     email = models.EmailField(
         "Email", max_length=100, unique=True)
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="guests", verbose_name="Utilisateur")
     trips = models.ManyToManyField(
         Trip, related_name="guests", verbose_name="Voyage choisi")
     created_at = models.DateTimeField(auto_now_add=True)
