@@ -6,44 +6,41 @@
 from django.shortcuts import render
 
 from .forms import (
-    ItemCreationForm,
-    DrinkCreationForm,
+    BarCreationForm,
     GoodiesCreationForm,
-    FoodCreationForm,
+    KitchenCreationForm,
     MiscCreationForm,
 )
 
 
-# Drink views
-def drink_creation(request):
-    """View to the drink creation form page."""
-    # To display the empty drink creation form.
+# Bar views
+def bar_creation(request):
+    """View to the bar creation form page."""
+    # To display the empty bar creation form.
     submitted = False
-    item_create = ItemCreationForm()
-    drink_create = DrinkCreationForm()
+    bar_create = BarCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "item_creation": item_create,
-        "drink_creation": drink_create,
+        "bar_creation": bar_create,
         "submitted": submitted,
     }
 
-    return render(request, "drink_creation.html", context)
+    return render(request, "bar_creation.html", context)
 
 
-def drink_update(request):
-    """View to the drink update form page."""
-    # To display the empty drink update form.
-    return render(request, "drink_update.html")
+def bar_update(request):
+    """View to the bar update form page."""
+    # To display the empty bar update form.
+    return render(request, "bar_update.html")
 
 
-def drink_list(request):
-    """View to the drink list page."""
-    # To display the empty drink list.
-    return render(request, "drink_list.html")
+def bar_list(request):
+    """View to the bar list page."""
+    # To display the empty bar list.
+    return render(request, "bar_list.html")
 
 
 # Goodies views
@@ -51,14 +48,12 @@ def goodies_creation(request):
     """View to the goodies creation form page."""
     # To display the empty goodies creation form.
     submitted = False
-    item_create = ItemCreationForm()
     goodies_create = GoodiesCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "item_creation": item_create,
         "goodies_creation": goodies_create,
         "submitted": submitted,
     }
@@ -78,36 +73,34 @@ def goodies_list(request):
     return render(request, "goodies_list.html")
 
 
-# Food views
-def food_creation(request):
-    """View to the food creation form page."""
-    # To display the empty food creation form.
+# Kitchen views
+def kitchen_creation(request):
+    """View to the kitchen creation form page."""
+    # To display the empty kitchen creation form.
     submitted = False
-    item_create = ItemCreationForm()
-    food_create = FoodCreationForm()
+    kitchen_create = KitchenCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "item_creation": item_create,
-        "food_creation": food_create,
+        "kitchen_creation": kitchen_create,
         "submitted": submitted,
     }
 
-    return render(request, "food_creation.html", context)
+    return render(request, "kitchen_creation.html", context)
 
 
-def food_update(request):
-    """View to the food update form page."""
-    # To display the empty food update form.
-    return render(request, "food_update.html")
+def kitchen_update(request):
+    """View to the kitchen update form page."""
+    # To display the empty kitchen update form.
+    return render(request, "kitchen_update.html")
 
 
-def food_list(request):
-    """View to the food list page."""
-    # To display the empty food list.
-    return render(request, "food_list.html")
+def kitchen_list(request):
+    """View to the kitchen list page."""
+    # To display the empty kitchen list.
+    return render(request, "kitchen_list.html")
 
 
 # Miscellaneous views
@@ -115,14 +108,12 @@ def misc_creation(request):
     """View to the miscellaneous creation form page."""
     # To display the empty miscellaneous creation form.
     submitted = False
-    item_create = ItemCreationForm()
     misc_create = MiscCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "item_creation": item_create,
         "misc_creation": misc_create,
         "submitted": submitted,
     }
