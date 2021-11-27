@@ -5,7 +5,7 @@
     """
 from django.shortcuts import render
 
-from .forms import OrderCreationForm
+from .forms import OrderCreationForm, PaymentForm
 
 
 # Order views
@@ -55,3 +55,27 @@ def user_list(request):
     """View to the user list page."""
     # To display the empty user list.
     return render(request, "user_list.html")
+
+
+# Payment views
+def payment(request):
+    """View to the payment form page."""
+    # To display the empty payment form.
+    submitted = False
+    payment = PaymentForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "payment": payment,
+        "submitted": submitted,
+    }
+
+    return render(request, "payment.html", context)
+
+
+def payment_list(request):
+    """View to the payment list page."""
+    # To display the empty payment list page.
+    return render(request, "payment_list.html")

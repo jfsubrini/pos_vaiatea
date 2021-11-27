@@ -9,8 +9,9 @@ from django.forms import (
     Select,
     TextInput,
 )
+from django.forms.fields import MultipleChoiceField
 from django.forms.widgets import NumberInput
-from .models import Order
+from .models import Order, Payment
 
 
 # The order form.
@@ -33,7 +34,27 @@ class OrderCreationForm(ModelForm):
             ),
         }
 
-        # "payment_mode": Select(
-        #     attrs={"class": "form-control form-control-lg",
-        #            "id": "paymentMode"}
-        # ),
+
+# The payment form.
+class PaymentForm(ModelForm):
+    """Form to create the payment data form."""
+
+    class Meta:
+        """Details of the PaymentForm form."""
+
+        model = Payment
+        exclude = ["user_id", "amount", "date"]
+        widgets = {
+            # "guest_id": Select(
+            #     attrs={"class": "form-control form-control-lg",
+            #            "id": "guest"}
+            # ),
+            # "order_id": MultipleChoiceField(
+            #     attrs={"class": "form-control form-control-lg",
+            #            "id": "order"}
+            # ),
+            "payment_mode": Select(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "paymentMode"}
+            ),
+        }
