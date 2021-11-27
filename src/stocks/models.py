@@ -34,7 +34,7 @@ BAR_CATEGORY = (
     ("Alcools", "Alcools"),
     ("Soft drinks", "Soft drinks"),
 )
-FOOD_CATEGORY = (
+KITCHEN_CATEGORY = (
     ("Viande", "Viande"),
     ("Poisson", "Poisson"),
     ("Légumes", "Légumes"),
@@ -120,7 +120,7 @@ class Kitchen(Item):
     """
 
     food_category = models.CharField(
-        "Catégorie de nourriture", max_length=20, choices=FOOD_CATEGORY)
+        "Catégorie de nourriture", max_length=20, choices=KITCHEN_CATEGORY)
     price_unit_dollar = None
 
     class Meta:
