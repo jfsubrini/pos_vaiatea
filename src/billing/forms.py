@@ -2,12 +2,14 @@
 # pylint: disable=too-few-public-methods
 """Creation of the order form."""
 
+from django.db.models.fields import PositiveSmallIntegerField
 from django.forms import (
     BooleanField,
     ModelForm,
     Select,
     TextInput,
 )
+from django.forms.widgets import NumberInput
 from .models import Order
 
 
@@ -19,22 +21,19 @@ class OrderCreationForm(ModelForm):
         """Details of the OrderCreationForm form."""
 
         model = Order
-        exclude = ["date"]
+        exclude = ["user_id", "date"]
         widgets = {
-            "miscellaneous": TextInput(
+            "guest_id": Select(
                 attrs={"class": "form-control form-control-lg",
-                       "id": "miscellaneous"}
+                       "id": "guest"}
             ),
-            "payment_mode": Select(
+            "quantity": NumberInput(
                 attrs={"class": "form-control form-control-lg",
-                       "id": "paymentMode"}
+                       "id": "quantity"}
             ),
-            # "payment_done": BooleanField(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "paymentDone"}
-            # ),
-            # "trips": Select(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "trips"}
-            # ),  # TODO
         }
+
+        # "payment_mode": Select(
+        #     attrs={"class": "form-control form-control-lg",
+        #            "id": "paymentMode"}
+        # ),

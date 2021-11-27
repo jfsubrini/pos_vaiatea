@@ -19,7 +19,8 @@ class ItemCreationForm(ModelForm):
         """Details of the ItemCreationForm form."""
 
         model = Item
-        exclude = ["drink", "goodies", "food", "created_at", "updated_at"]
+        exclude = ["drink_id", "goodies_id", "food_id",
+                   "miscellaneous_id", "user_id", "created_at", "updated_at"]
         widgets = {
             "name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "name",
