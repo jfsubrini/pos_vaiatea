@@ -9,7 +9,8 @@ from .forms import (
     ItemCreationForm,
     DrinkCreationForm,
     GoodiesCreationForm,
-    FoodCreationForm
+    FoodCreationForm,
+    MiscCreationForm,
 )
 
 
@@ -107,6 +108,38 @@ def food_list(request):
     """View to the food list page."""
     # To display the empty food list.
     return render(request, "food_list.html")
+
+
+# Miscellaneous views
+def misc_creation(request):
+    """View to the miscellaneous creation form page."""
+    # To display the empty miscellaneous creation form.
+    submitted = False
+    item_create = ItemCreationForm()
+    misc_create = MiscCreationForm()
+    if "submitted" in request.GET:
+        submitted = True
+
+    # What to render to the template.
+    context = {
+        "item_creation": item_create,
+        "misc_creation": misc_create,
+        "submitted": submitted,
+    }
+
+    return render(request, "misc_creation.html", context)
+
+
+def misc_update(request):
+    """View to the miscellaneous update form page."""
+    # To display the empty miscellaneous update form.
+    return render(request, "misc_update.html")
+
+
+def misc_list(request):
+    """View to the miscellaneous list page."""
+    # To display the empty miscellaneous list.
+    return render(request, "misc_list.html")
 
 
 # Stock views
