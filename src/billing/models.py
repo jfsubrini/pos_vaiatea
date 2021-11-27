@@ -48,6 +48,8 @@ class Payment(models.Model):
 
     order_id = models.OneToOneField(
         Order, on_delete=models.CASCADE, verbose_name="Commande")
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments", verbose_name="Utilisateur")
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
     payment_done = models.BooleanField("Paiement effectué")
