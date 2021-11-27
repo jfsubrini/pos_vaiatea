@@ -46,8 +46,8 @@ class Payment(models.Model):
     Gathering all data for each payment, for guest's order(s), at the end of the trip.
     """
 
-    order_id = models.OneToOneField(
-        Order, on_delete=models.CASCADE, verbose_name="Commande")
+    orders = models.ManyToManyField(
+        Order, related_name="payments", verbose_name="Commande")
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments", verbose_name="Utilisateur")
     amount = models.DecimalField(
