@@ -8,6 +8,7 @@ from django.forms import (
     ModelForm,
     Select,
     TextInput,
+    NumberInput,
 )
 from .models import Guest, Trip
 
@@ -27,7 +28,7 @@ class GuestCreationForm(ModelForm):
         """Details of the GuestCreationForm form."""
 
         model = Guest
-        exclude = ["created_at", "updated_at"]
+        exclude = ["user_id", "created_at", "updated_at"]
         widgets = {
             "first_name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "firstName"}
@@ -47,6 +48,10 @@ class GuestCreationForm(ModelForm):
                 attrs={"class": "form-control form-control-lg",
                        "id": "divingLevel", "required": False}
             ),
+            "dives_number": NumberInput(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "divesNumber"}
+            ),
             "email": EmailInput(
                 attrs={
                     "class": "form-control form-control-lg",
@@ -60,10 +65,10 @@ class GuestCreationForm(ModelForm):
             ),  # TODO
         }
 
-    def __init__(self, *args, **kwargs):  #  TODO
-        # To display all the existing itinerary in the database.
-        super().__init__(*args, **kwargs)
-        self.fields["trips"].queryset = Trip.objects.all()
+    # def __init__(self, *args, **kwargs):  #  TODO
+    #     # To display all the existing itinerary in the database.
+    #     super().__init__(*args, **kwargs)
+    #     self.fields["trips"].queryset = Trip.objects.all()
 
 
 # The trip form.
@@ -74,7 +79,7 @@ class TripCreationForm(ModelForm):
         """Details of the TripCreationForm form."""
 
         model = Trip
-        exclude = ["user", "created_at", "updated_at"]
+        exclude = ["user_id", "created_at", "updated_at"]
         widgets = {
             "itinerary": Select(
                 attrs={"class": "form-control form-control-lg", "id": "itinerary"}

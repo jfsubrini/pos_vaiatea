@@ -2,13 +2,16 @@
 # pylint: disable=too-few-public-methods
 """Creation of the order form."""
 
+from django.db.models.fields import PositiveSmallIntegerField
 from django.forms import (
     BooleanField,
     ModelForm,
     Select,
     TextInput,
 )
-from .models import Order
+from django.forms.fields import MultipleChoiceField
+from django.forms.widgets import NumberInput
+from .models import Order, Payment
 
 
 # The order form.
@@ -19,22 +22,39 @@ class OrderCreationForm(ModelForm):
         """Details of the OrderCreationForm form."""
 
         model = Order
-        exclude = ["date"]
+        exclude = ["user_id", "date"]
         widgets = {
-            "miscellaneous": TextInput(
+            "guest_id": Select(
                 attrs={"class": "form-control form-control-lg",
-                       "id": "miscellaneous"}
+                       "id": "guest"}
             ),
+            "quantity": NumberInput(
+                attrs={"class": "form-control form-control-lg",
+                       "id": "quantity"}
+            ),
+        }
+
+
+# The payment form.
+class PaymentForm(ModelForm):
+    """Form to create the payment data form."""
+
+    class Meta:
+        """Details of the PaymentForm form."""
+
+        model = Payment
+        exclude = ["user_id", "amount", "date"]
+        widgets = {
+            # "guest_id": Select(
+            #     attrs={"class": "form-control form-control-lg",
+            #            "id": "guest"}
+            # ),
+            # "order_id": MultipleChoiceField(
+            #     attrs={"class": "form-control form-control-lg",
+            #            "id": "order"}
+            # ),
             "payment_mode": Select(
                 attrs={"class": "form-control form-control-lg",
                        "id": "paymentMode"}
             ),
-            # "payment_done": BooleanField(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "paymentDone"}
-            # ),
-            # "trips": Select(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "trips"}
-            # ),  # TODO
         }

@@ -8,7 +8,7 @@ from django.forms import (
     TextInput,
     NumberInput,
 )
-from .models import Item, Drink, Goodies, Food
+from .models import Item, Drink, Goodies, Food, Miscellaneous
 
 
 # Name input for the forms.
@@ -19,7 +19,8 @@ class ItemCreationForm(ModelForm):
         """Details of the ItemCreationForm form."""
 
         model = Item
-        exclude = ["drink", "goodies", "food", "created_at", "updated_at"]
+        exclude = ["drink_id", "goodies_id", "food_id",
+                   "miscellaneous_id", "user_id", "created_at", "updated_at"]
         widgets = {
             "name": TextInput(
                 attrs={"class": "form-control form-control-lg", "id": "name",
@@ -90,5 +91,22 @@ class FoodCreationForm(ModelForm):
             "food_category": Select(
                 attrs={"class": "form-control form-control-lg",
                        "id": "foodCategory"}
+            ),
+        }
+
+
+# The miscellaneous form.
+class MiscCreationForm(ModelForm):
+    """Form to create the miscellaneous data form."""
+
+    class Meta:
+        """Details of the MiscellaneousCreationForm form."""
+
+        model = Miscellaneous
+        fields = '__all__'
+        widgets = {
+            "price_unit_dollar": NumberInput(
+                attrs={"class": "form-control form-control-lg", "id": "priceUnitDollar",
+                       }
             ),
         }
