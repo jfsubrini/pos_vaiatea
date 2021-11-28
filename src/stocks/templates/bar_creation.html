@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Drink creation</title>
+    <title>Bar creation</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         {% csrf_token %}
         <h2>Informations sur la boisson :</h2>
         {{ item_creation.as_p }}
-        {{ drink_creation.as_p }}
+        {{ bar_creation.as_p }}
         </br>
         <input type="submit" value="Envoyer la fiche">
     </form>

@@ -29,7 +29,12 @@ GENDER = (
     ("Female", "Female"),
     ("Unisex", "Unisex"),
 )
-FOOD_CATEGORY = (
+BAR_CATEGORY = (
+    ("Vins", "Vins"),
+    ("Alcools", "Alcools"),
+    ("Soft drinks", "Soft drinks"),
+)
+KITCHEN_CATEGORY = (
     ("Viande", "Viande"),
     ("Poisson", "Poisson"),
     ("Légumes", "Légumes"),
@@ -50,121 +55,112 @@ TYPE_OF_ITEM = (
 )
 
 
-class Drink(models.Model):
+class Item(models.Model):
     """
-    To create the Drink table.
+    To create the Abstract Base Class named Item for the children Bar, Goodies, Kitchen \
+        and Miscellaneous to inheritate.
+    """
+
+    name = models.CharField("Nom de l'article", max_length=30)
+    price_unit_dollar = models.DecimalField(
+        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="%(app_label)s_%(class)s_related", verbose_name="Utilisateur")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Bar(Item):
+    """
+    To create the Bar table that inherits from the Item abstract base class.
     Gathering data for each drink item.
     """
 
-    price_unit_dollar = models.DecimalField(
-        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
+    bar_category = models.CharField(
+        "Catégorie du bar", max_length=20, choices=BAR_CATEGORY)
 
     class Meta:
-        verbose_name = "Boisson"
+        verbose_name = "Boisson du bar"
+        ordering = ["bar_category", "name"]
 
     def __str__(self):
-        return f"Boisson au prix unitaire de vente en dollar (USD) de {self.price_unit_dollar}"
+        return f"Boisson du bar : {self.name}"
 
 
-class Goodies(models.Model):
+class Goodies(Item):
     """
-    To create the Goodies table.
+    To create the Goodies table that inherits from the Item abstract base class.
     Gathering data for each goodies item.
     """
 
-    category = models.CharField(
-        "Catégorie", max_length=20, choices=GOODIES_CATEGORY)
+    goodies_category = models.CharField(
+        "Catégorie de goodies", max_length=20, choices=GOODIES_CATEGORY)
     size = models.CharField(
         "Taille", max_length=5, choices=SIZE)
     color = models.CharField(
         "Couleur", max_length=30)
     gender = models.CharField(
         "Genre", max_length=10, choices=GENDER)
-    price_unit_dollar = models.DecimalField(
-        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
 
     class Meta:
         verbose_name = "Goodies"
+        ordering = ["goodies_category", "name"]
 
     def __str__(self):
-        return f"Goodies de catégorie {self.category}"
+        return f"Goodies : {self.name}"
 
 
-class Food(models.Model):
+class Kitchen(Item):
     """
-    To create the Food table.
+    To create the Kitchen table that inherits from the Item abstract base class.
     Gathering data for each food item.
     """
 
     food_category = models.CharField(
-        "Catégorie de nourriture", max_length=20, choices=FOOD_CATEGORY)
+        "Catégorie de nourriture", max_length=20, choices=KITCHEN_CATEGORY)
+    price_unit_dollar = None
 
     class Meta:
-        verbose_name = "Nourriture"
+        verbose_name = "Nourriture de la cuisine"
+        ordering = ["food_category", "name"]
 
     def __str__(self):
-        return f"Nourriture de type {self.food_category}"
+        return f"Nourriture de la cuisine : {self.name}"
 
 
-class Miscellaneous(models.Model):
+class Miscellaneous(Item):
     """
-    To create the Miscellaneous table.
+    To create the Miscellaneous table that inherits from the Item abstract base class.
     Gathering data for each miscellaneous item.
     """
 
-    price_unit_dollar = models.DecimalField(
-        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
-
     class Meta:
         verbose_name = "Autre article divers"
+        ordering = ["name"]
 
     def __str__(self):
-        return f"Article divers au prix unitaire de vente en dollar (USD) de {self.price_unit_dollar}"
+        return f"Article divers : {self.name}"
 
 
-class Item(models.Model):
-    """
-    To create the Item table.
-    Gathering the name for each drink, goodies, food or miscellaneous item.
-    """
+# class Stock(models.Model):
+#     """To create the Stock table."""
 
-    name = models.CharField("Nom de l'article", max_length=30)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                                related_name="items", verbose_name="Utilisateur")
-    drink_id = models.OneToOneField(
-        Drink, on_delete=models.CASCADE, verbose_name="Boisson")
-    goodies_id = models.OneToOneField(
-        Goodies, on_delete=models.CASCADE, verbose_name="Goodies")
-    food_id = models.OneToOneField(
-        Food, on_delete=models.CASCADE, verbose_name="Nourriture")
-    miscellaneous_id = models.OneToOneField(
-        Miscellaneous, on_delete=models.CASCADE, verbose_name="Autre article divers")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+#     type_of_item = models.CharField(
+#         "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
+#     quantity = models.PositiveSmallIntegerField(
+#         "Quantité", blank=True, null=True)
+#     item = models.ForeignKey(
+#         Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
+#     trips = models.ManyToManyField(
+#         Trip, related_name="stocks", verbose_name="Voyage")
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        verbose_name = "Article"
+#     class Meta:
+#         verbose_name = "Stock"
 
-    def __str__(self):
-        return f"Article nommé {self.name}"
-
-
-class Stock(models.Model):
-    """To create the Stock table."""
-
-    type_of_item = models.CharField(
-        "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
-    quantity = models.PositiveSmallIntegerField(
-        "Quantité", blank=True, null=True)
-    item = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
-    trips = models.ManyToManyField(
-        Trip, related_name="stocks", verbose_name="Voyage")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = "Stock"
-
-    def __str__(self):
-        return f"Stock de catégorie {self.type_of_item}"
+#     def __str__(self):
+#         return f"Stock de catégorie {self.type_of_item}"

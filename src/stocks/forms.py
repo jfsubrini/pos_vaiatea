@@ -8,42 +8,18 @@ from django.forms import (
     TextInput,
     NumberInput,
 )
-from .models import Item, Drink, Goodies, Food, Miscellaneous
+from .models import Bar, Goodies, Kitchen, Miscellaneous
 
 
-# Name input for the forms.
-class ItemCreationForm(ModelForm):
-    """Form to create the name data for the drink, goodies and food forms."""
-
-    class Meta:
-        """Details of the ItemCreationForm form."""
-
-        model = Item
-        exclude = ["drink_id", "goodies_id", "food_id",
-                   "miscellaneous_id", "user_id", "created_at", "updated_at"]
-        widgets = {
-            "name": TextInput(
-                attrs={"class": "form-control form-control-lg", "id": "name",
-                       }
-            ),
-        }
-
-
-# The drink form.
-class DrinkCreationForm(ModelForm):
-    """Form to create the drink data form."""
+# The bar form.
+class BarCreationForm(ModelForm):
+    """Form to create the bar data form."""
 
     class Meta:
-        """Details of the DrinkCreationForm form."""
+        """Details of the BarCreationForm form."""
 
-        model = Drink
-        fields = '__all__'
-        widgets = {
-            "price_unit_dollar": NumberInput(
-                attrs={"class": "form-control form-control-lg", "id": "priceUnitDollar",
-                       }
-            ),
-        }
+        model = Bar
+        exclude = ["user_id"]
 
 
 # The goodies form.
@@ -54,45 +30,18 @@ class GoodiesCreationForm(ModelForm):
         """Details of the GoodiesCreationForm form."""
 
         model = Goodies
-        fields = '__all__'
-        widgets = {
-            "category": Select(
-                attrs={"class": "form-control form-control-lg",
-                       "id": "category"}
-            ),
-            "size": Select(
-                attrs={"class": "form-control form-control-lg",
-                       "id": "size"}
-            ),
-            "color": TextInput(
-                attrs={"class": "form-control form-control-lg", "id": "color"}
-            ),
-            "gender": Select(
-                attrs={"class": "form-control form-control-lg",
-                       "id": "gender"}
-            ),
-            "price_unit_dollar": NumberInput(
-                attrs={"class": "form-control form-control-lg", "id": "priceUnitDollar",
-                       }
-            ),
-        }
+        exclude = ["user_id"]
 
 
-# The food form.
-class FoodCreationForm(ModelForm):
-    """Form to create the food data form."""
+# The kitchen form.
+class KitchenCreationForm(ModelForm):
+    """Form to create the kitchen data form."""
 
     class Meta:
-        """Details of the FoodCreationForm form."""
+        """Details of the KitchenCreationForm form."""
 
-        model = Food
-        fields = '__all__'
-        widgets = {
-            "food_category": Select(
-                attrs={"class": "form-control form-control-lg",
-                       "id": "foodCategory"}
-            ),
-        }
+        model = Kitchen
+        exclude = ["user_id"]
 
 
 # The miscellaneous form.
@@ -103,10 +52,4 @@ class MiscCreationForm(ModelForm):
         """Details of the MiscellaneousCreationForm form."""
 
         model = Miscellaneous
-        fields = '__all__'
-        widgets = {
-            "price_unit_dollar": NumberInput(
-                attrs={"class": "form-control form-control-lg", "id": "priceUnitDollar",
-                       }
-            ),
-        }
+        exclude = ["user_id"]

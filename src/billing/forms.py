@@ -44,17 +44,10 @@ class PaymentForm(ModelForm):
 
         model = Payment
         exclude = ["user_id", "amount", "date"]
-        widgets = {
-            # "guest_id": Select(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "guest"}
-            # ),
-            # "order_id": MultipleChoiceField(
-            #     attrs={"class": "form-control form-control-lg",
-            #            "id": "order"}
-            # ),
-            "payment_mode": Select(
-                attrs={"class": "form-control form-control-lg",
-                       "id": "paymentMode"}
-            ),
-        }
+        # widgets = {
+        #     "orders": MultipleChoiceField(),
+        #     "payment_mode": Select(
+        #         attrs={"class": "form-control form-control-lg",
+        #                "id": "paymentMode"}
+        #     ),
+        # }
