@@ -145,22 +145,22 @@ class Miscellaneous(Item):
         return f"Article divers : {self.name}"
 
 
-# class Stock(models.Model):
-#     """To create the Stock table."""
+class Stock(models.Model):
+    """To create the Stock table."""
 
-#     type_of_item = models.CharField(
-#         "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
-#     quantity = models.PositiveSmallIntegerField(
-#         "Quantité", blank=True, null=True)
-#     item = models.ForeignKey(
-#         Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
-#     trips = models.ManyToManyField(
-#         Trip, related_name="stocks", verbose_name="Voyage")
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+    type_of_item = models.CharField(
+        "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
+    quantity = models.PositiveSmallIntegerField(
+        "Quantité", blank=True, null=True)
+    # item = models.ForeignKey(
+    #     Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
+    trips = models.ManyToManyField(
+        Trip, related_name="stocks", verbose_name="Voyage")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-#     class Meta:
-#         verbose_name = "Stock"
+    class Meta:
+        verbose_name = "Stock"
 
-#     def __str__(self):
-#         return f"Stock de catégorie {self.type_of_item}"
+    def __str__(self):
+        return f"Stock de catégorie {self.type_of_item}"
