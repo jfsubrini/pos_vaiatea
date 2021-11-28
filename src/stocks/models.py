@@ -144,13 +144,28 @@ class Miscellaneous(Item):
 class Stock(models.Model):
     """To create the Stock table."""
 
-    bar_id = models.OneToOneField(Bar, on_delete=models.CASCADE)
-    goodies_id = models.OneToOneField(Goodies, on_delete=models.CASCADE)
-    kitchen_id = models.OneToOneField(Kitchen, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(
-        "Quantité", blank=True, null=True)
+    bar_initial_id = models.OneToOneField(
+        Bar, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de boisson")
+    bar_final_id = models.OneToOneField(
+        Bar, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de boisson")
+    goodies_initial_id = models.OneToOneField(
+        Goodies, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de goodies")
+    goodies_final_id = models.OneToOneField(
+        Goodies, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de goodies")
+    kitchen_initial_id = models.OneToOneField(
+        Kitchen, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de nourriture")
+    kitchen_final_id = models.OneToOneField(
+        Kitchen, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de nourriture")
     trip_id = models.ForeignKey(
         Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")
+    quantity = models.PositiveSmallIntegerField(
+        "Quantité", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -158,4 +173,4 @@ class Stock(models.Model):
         verbose_name = "Stock"
 
     def __str__(self):
-        return f"Stock de catégorie {self.bar_id|self.goodies_id|self.kitchen_id}"
+        return f"Stock du voyage {self.trip_id}"
