@@ -154,8 +154,8 @@ class Stock(models.Model):
         "Quantité", blank=True, null=True)
     # item = models.ForeignKey(
     #     Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
-    trips = models.ManyToManyField(
-        Trip, related_name="stocks", verbose_name="Voyage")
+    trip_id = models.ForeignKey(
+        Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
