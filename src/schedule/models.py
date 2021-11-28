@@ -52,7 +52,8 @@ class Trip(models.Model):
     starting_date = models.DateField("Date de départ du voyage")
     ending_date = models.DateField("Date d'arrivée du voyage")
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips",
+        verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -86,7 +87,8 @@ class Guest(models.Model):
     email = models.EmailField(
         "Email", max_length=100, unique=True)
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="guests", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="guests",
+        verbose_name="Utilisateur")
     trips = models.ManyToManyField(
         Trip, related_name="guests", verbose_name="Voyage choisi")
     created_at = models.DateTimeField(auto_now_add=True)

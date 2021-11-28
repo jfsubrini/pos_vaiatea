@@ -48,11 +48,6 @@ KITCHEN_CATEGORY = (
     ("Autre épicerie", "Autre épicerie"),
     ("Autre", "Autre"),
 )
-TYPE_OF_ITEM = (
-    ("Bootle & Can", "Bootle & Can"),
-    ("Food", "Food"),
-    ("Goodies", "Goodies"),
-)
 
 
 class Item(models.Model):
@@ -65,7 +60,8 @@ class Item(models.Model):
     price_unit_dollar = models.DecimalField(
         "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                                related_name="%(app_label)s_%(class)s_related", verbose_name="Utilisateur")
+                                related_name="%(app_label)s_%(class)s_related",
+                                verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -148,12 +144,11 @@ class Miscellaneous(Item):
 class Stock(models.Model):
     """To create the Stock table."""
 
-    type_of_item = models.CharField(
-        "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
+    bar_id = models.OneToOneField(Bar, on_delete=models.CASCADE)
+    goodies_id = models.OneToOneField(Goodies, on_delete=models.CASCADE)
+    kitchen_id = models.OneToOneField(Kitchen, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(
         "Quantité", blank=True, null=True)
-    # item = models.ForeignKey(
-    #     Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
     trip_id = models.ForeignKey(
         Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -163,4 +158,4 @@ class Stock(models.Model):
         verbose_name = "Stock"
 
     def __str__(self):
-        return f"Stock de catégorie {self.type_of_item}"
+        return f"Stock de catégorie {self.bar_id|self.goodies_id|self.kitchen_id}"

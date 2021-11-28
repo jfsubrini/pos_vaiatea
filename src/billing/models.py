@@ -25,7 +25,8 @@ class OrderLine(models.Model):
     """
 
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orderlines",
+        verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager")
     bar_id = models.ForeignKey(
@@ -33,7 +34,8 @@ class OrderLine(models.Model):
     goodies_id = models.ForeignKey(
         Goodies, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Autre article divers")
+        Miscellaneous, on_delete=models.CASCADE, related_name="orderlines",
+        verbose_name="Autre article divers")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
 
@@ -41,8 +43,8 @@ class OrderLine(models.Model):
         verbose_name = "Commande"
 
     def __str__(self):
-        #  TODO changer au nom de l'article
-        return f"Commande du passager : {self.guest_id}"
+        return f"Commande de l'article {self.bar_id|self.goodies_id|self.miscellaneous_id} \
+            du passager {self.guest_id}"
 
 
 class Payment(models.Model):
@@ -54,7 +56,8 @@ class Payment(models.Model):
     orders = models.ManyToManyField(
         OrderLine, related_name="payments", verbose_name="Commande")
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments",
+        verbose_name="Utilisateur")
     amount = models.DecimalField(
         "Montant de la facture", max_digits=5, decimal_places=2)
     payment_mode = models.CharField(
@@ -67,4 +70,4 @@ class Payment(models.Model):
         verbose_name = "Paiement"
 
     def __str__(self):
-        return f"Paiement de la commande {self.order_id} par {self.payment_mode}"
+        return f"Paiement de la commande {self.orders} par {self.payment_mode}"
