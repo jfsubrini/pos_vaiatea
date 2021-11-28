@@ -7,8 +7,9 @@ from . import views
 
 
 urlpatterns = [
-    path("order/creation/", views.order_creation, name="order-creation"),
-    path("order/update/", views.order_update, name="order-update"),
+    path("orderline/creation/", views.orderline_creation,
+         name="orderline-creation"),
+    path("orderline/update/", views.orderline_update, name="orderline-update"),
     path("bill/editing", views.bill_editing, name="bill-editing"),
     path("user/creation/", views.user_creation, name="user-creation"),
     path("user/update/", views.user_update, name="user-update"),

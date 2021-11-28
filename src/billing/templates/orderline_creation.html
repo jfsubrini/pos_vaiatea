@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Order creation</title>
+    <title>OrderLine creation</title>
 </head>
 
 <body>
-    <h1>Création d'une commande</h1>
+    <h1>Création d'une ligne de commande</h1>
 
     {% if submitted %}
     <p>Your message was submitted successfully. Thank you.</p>
     {% else %}
     <form action="" method="post">
         {% csrf_token %}
-        <h2>Informations sur la commande :</h2>
-        {{ order_creation.as_p }}
+        <h2>Informations sur la ligne de commande :</h2>
+        {{ orderline_creation.as_p }}
         </br>
         <input type="submit" value="Envoyer la fiche">
     </form>

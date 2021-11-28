@@ -8,6 +8,7 @@ from django.conf import settings
 from django.db import models
 
 from schedule.models import Guest
+from stocks.models import Bar, Goodies, Miscellaneous
 
 PAYMENT_MODE = (
     ("Cash USD", "Cash USD"),
@@ -17,20 +18,24 @@ PAYMENT_MODE = (
 )
 
 
-class Order(models.Model):
+class OrderLine(models.Model):
     """
-    To create the Order table in the database.
-    Gathering all data for each order from a guest during the trip.
+    To create the OrderLine table in the database.
+    Gathering all data for each line of order from a guest during the trip.
     """
 
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
-        Guest, on_delete=models.CASCADE, related_name="orders", verbose_name="Passager")
+        Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager")
+    bar_id = models.ForeignKey(
+        Bar, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Boisson de bar")
+    goodies_id = models.ForeignKey(
+        Goodies, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Goodies")
+    miscellaneous_id = models.ForeignKey(
+        Miscellaneous, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Autre article divers")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
-    # item = models.ManyToManyField(
-    #     Item, related_name="orders", verbose_name="commande")  # TODO
 
     class Meta:
         verbose_name = "Commande"
@@ -47,7 +52,7 @@ class Payment(models.Model):
     """
 
     orders = models.ManyToManyField(
-        Order, related_name="payments", verbose_name="Commande")
+        OrderLine, related_name="payments", verbose_name="Commande")
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments", verbose_name="Utilisateur")
     amount = models.DecimalField(
@@ -56,7 +61,7 @@ class Payment(models.Model):
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
     date = models.DateTimeField("Date de la commande", auto_now=True)
     orders = models.ManyToManyField(
-        Order, related_name="payments", verbose_name="commande")
+        OrderLine, related_name="payments", verbose_name="commande")
 
     class Meta:
         verbose_name = "Paiement"

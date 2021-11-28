@@ -5,31 +5,31 @@
     """
 from django.shortcuts import render
 
-from .forms import OrderCreationForm, PaymentForm
+from .forms import OrderLineCreationForm, PaymentForm
 
 
-# Order views
-def order_creation(request):
-    """View to the order creation form page."""
-    # To display the empty order creation form.
+# OrderLine views
+def orderline_creation(request):
+    """View to the order line creation form page."""
+    # To display the empty order line creation form.
     submitted = False
-    order_create = OrderCreationForm()
+    orderline_create = OrderLineCreationForm()
     if "submitted" in request.GET:
         submitted = True
 
     # What to render to the template.
     context = {
-        "order_creation": order_create,
+        "orderline_creation": orderline_create,
         "submitted": submitted,
     }
 
-    return render(request, "order_creation.html", context)
+    return render(request, "orderline_creation.html", context)
 
 
-def order_update(request):
-    """View to the order update form page."""
-    # To display the empty order update form.
-    return render(request, "order_update.html")
+def orderline_update(request):
+    """View to the order line update form page."""
+    # To display the empty order line update form.
+    return render(request, "orderline_update.html")
 
 
 def bill_editing(request):
