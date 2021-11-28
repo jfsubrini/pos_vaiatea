@@ -27,10 +27,10 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orders", verbose_name="Passager")
-    # order_line = models.ManyToManyField(
-    #     Item, related_name="orders", verbose_name="commande")  # TODO
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
+    # item = models.ManyToManyField(
+    #     Item, related_name="orders", verbose_name="commande")  # TODO
 
     class Meta:
         verbose_name = "Commande"
@@ -55,6 +55,8 @@ class Payment(models.Model):
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
     date = models.DateTimeField("Date de la commande", auto_now=True)
+    orders = models.ManyToManyField(
+        Order, related_name="payments", verbose_name="commande")
 
     class Meta:
         verbose_name = "Paiement"
