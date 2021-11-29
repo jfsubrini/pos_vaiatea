@@ -98,6 +98,7 @@ class Guest(models.Model):
     class Meta:
         verbose_name = "Passager.ère"
         ordering = ["last_name", "first_name"]
+        unique_together = ["first_name", "last_name"]
 
     def __str__(self):
         return f"Passager.ère {self.first_name} {self.last_name}"
