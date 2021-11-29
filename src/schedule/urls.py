@@ -2,15 +2,22 @@
 """
 schedule URL Configuration
 """
+from django.contrib import admin
 from django.urls import path
-from . import views
+# from . import views
 
 
 urlpatterns = [
-    path("guest/creation/", views.guest_creation, name="guest-creation"),
-    path("guest/update/", views.guest_update, name="guest-update"),
-    path("guest/list/", views.guest_list, name="guest-list"),
-    path("trip/creation/", views.trip_creation, name="trip-creation"),
-    path("trip/update/", views.trip_update, name="trip-update"),
-    path("trip/list/", views.trip_list, name="trip-list"),
+    # TODO arriver plus précisement sur la bonne page
+    path("guest/creation/", admin.site.urls),
+    # TODO arriver plus précisement sur la bonne page
+    path("guest/update/", admin.site.urls),
+    # TODO arriver plus précisement sur la bonne page
+    path("guest/list/", admin.site.urls),
+    # TODO arriver plus précisement sur la bonne page
+    path("trip/creation/", admin.site.urls),
+    # TODO arriver plus précisement sur la bonne page
+    path("trip/update/", admin.site.urls),
+    # TODO arriver plus précisement sur la bonne page
+    path("trip/list/", admin.site.urls),
 ]

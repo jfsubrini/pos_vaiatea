@@ -9,21 +9,21 @@ from django.db import models
 
 
 GENDER = (
-    ("Male", "Male"),
-    ("Female", "Female"),
+    ("Homme", "Homme"),
+    ("Femme", "Femme"),
 )
 NATIONALITY = (
-    ("Français", "Français"),
-    ("Anglais", "Anglais"),
-    ("Allemand", "Allemand"),
+    ("Français.e", "Français.e"),
+    ("Anglais.e", "Anglais.e"),
+    ("Allemand.e", "Allemand.e"),
     ("Belge", "Belge"),
     ("Suisse", "Suisse"),
-    ("Néerlandais", "Néerlandais"),
-    ("Italien", "Italien"),
-    ("Espagnol", "Espagnol"),
+    ("Néerlandais.e", "Néerlandais.e"),
+    ("Italien.ne", "Italien.ne"),
+    ("Espagnol.e", "Espagnol.e"),
     ("Autre Europe", "Autre Europe"),
-    ("Nord-Américain", "Nord-Américain"),
-    ("Canadien", "Canadien"),
+    ("Nord-Américain.e", "Nord-Américain.e"),
+    ("Canadien.ne", "Canadien.ne"),
     ("Autre Monde", "Autre Monde"),
 )
 DIVING_LEVEL = (
@@ -49,8 +49,8 @@ class Trip(models.Model):
         "Itinéraire du voyage", max_length=50)
     duration_days = models.PositiveSmallIntegerField(
         "Durée du voyage en jours", choices=DURATION)
-    starting_date = models.DateField("Date de départ du voyage")
-    ending_date = models.DateField("Date d'arrivée du voyage")
+    starting_date = models.DateField("Date de départ du voyage", unique=True)
+    ending_date = models.DateField("Date d'arrivée du voyage", unique=True)
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips",
         verbose_name="Utilisateur")
@@ -59,9 +59,10 @@ class Trip(models.Model):
 
     class Meta:
         verbose_name = "Voyage"
+        ordering = ["starting_date"]
 
     def __str__(self):
-        return f"Itinéraire du voyage : {self.itinerary}"
+        return f"Itinéraire du voyage {self.itinerary} du {self.starting_date}"
 
 
 class Guest(models.Model):
@@ -79,13 +80,13 @@ class Guest(models.Model):
     nationality = models.CharField(
         "Nationalité", max_length=25, choices=NATIONALITY)
     passport_number = models.CharField(
-        "Numéro de passeport", max_length=15, blank=True, null=True)
+        "Numéro de passeport", max_length=15, unique=True, blank=True, null=True)
     diving_level = models.CharField(
         "Niveau de plongée", max_length=20, choices=DIVING_LEVEL)
     dives_number = models.PositiveSmallIntegerField(
         "Nombre de plongées", blank=True, null=True)
     email = models.EmailField(
-        "Email", max_length=100, unique=True)
+        "Email", max_length=100)
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="guests",
         verbose_name="Utilisateur")
@@ -96,6 +97,7 @@ class Guest(models.Model):
 
     class Meta:
         verbose_name = "Passager.ère"
+        ordering = ["last_name", "first_name"]
 
     def __str__(self):
         return f"Passager.ère {self.first_name} {self.last_name}"
