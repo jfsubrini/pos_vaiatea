@@ -9,8 +9,8 @@ from django.db import models
 
 
 GENDER = (
-    ("Homme", "Homme"),
-    ("Femme", "Femme"),
+    ("M", "M"),
+    ("F", "F"),
 )
 NATIONALITY = (
     ("Français.e", "Français.e"),
@@ -42,13 +42,11 @@ class Trip(models.Model):
     Gathering all data for each liveaboard trip.
     """
 
-    DURATION = [(i, duration)
-                for i, duration in enumerate(range(6, 22), start=1)]  # TODO
-
     itinerary = models.CharField(
         "Itinéraire du voyage", max_length=50)
     duration_days = models.PositiveSmallIntegerField(
-        "Durée du voyage en jours", choices=DURATION)
+        "Durée du voyage en jours")
+    # présenter pour starting_date et ending_date les dates de la maniere : dd/mm/yy TODO
     starting_date = models.DateField("Date de départ du voyage", unique=True)
     ending_date = models.DateField("Date d'arrivée du voyage", unique=True)
     user_id = models.ForeignKey(
@@ -62,7 +60,7 @@ class Trip(models.Model):
         ordering = ["starting_date"]
 
     def __str__(self):
-        return f"Itinéraire du voyage {self.itinerary} du {self.starting_date}"
+        return f"Voyage {self.itinerary} du {self.starting_date}"
 
 
 class Guest(models.Model):
