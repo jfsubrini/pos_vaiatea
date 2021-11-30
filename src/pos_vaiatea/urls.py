@@ -18,6 +18,11 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 
+admin.site.site_header = 'Vaiatea Administration'
+# admin.site.site_title = 'Vaiatea Site Admin'
+admin.site.index_title = 'Vaiatea Liveaboard Indonesia'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/password_reset/', auth_views.PasswordResetView.as_view(),
