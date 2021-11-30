@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=missing-class-docstring
+"""All the admin pages to create, update, delete and read the trips and guests.
+    """
 from django.contrib import admin
 from .models import Guest, Trip
 

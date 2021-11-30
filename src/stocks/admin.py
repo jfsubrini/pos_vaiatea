@@ -1,5 +1,10 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=missing-class-docstring
+"""All the admin pages to create, update, delete and read \
+    all the bar, kitchen, goodies and miscellanous items.
+    """
 from django.contrib import admin
-from .models import Item, Bar, Goodies, Kitchen, Miscellaneous
+from .models import Bar, Goodies, Kitchen, Miscellaneous
 
 
 @admin.register(Bar)
