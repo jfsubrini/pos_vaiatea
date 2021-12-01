@@ -84,7 +84,7 @@ class Bar(Item):
         ordering = ["bar_category", "name"]
 
     def __str__(self):
-        return f"{self.bar_category} {self.name}"
+        return f"{self.bar_category} {self.name} à {self.price_unit_dollar} USD"
 
 
 class Goodies(Item):
@@ -107,7 +107,7 @@ class Goodies(Item):
         ordering = ["goodies_category", "name"]
 
     def __str__(self):
-        return f"{self.goodies_category} {self.name}"
+        return f"{self.goodies_category} {self.name} à {self.price_unit_dollar} USD"
 
 
 class Kitchen(Item):
@@ -139,7 +139,7 @@ class Miscellaneous(Item):
         ordering = ["name"]
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} à {self.price_unit_dollar} USD"
 
 
 class Stock(models.Model):

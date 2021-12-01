@@ -30,12 +30,14 @@ class OrderLine(models.Model):
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
     bar_id = models.ForeignKey(
-        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
+        Bar, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
-        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
+        Goodies, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.PROTECT, related_name="orderlines",
-        verbose_name="Autre article divers")
+        Miscellaneous, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Autre article divers")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
 
@@ -43,8 +45,7 @@ class OrderLine(models.Model):
         verbose_name = "Commande"
 
     def __str__(self):
-        return f"Commande de l'article {self.bar_id|self.goodies_id|self.miscellaneous_id} \
-            du passager {self.guest_id}"
+        return f"Commande d'un article par {self.guest_id}"
 
 
 class Payment(models.Model):
