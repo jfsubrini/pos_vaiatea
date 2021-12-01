@@ -25,16 +25,16 @@ class OrderLine(models.Model):
     """
 
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orderlines",
-        verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="orderlines", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager")
     bar_id = models.ForeignKey(
-        Bar, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Boisson de bar")
+        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
-        Goodies, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Goodies")
+        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.CASCADE, related_name="orderlines",
+        Miscellaneous, on_delete=models.PROTECT, related_name="orderlines",
         verbose_name="Autre article divers")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
@@ -53,11 +53,9 @@ class Payment(models.Model):
     Gathering all data for each payment, for guest's order(s), at the end of the trip.
     """
 
-    orders = models.ManyToManyField(
-        OrderLine, related_name="payments", verbose_name="Commande")
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments",
-        verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="payments", verbose_name="Utilisateur")
     amount = models.DecimalField(
         "Montant de la facture", max_digits=5, decimal_places=2)
     payment_mode = models.CharField(

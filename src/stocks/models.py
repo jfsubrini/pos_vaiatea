@@ -59,7 +59,8 @@ class Item(models.Model):
     name = models.CharField("Nom de l'article", max_length=30)
     price_unit_dollar = models.DecimalField(
         "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
+                                on_delete=models.SET_NULL,
                                 related_name="%(app_label)s_%(class)s_related",
                                 verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -145,22 +146,22 @@ class Stock(models.Model):
     """To create the Stock table."""
 
     bar_initial_id = models.OneToOneField(
-        Bar, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de boisson")
     bar_final_id = models.OneToOneField(
-        Bar, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de boisson")
     goodies_initial_id = models.OneToOneField(
-        Goodies, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de goodies")
     goodies_final_id = models.OneToOneField(
-        Goodies, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de goodies")
     kitchen_initial_id = models.OneToOneField(
-        Kitchen, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_initial_related",
+        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de nourriture")
     kitchen_final_id = models.OneToOneField(
-        Kitchen, on_delete=models.CASCADE, related_name="%(app_label)s_%(class)s_final_related",
+        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de nourriture")
     trip_id = models.ForeignKey(
         Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")

@@ -50,8 +50,8 @@ class Trip(models.Model):
     starting_date = models.DateField("Date de départ du voyage", unique=True)
     ending_date = models.DateField("Date d'arrivée du voyage", unique=True)
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="trips",
-        verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="trips", verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -86,8 +86,8 @@ class Guest(models.Model):
     email = models.EmailField(
         "Email", max_length=100)
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="guests",
-        verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="guests", verbose_name="Utilisateur")
     trips = models.ManyToManyField(
         Trip, related_name="guests", verbose_name="Voyage choisi")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -96,7 +96,7 @@ class Guest(models.Model):
     class Meta:
         verbose_name = "Passager.ère"
         ordering = ["last_name", "first_name"]
-        unique_together = ["first_name", "last_name"]
+        unique_together = (("first_name", "last_name"),)
 
     def __str__(self):
         return f"Passager.ère {self.first_name} {self.last_name}"
