@@ -80,7 +80,7 @@ class Bar(Item):
         "Catégorie du bar", max_length=20, choices=BAR_CATEGORY)
 
     class Meta:
-        verbose_name = "Boisson du bar"
+        verbose_name = "Boisson"
         ordering = ["bar_category", "name"]
 
     def __str__(self):
@@ -103,7 +103,7 @@ class Goodies(Item):
         "Genre", max_length=10, choices=GENDER)
 
     class Meta:
-        verbose_name = "Goodies"
+        verbose_name = "Goodie"
         ordering = ["goodies_category", "name"]
 
     def __str__(self):
@@ -121,7 +121,7 @@ class Kitchen(Item):
     price_unit_dollar = None
 
     class Meta:
-        verbose_name = "Nourriture de la cuisine"
+        verbose_name = "Nourriture"
         ordering = ["food_category", "name"]
 
     def __str__(self):
@@ -135,7 +135,7 @@ class Miscellaneous(Item):
     """
 
     class Meta:
-        verbose_name = "Autre article divers"
+        verbose_name = "Autre"
         ordering = ["name"]
 
     def __str__(self):
