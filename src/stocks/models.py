@@ -84,7 +84,7 @@ class Bar(Item):
         ordering = ["bar_category", "name"]
 
     def __str__(self):
-        return f"Boisson du bar : {self.name}"
+        return f"{self.bar_category} {self.name}"
 
 
 class Goodies(Item):
@@ -107,7 +107,7 @@ class Goodies(Item):
         ordering = ["goodies_category", "name"]
 
     def __str__(self):
-        return f"Goodies : {self.name}"
+        return f"{self.goodies_category} {self.name}"
 
 
 class Kitchen(Item):
@@ -125,7 +125,7 @@ class Kitchen(Item):
         ordering = ["food_category", "name"]
 
     def __str__(self):
-        return f"Nourriture de la cuisine : {self.name}"
+        return f"{self.food_category} {self.name}"
 
 
 class Miscellaneous(Item):
@@ -139,7 +139,7 @@ class Miscellaneous(Item):
         ordering = ["name"]
 
     def __str__(self):
-        return f"Article divers : {self.name}"
+        return f"{self.name}"
 
 
 class Stock(models.Model):

@@ -60,7 +60,8 @@ class Trip(models.Model):
         ordering = ["starting_date"]
 
     def __str__(self):
-        return f"Voyage {self.itinerary} du {self.starting_date}"
+        formated_date = self.starting_date.strftime("%d %b %Y")
+        return f"Voyage {self.itinerary} partant le {formated_date}"
 
 
 class Guest(models.Model):
@@ -99,4 +100,4 @@ class Guest(models.Model):
         unique_together = (("first_name", "last_name"),)
 
     def __str__(self):
-        return f"Passager.ère {self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"

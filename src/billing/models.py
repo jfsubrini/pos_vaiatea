@@ -28,7 +28,7 @@ class OrderLine(models.Model):
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
         related_name="orderlines", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
-        Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager")
+        Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
     bar_id = models.ForeignKey(
         Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
