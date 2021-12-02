@@ -79,7 +79,6 @@ WSGI_APPLICATION = 'pos_vaiatea.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': 'pos',
         'USER': 'jfsubrini',
         'PASSWORD': '',

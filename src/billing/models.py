@@ -2,7 +2,7 @@
 # pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the billing app of the pos_vaiatea project.
 
-    Models: Order and User.   # TODO
+    Models: OrderLine, Bill and Payment.
     """
 from django.conf import settings
 from django.db import models
@@ -18,6 +18,26 @@ PAYMENT_MODE = (
 )
 
 
+class Bill(models.Model):
+    """
+    To create the Bill table in the database.
+    Gathering all guest's order(s), at the end of the trip, to make the bill.
+    """
+
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="bills", verbose_name="Utilisateur")
+    amount = models.DecimalField(
+        "Montant de la facture", max_digits=5, decimal_places=2)
+    date = models.DateTimeField("Date de la facture", auto_now=True)
+
+    class Meta:
+        verbose_name = "Facture"
+
+    # def __str__(self):
+        # return f"Facture du passager.ère {self.guest_id}"  # TODO
+
+
 class OrderLine(models.Model):
     """
     To create the OrderLine table in the database.
@@ -30,14 +50,15 @@ class OrderLine(models.Model):
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
     bar_id = models.ForeignKey(
-        Bar, on_delete=models.PROTECT, blank=True, null=True,
-        related_name="orderlines", verbose_name="Boisson de bar")
+        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
-        Goodies, on_delete=models.PROTECT, blank=True, null=True,
-        related_name="orderlines", verbose_name="Goodies")
+        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.PROTECT, blank=True, null=True,
+        Miscellaneous, on_delete=models.PROTECT,
         related_name="orderlines", verbose_name="Autre article divers")
+    bill_id = models.ForeignKey(
+        Bill, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Facture")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
 
@@ -51,22 +72,20 @@ class OrderLine(models.Model):
 class Payment(models.Model):
     """
     To create the Payment table in the database.
-    Gathering all data for each payment, for guest's order(s), at the end of the trip.
+    Mode of payment for each bill, at the end of the trip.
     """
 
     user_id = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
         related_name="payments", verbose_name="Utilisateur")
-    amount = models.DecimalField(
-        "Montant de la facture", max_digits=5, decimal_places=2)
+    bill_id = models.ForeignKey(
+        Bill, on_delete=models.PROTECT, related_name="payments", verbose_name="Facture")
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
     date = models.DateTimeField("Date de la commande", auto_now=True)
-    orders = models.ManyToManyField(
-        OrderLine, related_name="payments", verbose_name="commande")
 
     class Meta:
         verbose_name = "Paiement"
 
     def __str__(self):
-        return f"Paiement de la commande {self.orders} par {self.payment_mode}"
+        return f"Paiement de la facture {self.bill_id} par {self.payment_mode}"

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=missing-class-docstring
-"""All the admin pages to create, update, delete and read the order lines and payments.
+"""All the admin pages to create, update, delete and read the order lines, \
+    the bills and the payments.
     """
 from django.contrib import admin
 from .models import OrderLine, Payment
@@ -8,7 +9,7 @@ from .models import OrderLine, Payment
 
 @admin.register(OrderLine)
 class OrderLineAdmin(admin.ModelAdmin):
-    exclude = ("user_id", "date")
+    exclude = ("user_id", "date", "bill_id")
     list_display = ("guest_id", "bar_id", "goodies_id",
                     "miscellaneous_id", "quantity")
     list_filter = ("guest_id",)
@@ -24,7 +25,6 @@ class OrderLineAdmin(admin.ModelAdmin):
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
     exclude = ("user_id", "date")
-    list_display = ("amount",)
     list_filter = ("payment_mode",)
     ordering = ("payment_mode",)
     search_fields = ("payment_mode",)

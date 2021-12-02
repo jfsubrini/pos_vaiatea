@@ -2,7 +2,7 @@
 # pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the stocks app of the pos_vaiatea project.
 
-    Models: Item, Drink, Goodies, Food and Stock.
+    Models: Item, Bar, Goodies, Kitchen, Miscellaneous and Stock.
     """
 from django.conf import settings
 from django.db import models
