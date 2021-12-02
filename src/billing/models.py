@@ -57,7 +57,7 @@ class OrderLine(models.Model):
         Miscellaneous, on_delete=models.PROTECT,
         related_name="orderlines", verbose_name="Autre article divers")
     bill_id = models.ForeignKey(
-        Bill, on_delete=models.PROTECT, blank=True, null=True,
+        Bill, on_delete=models.SET_NULL, blank=True, null=True,
         related_name="orderlines", verbose_name="Facture")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
