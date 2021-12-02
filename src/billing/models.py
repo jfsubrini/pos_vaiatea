@@ -2,12 +2,13 @@
 # pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the billing app of the pos_vaiatea project.
 
-    Models: Order and User.   # TODO
+    Models: OrderLine, Bill and Payment.
     """
 from django.conf import settings
 from django.db import models
 
 from schedule.models import Guest
+from stocks.models import Bar, Goodies, Miscellaneous
 
 PAYMENT_MODE = (
     ("Cash USD", "Cash USD"),
@@ -17,18 +18,47 @@ PAYMENT_MODE = (
 )
 
 
-class Order(models.Model):
+class Bill(models.Model):
     """
-    To create the Order table in the database.
-    Gathering all data for each order from a guest during the trip.
+    To create the Bill table in the database.
+    Gathering all guest's order(s), at the end of the trip, to make the bill.
     """
 
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Utilisateur")
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="bills", verbose_name="Utilisateur")
+    amount = models.DecimalField(
+        "Montant de la facture", max_digits=5, decimal_places=2)
+    date = models.DateTimeField("Date de la facture", auto_now=True)
+
+    class Meta:
+        verbose_name = "Facture"
+
+    # def __str__(self):
+        # return f"Facture du passager.ère {self.guest_id}"  # TODO
+
+
+class OrderLine(models.Model):
+    """
+    To create the OrderLine table in the database.
+    Gathering all data for each line of order from a guest during the trip.
+    """
+
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="orderlines", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
-        Guest, on_delete=models.CASCADE, related_name="orders", verbose_name="Passager")
-    # order_line = models.ManyToManyField(
-    #     Item, related_name="orders", verbose_name="commande")  # TODO
+        Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
+    bar_id = models.ForeignKey(
+        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
+    goodies_id = models.ForeignKey(
+        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
+    miscellaneous_id = models.ForeignKey(
+        Miscellaneous, on_delete=models.PROTECT,
+        related_name="orderlines", verbose_name="Autre article divers")
+    bill_id = models.ForeignKey(
+        Bill, on_delete=models.SET_NULL, blank=True, null=True,
+        related_name="orderlines", verbose_name="Facture")
     quantity = models.PositiveSmallIntegerField("Quantité")
     date = models.DateTimeField("Date de la commande", auto_now=True)
 
@@ -36,22 +66,20 @@ class Order(models.Model):
         verbose_name = "Commande"
 
     def __str__(self):
-        #  TODO changer au nom de l'article
-        return f"Commande du passager : {self.guest_id}"
+        return f"Commande d'un article par {self.guest_id}"
 
 
 class Payment(models.Model):
     """
     To create the Payment table in the database.
-    Gathering all data for each payment, for guest's order(s), at the end of the trip.
+    Mode of payment for each bill, at the end of the trip.
     """
 
-    orders = models.ManyToManyField(
-        Order, related_name="payments", verbose_name="Commande")
     user_id = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="payments", verbose_name="Utilisateur")
-    amount = models.DecimalField(
-        "Montant de la facture", max_digits=5, decimal_places=2)
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="payments", verbose_name="Utilisateur")
+    bill_id = models.ForeignKey(
+        Bill, on_delete=models.PROTECT, related_name="payments", verbose_name="Facture")
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
     date = models.DateTimeField("Date de la commande", auto_now=True)
@@ -60,4 +88,4 @@ class Payment(models.Model):
         verbose_name = "Paiement"
 
     def __str__(self):
-        return f"Paiement de la commande {self.order_id} par {self.payment_mode}"
+        return f"Paiement de la facture {self.bill_id} par {self.payment_mode}"

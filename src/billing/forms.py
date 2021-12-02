@@ -2,26 +2,22 @@
 # pylint: disable=too-few-public-methods
 """Creation of the order form."""
 
-from django.db.models.fields import PositiveSmallIntegerField
 from django.forms import (
-    BooleanField,
     ModelForm,
     Select,
-    TextInput,
 )
-from django.forms.fields import MultipleChoiceField
 from django.forms.widgets import NumberInput
-from .models import Order, Payment
+from .models import OrderLine, Payment
 
 
-# The order form.
-class OrderCreationForm(ModelForm):
-    """Form to create the order data form."""
+# The orderline form.
+class OrderLineCreationForm(ModelForm):
+    """Form to create the line of order data form."""
 
     class Meta:
-        """Details of the OrderCreationForm form."""
+        """Details of the OrderLineCreationForm form."""
 
-        model = Order
+        model = OrderLine
         exclude = ["user_id", "date"]
         widgets = {
             "guest_id": Select(
@@ -44,10 +40,3 @@ class PaymentForm(ModelForm):
 
         model = Payment
         exclude = ["user_id", "amount", "date"]
-        # widgets = {
-        #     "orders": MultipleChoiceField(),
-        #     "payment_mode": Select(
-        #         attrs={"class": "form-control form-control-lg",
-        #                "id": "paymentMode"}
-        #     ),
-        # }

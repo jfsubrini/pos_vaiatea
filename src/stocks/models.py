@@ -2,7 +2,7 @@
 # pylint: disable=too-few-public-methods,missing-class-docstring
 """All the models for the stocks app of the pos_vaiatea project.
 
-    Models: Item, Drink, Goodies, Food and Stock.
+    Models: Item, Bar, Goodies, Kitchen, Miscellaneous and Stock.
     """
 from django.conf import settings
 from django.db import models
@@ -48,11 +48,6 @@ KITCHEN_CATEGORY = (
     ("Autre épicerie", "Autre épicerie"),
     ("Autre", "Autre"),
 )
-TYPE_OF_ITEM = (
-    ("Bootle & Can", "Bootle & Can"),
-    ("Food", "Food"),
-    ("Goodies", "Goodies"),
-)
 
 
 class Item(models.Model):
@@ -64,8 +59,10 @@ class Item(models.Model):
     name = models.CharField("Nom de l'article", max_length=30)
     price_unit_dollar = models.DecimalField(
         "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                                related_name="%(app_label)s_%(class)s_related", verbose_name="Utilisateur")
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
+                                on_delete=models.SET_NULL,
+                                related_name="%(app_label)s_%(class)s_related",
+                                verbose_name="Utilisateur")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -83,11 +80,11 @@ class Bar(Item):
         "Catégorie du bar", max_length=20, choices=BAR_CATEGORY)
 
     class Meta:
-        verbose_name = "Boisson du bar"
+        verbose_name = "Boisson"
         ordering = ["bar_category", "name"]
 
     def __str__(self):
-        return f"Boisson du bar : {self.name}"
+        return f"{self.bar_category} {self.name} à {self.price_unit_dollar} USD"
 
 
 class Goodies(Item):
@@ -106,11 +103,11 @@ class Goodies(Item):
         "Genre", max_length=10, choices=GENDER)
 
     class Meta:
-        verbose_name = "Goodies"
+        verbose_name = "Goodie"
         ordering = ["goodies_category", "name"]
 
     def __str__(self):
-        return f"Goodies : {self.name}"
+        return f"{self.goodies_category} {self.name} à {self.price_unit_dollar} USD"
 
 
 class Kitchen(Item):
@@ -124,11 +121,11 @@ class Kitchen(Item):
     price_unit_dollar = None
 
     class Meta:
-        verbose_name = "Nourriture de la cuisine"
+        verbose_name = "Nourriture"
         ordering = ["food_category", "name"]
 
     def __str__(self):
-        return f"Nourriture de la cuisine : {self.name}"
+        return f"{self.food_category} {self.name}"
 
 
 class Miscellaneous(Item):
@@ -138,29 +135,43 @@ class Miscellaneous(Item):
     """
 
     class Meta:
-        verbose_name = "Autre article divers"
+        verbose_name = "Autre"
         ordering = ["name"]
 
     def __str__(self):
-        return f"Article divers : {self.name}"
+        return f"{self.name} à {self.price_unit_dollar} USD"
 
 
-# class Stock(models.Model):
-#     """To create the Stock table."""
+class Stock(models.Model):
+    """To create the Stock table."""
 
-#     type_of_item = models.CharField(
-#         "Type d'article", max_length=20, choices=TYPE_OF_ITEM)
-#     quantity = models.PositiveSmallIntegerField(
-#         "Quantité", blank=True, null=True)
-#     item = models.ForeignKey(
-#         Item, on_delete=models.CASCADE, related_name="stocks", verbose_name="Article")
-#     trips = models.ManyToManyField(
-#         Trip, related_name="stocks", verbose_name="Voyage")
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+    bar_initial_id = models.OneToOneField(
+        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de boisson")
+    bar_final_id = models.OneToOneField(
+        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de boisson")
+    goodies_initial_id = models.OneToOneField(
+        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de goodies")
+    goodies_final_id = models.OneToOneField(
+        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de goodies")
+    kitchen_initial_id = models.OneToOneField(
+        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        verbose_name="stock initial de nourriture")
+    kitchen_final_id = models.OneToOneField(
+        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        verbose_name="stock final de nourriture")
+    trip_id = models.ForeignKey(
+        Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")
+    quantity = models.PositiveSmallIntegerField(
+        "Quantité", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-#     class Meta:
-#         verbose_name = "Stock"
+    class Meta:
+        verbose_name = "Stock"
 
-#     def __str__(self):
-#         return f"Stock de catégorie {self.type_of_item}"
+    def __str__(self):
+        return f"Stock du voyage {self.trip_id}"
