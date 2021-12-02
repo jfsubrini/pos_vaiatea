@@ -2,9 +2,17 @@
 # pylint: disable=missing-class-docstring
 """All the admin pages to create, update, delete and read \
     all the bar, kitchen, goodies and miscellanous items.
+    Idem for the initial and final stocks of the bar, kitchen \
+        and goodies items.
     """
 from django.contrib import admin
-from .models import Bar, Goodies, Kitchen, Miscellaneous
+from .models import (
+    Bar,
+    Goodies,
+    Kitchen,
+    Miscellaneous,
+    Stock
+)
 
 
 @admin.register(Bar)
@@ -56,6 +64,16 @@ class MiscellaneousAdmin(admin.ModelAdmin):
     list_display_links = ("name", "price_unit_dollar")
     ordering = ("name",)
     search_fields = ("name",)
+
+    def save_model(self, request, obj, form, change):
+        obj.user_id = request.user
+        super().save_model(request, obj, form, change)
+
+
+@admin.register(Stock)
+class StockAdmin(admin.ModelAdmin):
+    exclude = ("user_id",)
+    list_filter = ("trip_id",)
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user

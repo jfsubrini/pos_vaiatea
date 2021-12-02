@@ -9,7 +9,6 @@ from .models import Guest, Trip
 @admin.register(Guest)
 class GuestAdmin(admin.ModelAdmin):
     exclude = ("user_id",)
-    # "trips" faire apparaitre le voyage dans la liste TODO
     list_display = ("last_name", "first_name", "gender", "nationality")
     list_filter = ("trips",)
     ordering = ("last_name", "first_name")
@@ -22,7 +21,6 @@ class GuestAdmin(admin.ModelAdmin):
 
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
-    # WARNING : When creating the trips, better to do it following the order of the starting date.
     exclude = ("user_id",)
     list_display = ("itinerary", "duration_days",
                     "starting_date", "ending_date")

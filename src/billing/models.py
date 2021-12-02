@@ -50,11 +50,13 @@ class OrderLine(models.Model):
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
     bar_id = models.ForeignKey(
-        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
+        Bar, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
-        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
+        Goodies, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.PROTECT,
+        Miscellaneous, on_delete=models.PROTECT, blank=True, null=True,
         related_name="orderlines", verbose_name="Autre article divers")
     bill_id = models.ForeignKey(
         Bill, on_delete=models.SET_NULL, blank=True, null=True,
