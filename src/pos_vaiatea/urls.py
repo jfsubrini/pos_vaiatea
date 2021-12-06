@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from stocks.admin import admin_bar_stock, admin_kitchen_stock, admin_goodies_stock
+# from stocks.admin import admin_bar_stock, admin_kitchen_stock, admin_goodies_stock
 
 
 admin.site.site_header = 'Vaiatea Administration'
@@ -36,7 +36,8 @@ urlpatterns = [
          name='password_reset_complete'),
     path('billing/', include('billing.urls')),
     path('schedule/', include('schedule.urls')),
-    path("stock/bar/", admin_bar_stock.urls),
-    path("stock/kitchen/", admin_kitchen_stock.urls),
-    path("stock/goodies/", admin_goodies_stock.urls),
+    path('stocks/', include('stocks.urls')),
+    # path("stock/bar/", admin_bar_stock.urls),
+    # path("stock/kitchen/", admin_kitchen_stock.urls),
+    # path("stock/goodies/", admin_goodies_stock.urls),
 ]
