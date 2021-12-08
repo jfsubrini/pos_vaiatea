@@ -2,8 +2,13 @@
 # pylint: disable=too-few-public-methods
 """Creation of the intial and final stock for bar, kitchen and goodies items."""
 
-from django.forms import ModelForm
+from django.forms import Form, ModelForm, NumberInput
 from .models import Bar, Goodies, Kitchen
+
+
+class QuantityForm(Form):
+    """TODO"""
+    quantity = NumberInput()
 
 
 class BarStockForm(ModelForm):

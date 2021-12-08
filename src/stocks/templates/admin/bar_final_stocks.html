@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stock final du bar</title>
+</head>
+
+<body>
+    <h1>Inventaire du stock final du bar</h1>
+
+    {% if submitted %}
+    <p>Your message was submitted successfully. Thank you.</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Renseigner les quantités en stock de chaque boisson au retour du voyage à mentionner :</h2>
+        </br>
+        <h3>Boissons :</h3>       
+        {% for drink in drinks %}
+            <p>
+                {{ drink }}
+            </p>
+            <h3>
+                Quantité
+            </h3>
+            <p>
+                {{ quantity_form }}
+            </p>
+            <input type="hidden" name="quantity_form" value="{{ drink.pk }}" />
+            <input type="hidden" name="quantity_form" value="{{ quantity_form }}" />
+        {% endfor %}
+        </br></br>
+        <input type="hidden" name="action" value="bar_final_stocks" />
+        <input type="submit" name="apply" value="Valider le stock final du bar" />
+    </form>
+    {% endif %}
+</body>
+
+</html>

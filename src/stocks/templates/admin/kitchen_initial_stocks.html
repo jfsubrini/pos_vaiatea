@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stock initial de la cuisine</title>
+</head>
+
+<body>
+    <h1>Inventaire du stock initial de la cuisine</h1>
+
+    {% if submitted %}
+    <p>Your message was submitted successfully. Thank you.</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Renseigner les quantités en stock de chaque nourriture au départ du voyage à mentionner :</h2>
+        </br>
+        <h3>Nourritures :</h3>       
+        {% for food in foods %}
+            <p>
+                {{ food }}
+            </p>
+            <h3>
+                Quantité
+            </h3>
+            <p>
+                {{ quantity_form }}
+            </p>
+            <input type="hidden" name="quantity_form" value="{{ food.pk }}" />
+            <input type="hidden" name="quantity_form" value="{{ quantity_form }}" />
+        {% endfor %}
+        </br></br>
+        <input type="hidden" name="action" value="kitchen_initial_stocks" />
+        <input type="submit" name="apply" value="Valider le stock initial de la cuisine" />
+    </form>
+    {% endif %}
+</body>
+
+</html>
