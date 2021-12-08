@@ -14,9 +14,9 @@ from stocks.models import (
     Goodies,
     Kitchen,
     Miscellaneous,
-    Stock
+    Stock,
+    Trip
 )
-from .forms import QuantityForm
 
 
 # Custom Admin page
@@ -46,9 +46,9 @@ def make_bar_initial_stocks(modeladmin, request, queryset):
     #     bar_initial.save()
     # if "apply" in request.POST:
     all_drinks = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/bar_initial_stocks.html',
-                  context={"drinks": all_drinks, "quantity_form": quantity_form})
+                  context={"drinks": all_drinks, "trips": all_trips})
 
 
 @admin.action(description='Inventaire du stock final du bar')
@@ -56,9 +56,9 @@ def make_bar_final_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock final du bar \
         puis envoi vers une page intermédiaire."""
     all_drinks = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/bar_final_stocks.html',
-                  context={"drinks": all_drinks, "quantity_form": quantity_form})
+                  context={"drinks": all_drinks, "trips": all_trips})
 
 
 @admin.action(description='Inventaire du stock initial des goodies')
@@ -66,9 +66,9 @@ def make_goodies_initial_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock initial des goodies \
         puis envoi vers une page intermédiaire."""
     all_goodies = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/goodies_initial_stocks.html',
-                  context={"goodies": all_goodies, "quantity_form": quantity_form})
+                  context={"goodies": all_goodies, "trips": all_trips})
 
 
 @admin.action(description='Inventaire du stock final des goodies')
@@ -76,9 +76,9 @@ def make_goodies_final_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock final des goodies \
         puis envoi vers une page intermédiaire."""
     all_goodies = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/goodies_final_stocks.html',
-                  context={"goodies": all_goodies, "quantity_form": quantity_form})
+                  context={"goodies": all_goodies, "trips": all_trips})
 
 
 @admin.action(description='Inventaire du stock initial en cuisine')
@@ -86,9 +86,9 @@ def make_kitchen_initial_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock initial en cuisine \
         puis envoi vers une page intermédiaire."""
     all_food = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/kitchen_initial_stocks.html',
-                  context={"foods": all_food, "quantity_form": quantity_form})
+                  context={"foods": all_food, "trips": all_trips})
 
 
 @admin.action(description='Inventaire du stock final en cuisine')
@@ -96,9 +96,9 @@ def make_kitchen_final_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock final en cuisine \
         puis envoi vers une page intermédiaire."""
     all_food = queryset.all()
-    quantity_form = QuantityForm()
+    all_trips = Trip.objects.all()
     return render(request, 'admin/kitchen_final_stocks.html',
-                  context={"foods": all_food, "quantity_form": quantity_form})
+                  context={"foods": all_food, "trips": all_trips})
 
 #################################################################################
 # BAR CRUD

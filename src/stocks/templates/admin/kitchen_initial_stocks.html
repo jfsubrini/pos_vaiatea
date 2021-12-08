@@ -14,21 +14,23 @@
     {% else %}
     <form action="" method="post">
         {% csrf_token %}
-        <h2>Renseigner les quantités en stock de chaque nourriture au départ du voyage à mentionner :</h2>
+        <h2>Renseigner le voyage concerné :</h2>
+        <h3>Voyages : 
+                <select>
+                    {% for trip in trips %}
+                        <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
+                    {% endfor %}
+                </select>
+        </h3>
         </br>
+        <h2>Renseigner les quantités en stock de chaque nourriture de la cuisine au départ du voyage à mentionner :</h2>
         <h3>Nourritures :</h3>       
         {% for food in foods %}
             <p>
-                {{ food }}
+                {{ food }} <span><input id="quantity" type="number" name="food" min="0" max="1000"></span>
             </p>
-            <h3>
-                Quantité
-            </h3>
-            <p>
-                {{ quantity_form }}
-            </p>
-            <input type="hidden" name="quantity_form" value="{{ food.pk }}" />
-            <input type="hidden" name="quantity_form" value="{{ quantity_form }}" />
+            <input type="hidden" name="food" value="{{ food.pk }}" />
+            <input type="hidden" name="quantity" value="{{ quantity }}" />
         {% endfor %}
         </br></br>
         <input type="hidden" name="action" value="kitchen_initial_stocks" />

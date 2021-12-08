@@ -14,21 +14,23 @@
     {% else %}
     <form action="" method="post">
         {% csrf_token %}
-        <h2>Renseigner les quantités en stock de chaque boisson au retour du voyage à mentionner :</h2>
+        <h2>Renseigner le voyage concerné :</h2>
+        <h3>Voyages : 
+                <select>
+                    {% for trip in trips %}
+                        <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
+                    {% endfor %}
+                </select>
+        </h3>
         </br>
+        <h2>Renseigner les quantités en stock de chaque boisson au retour du voyage à mentionner :</h2>
         <h3>Boissons :</h3>       
         {% for drink in drinks %}
             <p>
-                {{ drink }}
+                {{ drink }} <span><input id="quantity" type="number" name="drink" min="0" max="1000"></span>
             </p>
-            <h3>
-                Quantité
-            </h3>
-            <p>
-                {{ quantity_form }}
-            </p>
-            <input type="hidden" name="quantity_form" value="{{ drink.pk }}" />
-            <input type="hidden" name="quantity_form" value="{{ quantity_form }}" />
+            <input type="hidden" name="drink" value="{{ drink.pk }}" />
+            <input type="hidden" name="quantity" value="{{ quantity }}" />
         {% endfor %}
         </br></br>
         <input type="hidden" name="action" value="bar_final_stocks" />
