@@ -184,3 +184,45 @@ class Stock(models.Model):
 
     def __str__(self):
         return f"Stock du voyage {self.trip_id}"
+
+
+class InitialBarStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial du bar"
+
+
+class FinalBarStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final du bar"
+
+
+class InitialKitchenStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial de la cuisine"
+
+
+class FinalKitchenStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final de la cuisine"
+
+
+class InitialGoodiesStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial de goodies"
+
+
+class FinalGoodiesStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final de goodies"

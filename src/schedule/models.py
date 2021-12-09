@@ -61,7 +61,7 @@ class Trip(models.Model):
 
     def __str__(self):
         formated_date = self.starting_date.strftime("%d %b %Y")
-        return f"Voyage {self.itinerary} partant le {formated_date}"
+        return f"Voyage {self.itinerary} du {formated_date}"
 
 
 class Guest(models.Model):
