@@ -19,19 +19,6 @@ from stocks.models import (
 )
 
 
-# Custom Admin page
-# class StockBarAdmin(admin.AdminSite):
-#     site_header = 'Vaiatea Stock Administration'
-#     site_title = 'Relevé de stock du bar'
-#     index_title = 'Relevé de stock du bar'
-
-
-# admin_site = StockBarAdmin(name=baradmin)
-
-# @admin.register(Bar, site=admin_site)
-
-
-#################################################################################
 # Actions in the items' lists to make initial and final inventory of the items.
 @admin.action(description='Inventaire du stock initial du bar')
 def make_bar_initial_stocks(modeladmin, request, queryset):

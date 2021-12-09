@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "admin/base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Stock initial du bar</title>
-</head>
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ 'Vaiatea Site Admin' }} | {{ 'Vaiatea Stock Inventory' }}{% endblock %}
 
-<body>
-    <h1>Inventaire du stock initial du bar</h1>
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ 'Vaiatea Initial Bar Stock Inventory' }}</a></h1>
+{% endblock %}
+
+{% block content %}
+<h1>Inventaire du stock initial du Bar</h1>
+</br>
+{% if submitted %}
+<p>Your message was submitted successfully. Thank you.</p>
+{% else %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h2>Renseigner le voyage concerné :</h2>
+    <h3>Voyages : 
+            <select>
+                {% for trip in trips %}
+                    <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
+                {% endfor %}
+            </select>
+    </h3>
     </br>
-
-    {% if submitted %}
-    <p>Your message was submitted successfully. Thank you.</p>
-    {% else %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <h2>Renseigner le voyage concerné :</h2>
-        <h3>Voyages : 
-                <select>
-                    {% for trip in trips %}
-                        <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
-                    {% endfor %}
-                </select>
-        </h3>
-        </br>
-        <h2>Renseigner les quantités en stock de chaque boisson au départ du voyage à mentionner :</h2>
-        <h3>Boissons :</h3>       
-        {% for drink in drinks %}
-            <p>
-                {{ drink }} <span><input id="quantity" type="number" name="drink" min="0" max="1000"></span>
-            </p>
-            <input type="hidden" name="drink" value="{{ drink.pk }}" />
-            <input type="hidden" name="quantity" value="{{ quantity }}" />
-        {% endfor %}
-        </br></br>
-        <input type="hidden" name="action" value="bar_initial_stocks" />
-        <input type="submit" name="apply" value="Valider le stock initial du bar" />
-    </form>
-    {% endif %}
-</body>
-
-</html>
+    <h2>Renseigner les quantités en stock de chaque boisson au départ du voyage :</h2>
+    <h3>Boissons :</h3> 
+    {% for drink in drinks %}
+        <p>
+            {{ drink }} <span><input id="quantity" type="number" name="drink" min="0" max="1000"></span>
+        </p>
+        <input type="hidden" name="drink" value="{{ drink.pk }}" />
+        <input type="hidden" name="quantity" value="{{ quantity }}" />
+    {% endfor %}
+    </br></br>
+    <input type="hidden" name="action" value="bar_initial_stocks" />
+    <input type="submit" name="apply" value="Valider le stock initial du bar" />
+</form>
+{% endif %}
+{% endblock %}
