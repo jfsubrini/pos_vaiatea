@@ -1,0 +1,3074 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "billing",
+        "model": "bill"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "billing",
+        "model": "payment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "billing",
+        "model": "orderline"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "schedule",
+        "model": "trip"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "schedule",
+        "model": "guest"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "bar"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "goodies"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "kitchen"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "stock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "miscellaneous"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hww6fyy0t6d89jyjtaohl6jw9ymcvo6m",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGIQMGj934DWdhdqRpISnsy_rtt0oNmbvPezFtEWJcS105znFBcxVmcfrsE-Ul1B_iAem8yt7rMU5K7Ig_a5diQXrfD_Tso0Mu2HjyjZgZGsI49brkYJJspJBeS1ugSKzbkyQOSCU5ZtpiUCmQHR-LzBSZAOUw:1msmaf:PlIZVNyLlZ8dIBhatqn0xjeUoLVRjA7aGFrdLPJEmhY",
+        "expire_date": "2021-12-16T13:57:37.911Z"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Facture",
+        "content_type": [
+            "billing",
+            "bill"
+        ],
+        "codename": "add_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Facture",
+        "content_type": [
+            "billing",
+            "bill"
+        ],
+        "codename": "change_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Facture",
+        "content_type": [
+            "billing",
+            "bill"
+        ],
+        "codename": "delete_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Facture",
+        "content_type": [
+            "billing",
+            "bill"
+        ],
+        "codename": "view_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Paiement",
+        "content_type": [
+            "billing",
+            "payment"
+        ],
+        "codename": "add_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Paiement",
+        "content_type": [
+            "billing",
+            "payment"
+        ],
+        "codename": "change_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Paiement",
+        "content_type": [
+            "billing",
+            "payment"
+        ],
+        "codename": "delete_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Paiement",
+        "content_type": [
+            "billing",
+            "payment"
+        ],
+        "codename": "view_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Commande",
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "codename": "add_orderline"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Commande",
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "codename": "change_orderline"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Commande",
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "codename": "delete_orderline"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Commande",
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "codename": "view_orderline"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Voyage",
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "codename": "add_trip"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Voyage",
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "codename": "change_trip"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Voyage",
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "codename": "delete_trip"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Voyage",
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "codename": "view_trip"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Passager.ère",
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "codename": "add_guest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Passager.ère",
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "codename": "change_guest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Passager.ère",
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "codename": "delete_guest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Passager.ère",
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "codename": "view_guest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Boisson",
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "codename": "add_bar"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Boisson",
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "codename": "change_bar"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Boisson",
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "codename": "delete_bar"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Boisson",
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "codename": "view_bar"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Goodie",
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "codename": "add_goodies"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Goodie",
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "codename": "change_goodies"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Goodie",
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "codename": "delete_goodies"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Goodie",
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "codename": "view_goodies"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Nourriture",
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "codename": "add_kitchen"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Nourriture",
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "codename": "change_kitchen"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Nourriture",
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "codename": "delete_kitchen"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Nourriture",
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "codename": "view_kitchen"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock",
+        "content_type": [
+            "stocks",
+            "stock"
+        ],
+        "codename": "add_stock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock",
+        "content_type": [
+            "stocks",
+            "stock"
+        ],
+        "codename": "change_stock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock",
+        "content_type": [
+            "stocks",
+            "stock"
+        ],
+        "codename": "delete_stock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock",
+        "content_type": [
+            "stocks",
+            "stock"
+        ],
+        "codename": "view_stock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Autre",
+        "content_type": [
+            "stocks",
+            "miscellaneous"
+        ],
+        "codename": "add_miscellaneous"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Autre",
+        "content_type": [
+            "stocks",
+            "miscellaneous"
+        ],
+        "codename": "change_miscellaneous"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Autre",
+        "content_type": [
+            "stocks",
+            "miscellaneous"
+        ],
+        "codename": "delete_miscellaneous"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Autre",
+        "content_type": [
+            "stocks",
+            "miscellaneous"
+        ],
+        "codename": "view_miscellaneous"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Waiter",
+        "permissions": [
+            [
+                "add_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "change_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "delete_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "view_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "add_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "change_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "delete_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "view_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "add_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "change_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "delete_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "view_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "add_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "change_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "delete_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "view_stock",
+                "stocks",
+                "stock"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Cook",
+        "permissions": [
+            [
+                "add_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "change_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "delete_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "view_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "add_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "change_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "delete_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "view_stock",
+                "stocks",
+                "stock"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Cashier",
+        "permissions": [
+            [
+                "add_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "change_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "delete_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "view_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "add_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "change_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "delete_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "view_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "add_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "change_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "delete_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "view_payment",
+                "billing",
+                "payment"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Director",
+        "permissions": [
+            [
+                "add_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "change_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "view_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "add_group",
+                "auth",
+                "group"
+            ],
+            [
+                "change_group",
+                "auth",
+                "group"
+            ],
+            [
+                "delete_group",
+                "auth",
+                "group"
+            ],
+            [
+                "view_group",
+                "auth",
+                "group"
+            ],
+            [
+                "add_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "change_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "delete_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "view_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "add_user",
+                "auth",
+                "user"
+            ],
+            [
+                "change_user",
+                "auth",
+                "user"
+            ],
+            [
+                "delete_user",
+                "auth",
+                "user"
+            ],
+            [
+                "view_user",
+                "auth",
+                "user"
+            ],
+            [
+                "add_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "change_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "delete_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "view_bill",
+                "billing",
+                "bill"
+            ],
+            [
+                "add_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "change_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "delete_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "view_orderline",
+                "billing",
+                "orderline"
+            ],
+            [
+                "add_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "change_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "delete_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "view_payment",
+                "billing",
+                "payment"
+            ],
+            [
+                "add_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "change_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "delete_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "view_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "add_guest",
+                "schedule",
+                "guest"
+            ],
+            [
+                "change_guest",
+                "schedule",
+                "guest"
+            ],
+            [
+                "delete_guest",
+                "schedule",
+                "guest"
+            ],
+            [
+                "view_guest",
+                "schedule",
+                "guest"
+            ],
+            [
+                "add_trip",
+                "schedule",
+                "trip"
+            ],
+            [
+                "change_trip",
+                "schedule",
+                "trip"
+            ],
+            [
+                "delete_trip",
+                "schedule",
+                "trip"
+            ],
+            [
+                "view_trip",
+                "schedule",
+                "trip"
+            ],
+            [
+                "add_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "change_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "delete_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "view_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "add_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "change_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "delete_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "view_bar",
+                "stocks",
+                "bar"
+            ],
+            [
+                "add_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "change_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "delete_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "view_goodies",
+                "stocks",
+                "goodies"
+            ],
+            [
+                "add_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "change_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "delete_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "view_kitchen",
+                "stocks",
+                "kitchen"
+            ],
+            [
+                "add_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "change_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "delete_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "view_miscellaneous",
+                "stocks",
+                "miscellaneous"
+            ],
+            [
+                "add_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "change_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "delete_stock",
+                "stocks",
+                "stock"
+            ],
+            [
+                "view_stock",
+                "stocks",
+                "stock"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$o5yF91ilsjeJ3BtvBLfPyR$YfN7jGSM1MaSQdDqUxlGgBsdZD22rL+U+klVOT8lExY=",
+        "last_login": "2021-12-02T13:57:37Z",
+        "is_superuser": true,
+        "username": "jfsubrini",
+        "first_name": "",
+        "last_name": "",
+        "email": "jfsubrini@zoho.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-02T13:54:12Z",
+        "groups": [
+            [
+                "Director"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$mqcbzVYdXfG18DesrLKx25$An8c5nT0CdafNWJARu/DczPDPmreqJeXa6cw6jvJFww=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Lola",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-06T22:54:18Z",
+        "groups": [
+            [
+                "Waiter"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ohkYjbhHm0Xscx2zAlq2bu$/VU0wnSazLJI/c5enqAV3kA224bHFShXGX8vW16ogC4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Momo",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-06T22:54:55Z",
+        "groups": [
+            [
+                "Cook"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$Q3g4COlHulRUVN5XJHP4ae$Yu2ci/5AMyAzBgmPGWejKQ+Bmnx9pNoJ0UJVk7fUaBo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Nino",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-06T22:55:18Z",
+        "groups": [
+            [
+                "Cashier"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2021-12-02T14:56:59.890Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "1",
+        "object_repr": "Soft drinks Coca à 30 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2021-12-02T14:57:15.357Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "2",
+        "object_repr": "Alcools Tequila à 6 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2021-12-02T14:57:45.715Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "object_id": "1",
+        "object_repr": "Tee-Shirt Vaiatea à 30 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2021-12-02T14:58:45.683Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "1",
+        "object_repr": "Viande Chicken",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2021-12-02T14:59:01.353Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "2",
+        "object_repr": "Fruits Pineapple",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2021-12-02T15:00:32.353Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "1",
+        "object_repr": "Voyage Komodo partant le 01 Jan 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2021-12-02T15:01:08.781Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "2",
+        "object_repr": "Voyage Raja Ampat partant le 01 Feb 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2021-12-02T15:02:00.558Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "1",
+        "object_repr": "Lili Paganini",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2021-12-02T15:02:35.970Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "2",
+        "object_repr": "Paul Troubolo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2021-12-02T15:03:44.102Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "1",
+        "object_repr": "Soft drinks Coca à 30 USD",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2021-12-02T15:03:58.038Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "1",
+        "object_repr": "Soft drinks Coca à 30 USD",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2021-12-02T15:04:44.220Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "1",
+        "object_repr": "Soft drinks Coca à 3.00 USD",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Prix de vente unitaire en dollar (USD)\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2021-12-02T15:09:11.167Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "1",
+        "object_repr": "Commande d'un article par Lili Paganini",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2021-12-02T15:09:29.982Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "1",
+        "object_repr": "Commande d'un article par Lili Paganini",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2021-12-02T15:09:45.876Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "2",
+        "object_repr": "Commande d'un article par Paul Troubolo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2021-12-02T15:09:56.212Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "3",
+        "object_repr": "Commande d'un article par Lili Paganini",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2021-12-03T13:54:35.860Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "miscellaneous"
+        ],
+        "object_id": "1",
+        "object_repr": "Plomb à 2 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2021-12-06T13:52:18.634Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "1",
+        "object_repr": "Lili Paganini",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2021-12-06T13:52:53.968Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "3",
+        "object_repr": "Hannah Byron",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2021-12-06T13:56:36.189Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "4",
+        "object_repr": "Commande d'un article par Hannah Byron",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2021-12-06T13:57:25.099Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "5",
+        "object_repr": "Commande d'un article par Hannah Byron",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2021-12-06T13:57:45.265Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "6",
+        "object_repr": "Commande d'un article par Paul Troubolo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2021-12-06T22:51:46.746Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "1",
+        "object_repr": "Waiter",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2021-12-06T22:52:21.100Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "2",
+        "object_repr": "Cook",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2021-12-06T22:52:47.498Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "1",
+        "object_repr": "Waiter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2021-12-06T22:53:15.401Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "Cashier",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2021-12-06T22:53:33.312Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "4",
+        "object_repr": "Director",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2021-12-06T22:53:58.629Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "jfsubrini",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2021-12-06T22:54:18.238Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "Lola",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2021-12-06T22:54:34.284Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "Lola",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2021-12-06T22:54:55.763Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "Momo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2021-12-06T22:55:03.708Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "Momo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2021-12-06T22:55:18.663Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "Nino",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2021-12-06T22:55:35.722Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "Nino",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2021-12-06T22:56:35.524Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "4",
+        "object_repr": "Jef Tomato",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2021-12-06T22:57:28.878Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "3",
+        "object_repr": "Voyage Banda Sea partant le 01 Oct 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2021-12-06T22:58:13.770Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "4",
+        "object_repr": "Voyage Raja Ampat partant le 18 Oct 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2021-12-06T22:58:50.950Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "5",
+        "object_repr": "Voyage Raja Ampat partant le 04 Nov 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2021-12-06T22:59:27.141Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "6",
+        "object_repr": "Voyage Komodo partant le 11 Jul 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2021-12-06T23:00:07.724Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "trip"
+        ],
+        "object_id": "7",
+        "object_repr": "Voyage Alor partant le 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2021-12-06T23:00:57.269Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "5",
+        "object_repr": "Lea Pastore",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2021-12-06T23:01:45.478Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "6",
+        "object_repr": "Rafael Bustante",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2021-12-06T23:02:41.349Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "7",
+        "object_repr": "Daniel Sanchez",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2021-12-06T23:03:28.840Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "schedule",
+            "guest"
+        ],
+        "object_id": "8",
+        "object_repr": "Pipo Ponpolon",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2021-12-06T23:04:39.720Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "7",
+        "object_repr": "Commande d'un article par Rafael Bustante",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2021-12-06T23:04:59.999Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "8",
+        "object_repr": "Commande d'un article par Jef Tomato",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2021-12-06T23:05:36.550Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "3",
+        "object_repr": "Vins Chateau Margaux à 300 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2021-12-06T23:05:58.949Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "4",
+        "object_repr": "Vins Chateau Pipo à 40 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2021-12-06T23:06:09.107Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "5",
+        "object_repr": "Soft drinks Oasis à 40 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2021-12-06T23:06:25.237Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "6",
+        "object_repr": "Alcools Whisky à 7 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2021-12-06T23:06:40.261Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "bar"
+        ],
+        "object_id": "7",
+        "object_repr": "Alcools Rhum à 8 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2021-12-06T23:07:16.061Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "goodies"
+        ],
+        "object_id": "2",
+        "object_repr": "Sweat-Shirt Vaiatea à 50 USD",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2021-12-06T23:07:39.003Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "9",
+        "object_repr": "Commande d'un article par Daniel Sanchez",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2021-12-06T23:08:13.006Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "3",
+        "object_repr": "Epices Curry",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2021-12-06T23:08:39.465Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "4",
+        "object_repr": "Lait Lait entier",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2021-12-06T23:09:07.101Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "5",
+        "object_repr": "Viande Agneau",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2021-12-06T23:09:17.531Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "2",
+        "object_repr": "Fruits Ananas",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nom de l'article\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2021-12-06T23:09:27.101Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "kitchen"
+        ],
+        "object_id": "1",
+        "object_repr": "Viande Poulet",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nom de l'article\"]}}]"
+    }
+},
+{
+    "model": "stocks.miscellaneous",
+    "pk": 1,
+    "fields": {
+        "name": "Plomb",
+        "price_unit_dollar": "2.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-03T13:54:35.856Z",
+        "updated_at": "2021-12-03T13:54:35.856Z"
+    }
+},
+{
+    "model": "stocks.kitchen",
+    "pk": 1,
+    "fields": {
+        "name": "Poulet",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T14:58:45.681Z",
+        "updated_at": "2021-12-06T23:09:27.099Z",
+        "food_category": "Viande"
+    }
+},
+{
+    "model": "stocks.kitchen",
+    "pk": 2,
+    "fields": {
+        "name": "Ananas",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T14:59:01.352Z",
+        "updated_at": "2021-12-06T23:09:17.530Z",
+        "food_category": "Fruits"
+    }
+},
+{
+    "model": "stocks.kitchen",
+    "pk": 3,
+    "fields": {
+        "name": "Curry",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:08:13.001Z",
+        "updated_at": "2021-12-06T23:08:13.001Z",
+        "food_category": "Epices"
+    }
+},
+{
+    "model": "stocks.kitchen",
+    "pk": 4,
+    "fields": {
+        "name": "Lait entier",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:08:39.464Z",
+        "updated_at": "2021-12-06T23:08:39.464Z",
+        "food_category": "Lait"
+    }
+},
+{
+    "model": "stocks.kitchen",
+    "pk": 5,
+    "fields": {
+        "name": "Agneau",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:09:07.099Z",
+        "updated_at": "2021-12-06T23:09:07.099Z",
+        "food_category": "Viande"
+    }
+},
+{
+    "model": "stocks.goodies",
+    "pk": 1,
+    "fields": {
+        "name": "Vaiatea",
+        "price_unit_dollar": "30.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T14:57:45.714Z",
+        "updated_at": "2021-12-02T14:57:45.714Z",
+        "goodies_category": "Tee-Shirt",
+        "size": "M",
+        "color": "Bleu",
+        "gender": "Female"
+    }
+},
+{
+    "model": "stocks.goodies",
+    "pk": 2,
+    "fields": {
+        "name": "Vaiatea",
+        "price_unit_dollar": "50.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:07:16.057Z",
+        "updated_at": "2021-12-06T23:07:16.057Z",
+        "goodies_category": "Sweat-Shirt",
+        "size": "L",
+        "color": "Rouge",
+        "gender": "Male"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 1,
+    "fields": {
+        "name": "Coca",
+        "price_unit_dollar": "3.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T14:56:59.884Z",
+        "updated_at": "2021-12-02T15:04:44.216Z",
+        "bar_category": "Soft drinks"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 2,
+    "fields": {
+        "name": "Tequila",
+        "price_unit_dollar": "6.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T14:57:15.356Z",
+        "updated_at": "2021-12-02T14:57:15.356Z",
+        "bar_category": "Alcools"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 3,
+    "fields": {
+        "name": "Chateau Margaux",
+        "price_unit_dollar": "300.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:05:36.539Z",
+        "updated_at": "2021-12-06T23:05:36.539Z",
+        "bar_category": "Vins"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 4,
+    "fields": {
+        "name": "Chateau Pipo",
+        "price_unit_dollar": "40.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:05:58.947Z",
+        "updated_at": "2021-12-06T23:05:58.947Z",
+        "bar_category": "Vins"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 5,
+    "fields": {
+        "name": "Oasis",
+        "price_unit_dollar": "40.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:06:09.106Z",
+        "updated_at": "2021-12-06T23:06:09.106Z",
+        "bar_category": "Soft drinks"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 6,
+    "fields": {
+        "name": "Whisky",
+        "price_unit_dollar": "7.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:06:25.236Z",
+        "updated_at": "2021-12-06T23:06:25.236Z",
+        "bar_category": "Alcools"
+    }
+},
+{
+    "model": "stocks.bar",
+    "pk": 7,
+    "fields": {
+        "name": "Rhum",
+        "price_unit_dollar": "8.00",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:06:40.260Z",
+        "updated_at": "2021-12-06T23:06:40.260Z",
+        "bar_category": "Alcools"
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 2,
+    "fields": {
+        "first_name": "Paul",
+        "last_name": "Troubolo",
+        "gender": "M",
+        "age": 29,
+        "nationality": "Français.e",
+        "passport_number": null,
+        "diving_level": "Advanced OW",
+        "dives_number": null,
+        "email": "sdsd@sdsd.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T15:02:35.967Z",
+        "updated_at": "2021-12-02T15:02:35.967Z",
+        "trips": [
+            2
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 3,
+    "fields": {
+        "first_name": "Hannah",
+        "last_name": "Byron",
+        "gender": "F",
+        "age": 26,
+        "nationality": "Anglais.e",
+        "passport_number": null,
+        "diving_level": "Advanced OW",
+        "dives_number": null,
+        "email": "dfddf@dfdf.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T13:52:53.965Z",
+        "updated_at": "2021-12-06T13:52:53.965Z",
+        "trips": [
+            2
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 4,
+    "fields": {
+        "first_name": "Jef",
+        "last_name": "Tomato",
+        "gender": "M",
+        "age": 40,
+        "nationality": "Belge",
+        "passport_number": null,
+        "diving_level": "Divemaster",
+        "dives_number": null,
+        "email": "sdssdds@ddds.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T22:56:35.513Z",
+        "updated_at": "2021-12-06T22:56:35.513Z",
+        "trips": [
+            2
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 5,
+    "fields": {
+        "first_name": "Lea",
+        "last_name": "Pastore",
+        "gender": "F",
+        "age": 27,
+        "nationality": "Italien.ne",
+        "passport_number": null,
+        "diving_level": "Advanced OW",
+        "dives_number": null,
+        "email": "dwdsds@sffds.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:00:57.263Z",
+        "updated_at": "2021-12-06T23:00:57.263Z",
+        "trips": [
+            1
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 6,
+    "fields": {
+        "first_name": "Rafael",
+        "last_name": "Bustante",
+        "gender": "M",
+        "age": 29,
+        "nationality": "Espagnol.e",
+        "passport_number": null,
+        "diving_level": "Advanced OW",
+        "dives_number": 57,
+        "email": "dddfdf@sdsd.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:01:45.475Z",
+        "updated_at": "2021-12-06T23:01:45.475Z",
+        "trips": [
+            3
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 7,
+    "fields": {
+        "first_name": "Daniel",
+        "last_name": "Sanchez",
+        "gender": "M",
+        "age": 34,
+        "nationality": "Espagnol.e",
+        "passport_number": null,
+        "diving_level": "Advanced OW",
+        "dives_number": null,
+        "email": "dfdff@sdsd.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:02:41.345Z",
+        "updated_at": "2021-12-06T23:02:41.345Z",
+        "trips": [
+            4
+        ]
+    }
+},
+{
+    "model": "schedule.guest",
+    "pk": 8,
+    "fields": {
+        "first_name": "Pipo",
+        "last_name": "Ponpolon",
+        "gender": "M",
+        "age": 53,
+        "nationality": "Français.e",
+        "passport_number": null,
+        "diving_level": "Rescue Diver",
+        "dives_number": null,
+        "email": "fdfdf@sdsd.com",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:03:28.800Z",
+        "updated_at": "2021-12-06T23:03:28.800Z",
+        "trips": [
+            1
+        ]
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 1,
+    "fields": {
+        "itinerary": "Komodo",
+        "duration_days": 8,
+        "starting_date": "2022-01-01",
+        "ending_date": "2022-01-08",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T15:00:32.351Z",
+        "updated_at": "2021-12-02T15:00:32.351Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 2,
+    "fields": {
+        "itinerary": "Raja Ampat",
+        "duration_days": 12,
+        "starting_date": "2022-02-01",
+        "ending_date": "2022-02-12",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-02T15:01:08.780Z",
+        "updated_at": "2021-12-02T15:01:08.780Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 3,
+    "fields": {
+        "itinerary": "Banda Sea",
+        "duration_days": 12,
+        "starting_date": "2022-10-01",
+        "ending_date": "2022-10-12",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T22:57:28.876Z",
+        "updated_at": "2021-12-06T22:57:28.876Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 4,
+    "fields": {
+        "itinerary": "Raja Ampat",
+        "duration_days": 10,
+        "starting_date": "2022-10-18",
+        "ending_date": "2022-10-27",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T22:58:13.769Z",
+        "updated_at": "2021-12-06T22:58:13.769Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 5,
+    "fields": {
+        "itinerary": "Raja Ampat",
+        "duration_days": 12,
+        "starting_date": "2022-11-04",
+        "ending_date": "2022-11-15",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T22:58:50.949Z",
+        "updated_at": "2021-12-06T22:58:50.949Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 6,
+    "fields": {
+        "itinerary": "Komodo",
+        "duration_days": 8,
+        "starting_date": "2022-07-11",
+        "ending_date": "2022-07-18",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T22:59:27.140Z",
+        "updated_at": "2021-12-06T22:59:27.140Z"
+    }
+},
+{
+    "model": "schedule.trip",
+    "pk": 7,
+    "fields": {
+        "itinerary": "Alor",
+        "duration_days": 12,
+        "starting_date": "2022-08-25",
+        "ending_date": "2022-09-05",
+        "user_id": [
+            "jfsubrini"
+        ],
+        "created_at": "2021-12-06T23:00:07.723Z",
+        "updated_at": "2021-12-06T23:00:07.723Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 2,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 2,
+        "bar_id": null,
+        "goodies_id": 1,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 1,
+        "order_date": "2021-12-02T15:09:45.874Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 4,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 3,
+        "bar_id": null,
+        "goodies_id": null,
+        "miscellaneous_id": 1,
+        "bill_id": null,
+        "quantity": 1,
+        "order_date": "2021-12-06T13:56:36.188Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 5,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 3,
+        "bar_id": null,
+        "goodies_id": 1,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 1,
+        "order_date": "2021-12-06T13:57:25.097Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 6,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 2,
+        "bar_id": 2,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 2,
+        "order_date": "2021-12-06T13:57:45.263Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 7,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 6,
+        "bar_id": 1,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 8,
+        "order_date": "2021-12-06T23:04:39.714Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 8,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 4,
+        "bar_id": null,
+        "goodies_id": 1,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 2,
+        "order_date": "2021-12-06T23:04:59.997Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 9,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 7,
+        "bar_id": null,
+        "goodies_id": 2,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 2,
+        "order_date": "2021-12-06T23:07:39.002Z"
+    }
+}
+]

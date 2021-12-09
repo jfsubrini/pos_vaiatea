@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ 'Vaiatea Site Admin' }} | {{ 'Vaiatea Stock Inventory' }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ 'Vaiatea Initial Goodies Stock Inventory' }}</a></h1>
+{% endblock %}
+
+{% block content %}
+<h1>Inventaire du stock initial de goodies</h1>
+</br>
+{% if submitted %}
+<p>Your message was submitted successfully. Thank you.</p>
+{% else %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h2>Renseigner le voyage concerné :</h2>
+    <h3>Voyages : 
+            <select>
+                {% for trip in trips %}
+                    <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
+                {% endfor %}
+            </select>
+    </h3>
+    </br>
+    <h2>Renseigner les quantités en stock de chaque goody au départ du voyage :</h2>
+    <h3>Goodies :</h3> 
+    {% for goody in goodies %}
+        <p>
+            {{ goody }} <span><input id="quantity" type="number" name="goody" min="0" max="1000"></span>
+        </p>
+        <input type="hidden" name="goody" value="{{ goody.pk }}" />
+        <input type="hidden" name="quantity" value="{{ quantity }}" />
+    {% endfor %}
+    </br></br>
+    <input type="hidden" name="action" value="goodies_initial_stocks" />
+    <input type="submit" name="apply" value="Valider le stock initial de goodies" />
+</form>
+{% endif %}
+{% endblock %}

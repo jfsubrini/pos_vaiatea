@@ -29,7 +29,7 @@ class Bill(models.Model):
         related_name="bills", verbose_name="Utilisateur")
     amount = models.DecimalField(
         "Montant de la facture", max_digits=5, decimal_places=2)
-    date = models.DateTimeField("Date de la facture", auto_now=True)
+    bill_date = models.DateTimeField("Date de la facture", auto_now=True)
 
     class Meta:
         verbose_name = "Facture"
@@ -50,17 +50,19 @@ class OrderLine(models.Model):
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
     bar_id = models.ForeignKey(
-        Bar, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Boisson de bar")
+        Bar, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Boisson de bar")
     goodies_id = models.ForeignKey(
-        Goodies, on_delete=models.PROTECT, related_name="orderlines", verbose_name="Goodies")
+        Goodies, on_delete=models.PROTECT, blank=True, null=True,
+        related_name="orderlines", verbose_name="Goodies")
     miscellaneous_id = models.ForeignKey(
-        Miscellaneous, on_delete=models.PROTECT,
+        Miscellaneous, on_delete=models.PROTECT, blank=True, null=True,
         related_name="orderlines", verbose_name="Autre article divers")
     bill_id = models.ForeignKey(
         Bill, on_delete=models.SET_NULL, blank=True, null=True,
         related_name="orderlines", verbose_name="Facture")
     quantity = models.PositiveSmallIntegerField("Quantité")
-    date = models.DateTimeField("Date de la commande", auto_now=True)
+    order_date = models.DateTimeField("Date de la commande", auto_now=True)
 
     class Meta:
         verbose_name = "Commande"
@@ -82,7 +84,7 @@ class Payment(models.Model):
         Bill, on_delete=models.PROTECT, related_name="payments", verbose_name="Facture")
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
-    date = models.DateTimeField("Date de la commande", auto_now=True)
+    payment_date = models.DateTimeField("Date de la commande", auto_now=True)
 
     class Meta:
         verbose_name = "Paiement"
