@@ -1,39 +1,52 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=missing-class-docstring
+# pylint: disable=missing-class-docstring, no-member
 """All the admin pages to create, update, delete and read \
     all the bar, kitchen, goodies and miscellanous items.
     Idem for the initial and final stocks inventory of the bar, \
         kitchen and goodies items.
     """
 from django.contrib import admin
-from django.contrib.admin import AdminSite
 from django.shortcuts import render
-# from stocks.forms import BarStockForm, KitchenStockForm, GoodiesStockForm
-from stocks.models import (
+from .models import (
     Bar,
     Goodies,
     Kitchen,
     Miscellaneous,
     Stock,
-    Trip
+    Trip,
 )
 
 
+# CUSTOM ADMIN ACTIONS
 # Actions in the items' lists to make initial and final inventory of the items.
 @admin.action(description='Inventaire du stock initial du bar')
 def make_bar_initial_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock initial du bar \
         puis envoi vers une page intermédiaire."""
-    # Ceci dessous servira plus tard à enregistrer les items dans les stocks. Testé en attendant.
-    # for item in range(queryset.count()):
-    # for item in queryset:
-    #     print("XXXXXXXXX : ", item.id, type(item.id))
-    #     bar_initial = Stock(
-    #         bar_initial_id=item.id, trip_id=1, quantity=1)
-    #     bar_initial.save()
-    # if "apply" in request.POST:
-    all_drinks = queryset.all()
-    all_trips = Trip.objects.all()
+    if "apply" in request.POST:
+        # Checking if the form has been validated.
+        all_drinks = queryset.all()
+        all_trips = Trip.objects.all()
+        if all_drinks.is_valid() and all_trips.is_valid:
+            # Saving the data from the initial bar stock inventory form to update the stock data into the database.
+            # form = edit_draft_form.save(commit=False)
+            # form.draft = selected_wallet.draft
+            # form.created_at = selected_wallet.created_at
+            # form.save()
+            # for item in queryset:
+            #     print("XXXXXXXXX : ", item.id, type(item.id))
+            #     bar_initial = Stock(
+            #         bar_initial_id=item.id, trip_id=1, quantity=1)
+            #     bar_initial.save()
+            print("XXXXXXXX HOLA XXXXXXXXX")
+
+    # To display the stock inventory with all the drinks registered into the database
+    # with the choice of trips.
+    else:
+        all_drinks = queryset.all()
+        all_trips = Trip.objects.all()
+
+    # What to render to the template.
     return render(request, 'admin/bar_initial_stocks.html',
                   context={"drinks": all_drinks, "trips": all_trips})
 
@@ -88,9 +101,9 @@ def make_kitchen_final_stocks(modeladmin, request, queryset):
                   context={"foods": all_food, "trips": all_trips})
 
 #################################################################################
+
+
 # BAR CRUD
-
-
 @admin.register(Bar)
 class BarAdmin(admin.ModelAdmin):
     exclude = ("user_id",)
@@ -151,116 +164,15 @@ class MiscellaneousAdmin(admin.ModelAdmin):
         obj.user_id = request.user
         super().save_model(request, obj, form, change)
 
-
 #################################################################################
+
+
 # STOCK INVENTORY
-# STOCK BAR
-# @admin.action(description='Relevé du stock initial du bar')
-# def make_bar_initial_stocks(modeladmin, request, queryset):
-#     """ select Relevé du stock initial du bar puis envoyer arrivée sur une page \
-#         où on va demander le trip et on va afficher toutes les boissons \
-#             avec un formulaire pour mettre les quantités."""
-#     # A TESTER, apres il faudra trouver le trip_id et la quantity :
-#     for item in range(queryset.count()):
-#         item_bar_id = queryset[item].id
-#         bar_initial = Stock(
-#             bar_initial_id=item_bar_id, trip_id=1, quantity=1)
-#         bar_initial.save()
-
-
-# @admin.action(description='Inventaire du stock initial du bar')
-# def make_bar_initial_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# @admin.action(description='Inventaire du stock final du bar')
-# def make_bar_final_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# class StockBarAdmin(admin.AdminSite):
-#     site_header = 'Vaiatea Stock Administration'
-#     site_title = 'Relevé de stock du bar'
-#     index_title = 'Relevé de stock du bar'
-
-#     def save_model(self, request, obj, form, change):
-#         obj.user_id = request.user
-#         super().save_model(request, obj, form, change)
-
-
-# admin_bar_stock = StockBarAdmin(name='stockbaradmin')
-
-
-# @admin.register(Bar, site=admin_bar_stock)
-# class BarStockAdmin(admin.ModelAdmin):
-#     form = BarStockForm  #  Marche pas TODO
-#     fields = ("trip_id",)  #  Marche pas TODO
-#     actions = [make_bar_initial_stocks, make_bar_final_stocks]
-
-
-# # STOCK KITCHEN
-# @admin.action(description='Inventaire du stock initial de la cuisine')
-# def make_kitchen_initial_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# @admin.action(description='Inventaire du stock final de la cuisine')
-# def make_kitchen_final_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# class StockKitchenAdmin(admin.AdminSite):
-#     site_header = 'Vaiatea Stock Administration'
-#     site_title = 'Relevé de stock de la cuisine'
-#     index_title = 'Relevé de stock de la cuisine'
-
-#     def save_model(self, request, obj, form, change):
-#         obj.user_id = request.user
-#         super().save_model(request, obj, form, change)
-
-
-# admin_kitchen_stock = StockKitchenAdmin(name='stockkitchenadmin')
-
-
-# @admin.register(Kitchen, site=admin_kitchen_stock)
-# class KitchenStockAdmin(admin.ModelAdmin):
-#     form = KitchenStockForm  #  Marche pas TODO
-#     fields = ("trip_id",)  #  Marche pas TODO
-#     actions = [make_kitchen_initial_stocks, make_kitchen_final_stocks]
-
-
-# # STOCK GOODIES
-# @admin.action(description='Inventaire du stock initial des goodies')
-# def make_goodies_initial_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# @admin.action(description='Inventaire du stock final des goodies')
-# def make_goodies_final_stocks(modeladmin, request, queryset):
-#     # Envoyer vers une page intermediaire avec liste de tous les items et le moyen de mettre la quantité. TODO
-#     pass
-
-
-# class StockGoodiesAdmin(admin.AdminSite):
-#     site_header = 'Vaiatea Stock Administration'
-#     site_title = 'Relevé de stock des goodies'
-#     index_title = 'Relevé de stock des goodies'
-
-#     def save_model(self, request, obj, form, change):
-#         obj.user_id = request.user
-#         super().save_model(request, obj, form, change)
-
-
-# admin_goodies_stock = StockGoodiesAdmin(name='stockgoodiesadmin')
-
-
-# @admin.register(Goodies, site=admin_goodies_stock)
-# class GoodiesStockAdmin(admin.ModelAdmin):
-#     form = GoodiesStockForm  #  Marche pas TODO
-#     fields = ("trip_id",)  #  Marche pas TODO
-#     actions = [make_goodies_initial_stocks, make_goodies_final_stocks]
+@admin.register(Stock)
+class InitialStockAdmin(admin.ModelAdmin):
+    exclude = ("created_at", "updated_at")
+    list_display = ("bar_initial_id", "bar_final_id", "goodies_initial_id", "goodies_final_id",
+                    "kitchen_initial_id", "kitchen_final_id", "trip_id", "quantity")
+    ordering = ("trip_id",)
+    search_fields = ("trip_id",)
+    list_filter = ("trip_id",)
