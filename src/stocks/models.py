@@ -146,22 +146,28 @@ class Stock(models.Model):
     """To create the Stock table."""
 
     bar_initial_id = models.ForeignKey(
-        Bar, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        Bar, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de boisson")
     bar_final_id = models.ForeignKey(
-        Bar, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        Bar, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de boisson")
     goodies_initial_id = models.ForeignKey(
-        Goodies, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        Goodies, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de goodies")
     goodies_final_id = models.ForeignKey(
-        Goodies, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        Goodies, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de goodies")
     kitchen_initial_id = models.ForeignKey(
-        Kitchen, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+        Kitchen, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de nourriture")
     kitchen_final_id = models.ForeignKey(
-        Kitchen, blank=True, null=True, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+        Kitchen, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de nourriture")
     trip_id = models.ForeignKey(
         Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")

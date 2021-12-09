@@ -7,18 +7,16 @@
 {% endblock %}
 
 {% block content %}
-<h1>Inventaire du stock final en cuisine</h1>
+<h1>Inventaire du stock final de la cuisine</h1>
 </br>
-{% if submitted %}
-<p>Your message was submitted successfully. Thank you.</p>
-{% else %}
 <form action="" method="post">
     {% csrf_token %}
     <h2>Renseigner le voyage concerné :</h2>
     <h3>Voyages : 
-            <select>
+            <select name="trip" >
+                <option hidden disabled selected value> -- Sélectionner un voyage -- </option>
                 {% for trip in trips %}
-                    <option>{{ trip.itinerary }} du {{ trip.starting_date }}<option>
+                    <option value={{ trip.id }}>{{ trip.itinerary }} du {{ trip.starting_date }}</option>
                 {% endfor %}
             </select>
     </h3>
@@ -27,14 +25,12 @@
     <h3>Nourritures :</h3> 
     {% for food in foods %}
         <p>
-            {{ food }} <span><input id="quantity" type="number" name="food" min="0" max="1000"></span>
+            {{ food }} <span><input type="number" name="food_quantity" min="0" max="1000"></span>
         </p>
-        <input type="hidden" name="food" value="{{ food.pk }}" />
-        <input type="hidden" name="quantity" value="{{ quantity }}" />
+        <input type="hidden" name="_selected_action" value={{ food.id}} />
     {% endfor %}
     </br></br>
-    <input type="hidden" name="action" value="kitchen_final_stocks" />
-    <input type="submit" name="apply" value="Valider le stock final en cuisine" />
+    <input type="hidden" name="action" value="make_kitchen_final_stocks" />
+    <input type="submit" name="apply" value="Valider le stock final de la cuisine" />
 </form>
-{% endif %}
 {% endblock %}

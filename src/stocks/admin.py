@@ -24,7 +24,8 @@ def make_bar_initial_stocks(modeladmin, request, queryset):
     """ Choix dans action pour faire un inventaire du stock initial du bar \
         puis envoi vers une page intermédiaire."""
     if "apply" in request.POST:
-        # Saving the data from the initial bar stock inventory form to update the Stock table with those data.
+        # Saving the data from the initial bar stock inventory form
+        # to update the Stock table with those data.
         drinks_list = request.POST.getlist('_selected_action')
         drink_quantity_list = request.POST.getlist('drink_quantity')
         trip_selected = request.POST['trip']
@@ -38,7 +39,8 @@ def make_bar_initial_stocks(modeladmin, request, queryset):
             i = i + 1
             drink_id_selected = Bar.objects.filter(id=drink).last()
             bar_initial_item = Stock(bar_initial_id=drink_id_selected,
-                                     trip_id=trip_id_selected, quantity=drink_quantity, user_id=request.user)
+                                     trip_id=trip_id_selected, quantity=drink_quantity,
+                                     user_id=request.user)
             bar_initial_item.save()
 
     # To display the stock inventory with all the drinks registered into the database
