@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=missing-class-docstring, no-member
+# pylint: disable=missing-class-docstring, no-member, invalid-name
 """All the admin pages to create, update, delete and read \
     all the bar, kitchen, goodies and miscellanous items.
     Idem for the initial and final stocks inventory of the bar, \
@@ -8,12 +8,18 @@
 from django.contrib import admin
 from django.shortcuts import render
 from .models import (
+    Trip,
     Bar,
     Goodies,
     Kitchen,
     Miscellaneous,
     Stock,
-    Trip,
+    InitialBarStock,
+    FinalBarStock,
+    InitialKitchenStock,
+    FinalKitchenStock,
+    InitialGoodiesStock,
+    FinalGoodiesStock,
 )
 
 
@@ -173,11 +179,79 @@ class MiscellaneousAdmin(admin.ModelAdmin):
 
 
 # STOCK INVENTORY
-@ admin.register(Stock)
-class InitialStockAdmin(admin.ModelAdmin):
-    exclude = ("created_at", "updated_at")
-    list_display = ("bar_initial_id", "bar_final_id", "goodies_initial_id", "goodies_final_id",
-                    "kitchen_initial_id", "kitchen_final_id", "trip_id", "quantity")
+@ admin.register(InitialBarStock)
+class InitialBarStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_final_id", "kitchen_initial_id", "kitchen_final_id",
+               "goodies_initial_id", "goodies_final_id")
+    list_display = ("bar_initial_id", "quantity", "trip_id")
     ordering = ("trip_id",)
-    search_fields = ("trip_id",)
-    list_filter = ("trip_id",)
+    list_filter = ("trip_id", "bar_initial_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(bar_initial_id=True)
+
+
+@ admin.register(FinalBarStock)
+class FinalBarStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_initial_id", "kitchen_initial_id", "kitchen_final_id",
+               "goodies_initial_id", "goodies_final_id")
+    list_display = ("bar_final_id", "quantity", "trip_id")
+    ordering = ("trip_id",)
+    list_filter = ("trip_id", "bar_final_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(bar_final_id=True)
+
+
+@ admin.register(InitialKitchenStock)
+class InitialKitchenStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_final_id",
+               "goodies_initial_id", "goodies_final_id")
+    list_display = ("kitchen_initial_id", "quantity", "trip_id")
+    ordering = ("trip_id",)
+    list_filter = ("trip_id", "kitchen_initial_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(kitchen_initial_id=True)
+
+
+@ admin.register(FinalKitchenStock)
+class FinalKitchenStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_initial_id",
+               "goodies_initial_id", "goodies_final_id")
+    list_display = ("kitchen_final_id", "quantity", "trip_id")
+    ordering = ("trip_id",)
+    list_filter = ("trip_id", "kitchen_final_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(kitchen_final_id=True)
+
+
+@ admin.register(InitialGoodiesStock)
+class InitialGoodiesStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_initial_id",
+               "kitchen_final_id", "goodies_final_id")
+    list_display = ("goodies_initial_id", "quantity", "trip_id")
+    ordering = ("trip_id",)
+    list_filter = ("trip_id", "goodies_initial_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(goodies_initial_id=True)
+
+
+@ admin.register(FinalGoodiesStock)
+class FinalGoodiesStockAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_initial_id",
+               "kitchen_final_id", "goodies_initial_id")
+    list_display = ("goodies_final_id", "quantity", "trip_id")
+    ordering = ("trip_id",)
+    list_filter = ("trip_id", "goodies_final_id")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(goodies_final_id=True)
