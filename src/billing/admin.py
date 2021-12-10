@@ -8,10 +8,17 @@ from typing import ParamSpecArgs
 from django.contrib import admin
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Bill, OrderLine, Payment, Miscellaneous, Bar, Goodies
+from .models import (
+    Bar,
+    Bill,
+    Goodies,
+    Miscellaneous,
+    OrderLine,
+    Payment,
+)
 
 
-# Funccion to calculate the amount of each order line
+# Function to calculate the amount of each order line.
 def amounts_calculation(all_orderlines_qs):
     amounts_list = []
     for orderline in all_orderlines_qs:
@@ -31,49 +38,53 @@ def amounts_calculation(all_orderlines_qs):
     return amounts_list
 
 
+# Function to send the bill by email.
+def send_email(email):
+    pass
+
+
 # CUSTOM ADMIN ACTION TO MAKE THE BILL WITH THE ORDER LINE(S) SELECTED.
 @ admin.action(description='Faire la facture des commandes sélectionnées')
 def make_bill(modeladmin, request, queryset):
     """ Action pour faire la facture des commandes sélectionnées ; \
         envoi vers une page intermédiaire ; enregistrement des données \
         dans la table de Bill."""
-    print("TTTTTTTTT : ", request.POST)
+    all_orderlines = queryset.all()
+    all_amounts = amounts_calculation(all_orderlines)
+    total_amount = sum(all_amounts)
+    email_selected = all_orderlines[0].guest_id.email
+    print("XXXXXXXXXXX : ", request.POST)
     if "apply" in request.POST:
         # Saving the data from the order line(s) form of a guest
         # to create an instance in the Bill table with those data.
-        print("XXXXXXXXXXX : ", request.POST)
         orderline_list = request.POST.getlist('_selected_action')
-        email_selected = request.POST['email']
-        # trip_id_selected = Trip.objects.filter(id=trip_selected).last()
-        # i = 0
+        # Create the bill instance with the total amount to pay and tha user_id
+        new_bill = Bill(user_id=request.user, amount=total_amount)
+        new_bill.save()
+        # Mettre l'id du bill créé dans tous les order lines auquel il se réfère.
         for orderline in orderline_list:
             orderline_selected = OrderLine.objects.filter(id=orderline).last()
-
-        #     if drink_quantity_list[i]:
-        #         drink_quantity = drink_quantity_list[i]
-        #     else:
-        #         drink_quantity = 0
-        #     i = i + 1
-        #     if drink_quantity != 0:
-        #         drink_id_selected = Bar.objects.filter(id=drink).last()
-        #         bar_initial_item = Stock(bar_initial_id=drink_id_selected,
-        #                                  trip_id=trip_id_selected, quantity=drink_quantity,
-        #                                  user_id=request.user)
-        #         bar_initial_item.save()
-        # return HttpResponseRedirect('/admin')
+            orderline_selected.bill_id = new_bill.id
+            orderline_selected.save()
+        # Envoi ou non de la facture par email.
+        email_check = request.POST.getlist('email_checkbox')
+        if email_check:
+            send_email(email_selected)
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the drinks registered into the database
     # with the choice of trips.
     else:
         all_orderlines = queryset.all()
+        zipped_data = zip(all_orderlines, all_amounts)
 
     # What to render to the template.
-    all_orderlines = queryset.all()
-    all_amounts = amounts_calculation(all_orderlines)
-    # print("IIIIIIII : ", all_orderlines[0].guest_id.trips)
+    zipped_data = zip(all_orderlines, all_amounts)
     return render(request, 'admin/bill.html',
                   context={"orderlines": all_orderlines,
-                           "amounts": all_amounts})
+                           "zipped_data": zipped_data,
+                           "total_amount": total_amount,
+                           "email": email_selected})
 
 
 #################################################################################
