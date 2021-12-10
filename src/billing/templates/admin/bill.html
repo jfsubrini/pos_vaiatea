@@ -13,7 +13,7 @@
     <h2>Des consommations et/ou achats suivants : </h2>
         <ul>
             {% for orderline in orderlines %}
-            <li>{{ orderlines.quantity }} {{ orderline.bar_id|default_if_none:"" }} {{ orderline.goodies_id|default_if_none:"" }} {{ orderline.miscellaneous_id|default_if_none:"" }} au prix unitaire de {{ orderline.bar_id.price_unit_dollar }} USD, soit un total de : {{ orderline_amount }} </li>
+            <li>{{ orderline.quantity }} {{ orderline.bar_id|default_if_none:"" }} {{ orderline.goodies_id|default_if_none:"" }} {{ orderline.miscellaneous_id|default_if_none:"" }}, soit un total de : {{ amounts }} </li>
             {% endfor %}
         </ul>
         <input type="hidden" name="_selected_action" value={{ orderline.id }} />

@@ -3,14 +3,36 @@
 """All the admin pages to create, update, delete and read the order lines, \
     the bills and the payments.
     """
+from types import prepare_class
+from typing import ParamSpecArgs
 from django.contrib import admin
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Bill, OrderLine, Payment
+from .models import Bill, OrderLine, Payment, Miscellaneous, Bar, Goodies
+
+
+# Funccion to calculate the amount of each order line
+def amounts_calculation(all_orderlines_qs):
+    amounts_list = []
+    for orderline in all_orderlines_qs:
+        quantity_item = orderline.quantity
+        if orderline.bar_id:
+            bar_selected = Bar.objects.filter(orderlines=orderline.id)
+            unit_price_item = bar_selected[0].price_unit_dollar
+        elif orderline.goodies_id:
+            goody_selected = Goodies.objects.filter(orderlines=orderline.id)
+            unit_price_item = goody_selected[0].price_unit_dollar
+        elif orderline.miscellaneous_id:
+            misc_selected = Miscellaneous.objects.filter(
+                orderlines=orderline.id)
+            unit_price_item = misc_selected[0].price_unit_dollar
+        orderline_amount = float(quantity_item * unit_price_item)
+        amounts_list.append(orderline_amount)
+    return amounts_list
 
 
 # CUSTOM ADMIN ACTION TO MAKE THE BILL WITH THE ORDER LINE(S) SELECTED.
-@admin.action(description='Faire la facture des commandes sélectionnées')
+@ admin.action(description='Faire la facture des commandes sélectionnées')
 def make_bill(modeladmin, request, queryset):
     """ Action pour faire la facture des commandes sélectionnées ; \
         envoi vers une page intermédiaire ; enregistrement des données \
@@ -47,16 +69,18 @@ def make_bill(modeladmin, request, queryset):
 
     # What to render to the template.
     all_orderlines = queryset.all()
-    print("IIIIIIII : ", all_orderlines[0].guest_id.trips)
+    all_amounts = amounts_calculation(all_orderlines)
+    # print("IIIIIIII : ", all_orderlines[0].guest_id.trips)
     return render(request, 'admin/bill.html',
-                  context={"orderlines": all_orderlines})
+                  context={"orderlines": all_orderlines,
+                           "amounts": all_amounts})
 
 
 #################################################################################
 
 
 # ORDERLINE CRUD
-@admin.register(OrderLine)
+@ admin.register(OrderLine)
 class OrderLineAdmin(admin.ModelAdmin):
     # Si choix de differente categorie d'article raise error : une ligne a la fois  TODO
     exclude = ("user_id", "date", "bill_id")
@@ -73,7 +97,7 @@ class OrderLineAdmin(admin.ModelAdmin):
 
 
 # BILL CRUD
-@admin.register(Bill)
+@ admin.register(Bill)
 class BillAdmin(admin.ModelAdmin):
     exclude = ("user_id", "date", "amount")
     # show a button to click that leads to a bill form.  TODO
@@ -84,7 +108,7 @@ class BillAdmin(admin.ModelAdmin):
 
 
 # PAYMENT CRUD
-@admin.register(Payment)
+@ admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
     exclude = ("user_id", "date")
     list_filter = ("payment_mode",)
