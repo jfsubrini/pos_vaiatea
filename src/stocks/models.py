@@ -145,26 +145,35 @@ class Miscellaneous(Item):
 class Stock(models.Model):
     """To create the Stock table."""
 
-    bar_initial_id = models.OneToOneField(
-        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+    bar_initial_id = models.ForeignKey(
+        Bar, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de boisson")
-    bar_final_id = models.OneToOneField(
-        Bar, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+    bar_final_id = models.ForeignKey(
+        Bar, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de boisson")
-    goodies_initial_id = models.OneToOneField(
-        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+    goodies_initial_id = models.ForeignKey(
+        Goodies, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de goodies")
-    goodies_final_id = models.OneToOneField(
-        Goodies, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+    goodies_final_id = models.ForeignKey(
+        Goodies, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de goodies")
-    kitchen_initial_id = models.OneToOneField(
-        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_initial_related",
+    kitchen_initial_id = models.ForeignKey(
+        Kitchen, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_initial_related",
         verbose_name="stock initial de nourriture")
-    kitchen_final_id = models.OneToOneField(
-        Kitchen, on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_final_related",
+    kitchen_final_id = models.ForeignKey(
+        Kitchen, blank=True, null=True, on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_final_related",
         verbose_name="stock final de nourriture")
     trip_id = models.ForeignKey(
         Trip, on_delete=models.CASCADE, related_name="stocks", verbose_name="Voyage")
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="stocks", verbose_name="Utilisateur")
     quantity = models.PositiveSmallIntegerField(
         "Quantité", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -175,3 +184,45 @@ class Stock(models.Model):
 
     def __str__(self):
         return f"Stock du voyage {self.trip_id}"
+
+
+class InitialBarStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial du bar"
+
+
+class FinalBarStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final du bar"
+
+
+class InitialKitchenStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial de la cuisine"
+
+
+class FinalKitchenStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final de la cuisine"
+
+
+class InitialGoodiesStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock initial de goodies"
+
+
+class FinalGoodiesStock(Stock):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Stock final de goodies"
