@@ -13,7 +13,7 @@
     {% csrf_token %}
     <h2>Renseigner le voyage concerné :</h2>
     <h3>Voyages : 
-            <select name="trip" >
+            <select name="trip">
                 <option hidden disabled selected value> -- Sélectionner un voyage -- </option>
                 {% for trip in trips %}
                     <option value={{ trip.id }}>{{ trip.itinerary }} du {{ trip.starting_date }}</option>

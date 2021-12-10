@@ -335,14 +335,6 @@ class MiscellaneousAdmin(admin.ModelAdmin):
 
 
 # STOCK INVENTORY LISTS AND UPDATE
-
-
-# @ admin.register(Stock)
-# class InitialBarStockAdmin(admin.ModelAdmin):
-#     exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_initial_id",
-#                "kitchen_final_id", "goodies_initial_id", "goodies_final_id")
-
-
 @ admin.register(InitialBarStock)
 class InitialBarStockAdmin(admin.ModelAdmin):
     exclude = ("user_id", "bar_final_id", "kitchen_initial_id", "kitchen_final_id",
@@ -352,8 +344,8 @@ class InitialBarStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "bar_initial_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(bar_initial_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(bar_initial_id__gt=0)
 
 
 @ admin.register(FinalBarStock)
@@ -365,8 +357,8 @@ class FinalBarStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "bar_final_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(bar_final_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(bar_final_id__gt=0)
 
 
 @ admin.register(InitialKitchenStock)
@@ -378,8 +370,8 @@ class InitialKitchenStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "kitchen_initial_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(kitchen_initial_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(kitchen_initial_id__gt=0)
 
 
 @ admin.register(FinalKitchenStock)
@@ -391,8 +383,8 @@ class FinalKitchenStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "kitchen_final_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(kitchen_final_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(kitchen_final_id__gt=0)
 
 
 @ admin.register(InitialGoodiesStock)
@@ -404,8 +396,8 @@ class InitialGoodiesStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "goodies_initial_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(goodies_initial_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(goodies_initial_id__gt=0)
 
 
 @ admin.register(FinalGoodiesStock)
@@ -417,5 +409,5 @@ class FinalGoodiesStockAdmin(admin.ModelAdmin):
     list_filter = ("trip_id", "goodies_final_id")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(goodies_final_id=True)
+        item_queryset = super().get_queryset(request)
+        return item_queryset.filter(goodies_final_id__gt=0)

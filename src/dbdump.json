@@ -112,6 +112,48 @@
     }
 },
 {
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "initialbarstock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "finalbarstock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "finalgoodiesstock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "finalkitchenstock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "initialgoodiesstock"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "stocks",
+        "model": "initialkitchenstock"
+    }
+},
+{
     "model": "sessions.session",
     "pk": "hww6fyy0t6d89jyjtaohl6jw9ymcvo6m",
     "fields": {
@@ -821,6 +863,270 @@
             "session"
         ],
         "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock initial du bar",
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "codename": "add_initialbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock initial du bar",
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "codename": "change_initialbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock initial du bar",
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "codename": "delete_initialbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock initial du bar",
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "codename": "view_initialbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock final du bar",
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "codename": "add_finalbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock final du bar",
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "codename": "change_finalbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock final du bar",
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "codename": "delete_finalbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock final du bar",
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "codename": "view_finalbarstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock final de goodies",
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "codename": "add_finalgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock final de goodies",
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "codename": "change_finalgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock final de goodies",
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "codename": "delete_finalgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock final de goodies",
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "codename": "view_finalgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock final de la cuisine",
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "codename": "add_finalkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock final de la cuisine",
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "codename": "change_finalkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock final de la cuisine",
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "codename": "delete_finalkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock final de la cuisine",
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "codename": "view_finalkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock initial de goodies",
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "codename": "add_initialgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock initial de goodies",
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "codename": "change_initialgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock initial de goodies",
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "codename": "delete_initialgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock initial de goodies",
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "codename": "view_initialgoodiesstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Stock initial de la cuisine",
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "codename": "add_initialkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Stock initial de la cuisine",
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "codename": "change_initialkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Stock initial de la cuisine",
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "codename": "delete_initialkitchenstock"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Stock initial de la cuisine",
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "codename": "view_initialkitchenstock"
     }
 },
 {
@@ -2484,6 +2790,1396 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2021-12-10T08:06:25.605Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "12",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2021-12-10T08:06:25.614Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "5",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 18 Oct 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2021-12-10T09:35:19.207Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Quantit\\u00e9\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2021-12-10T09:35:27.824Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Quantit\\u00e9\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2021-12-10T09:35:34.762Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Voyage\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2021-12-10T09:35:41.454Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Voyage\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2021-12-10T09:40:34.748Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Voyage\", \"Quantit\\u00e9\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2021-12-10T09:41:36.396Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "42",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2021-12-10T09:43:13.891Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "42",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2021-12-10T09:43:13.895Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "16",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2021-12-10T09:43:37.504Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "43",
+        "object_repr": "Stock du voyage Voyage Komodo du 11 Jul 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2021-12-10T09:45:25.262Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "object_id": "45",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 04 Nov 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2021-12-10T09:46:39.268Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "object_id": "46",
+        "object_repr": "Stock du voyage Voyage Banda Sea du 01 Oct 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2021-12-10T09:48:32.013Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "object_id": "47",
+        "object_repr": "Stock du voyage Voyage Banda Sea du 01 Oct 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2021-12-10T09:49:12.702Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalgoodiesstock"
+        ],
+        "object_id": "41",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Quantit\\u00e9\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2021-12-10T09:50:44.817Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "48",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2021-12-10T09:53:02.654Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "49",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2021-12-10T09:53:31.402Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "50",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2021-12-10T09:54:09.481Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "object_id": "51",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 78,
+    "fields": {
+        "action_time": "2021-12-10T09:55:26.045Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalkitchenstock"
+        ],
+        "object_id": "52",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 79,
+    "fields": {
+        "action_time": "2021-12-10T09:58:54.322Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "finalbarstock"
+        ],
+        "object_id": "23",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 80,
+    "fields": {
+        "action_time": "2021-12-10T10:00:11.116Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "37",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Quantit\\u00e9\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 81,
+    "fields": {
+        "action_time": "2021-12-10T10:01:02.059Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "32",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 82,
+    "fields": {
+        "action_time": "2021-12-10T10:01:24.201Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "37",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 83,
+    "fields": {
+        "action_time": "2021-12-10T10:08:12.816Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "object_id": "53",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 84,
+    "fields": {
+        "action_time": "2021-12-10T10:08:26.304Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "object_id": "54",
+        "object_repr": "Stock du voyage Voyage Raja Ampat du 01 Feb 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 85,
+    "fields": {
+        "action_time": "2021-12-10T10:08:39.306Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialgoodiesstock"
+        ],
+        "object_id": "55",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 86,
+    "fields": {
+        "action_time": "2021-12-10T10:09:01.616Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialkitchenstock"
+        ],
+        "object_id": "56",
+        "object_repr": "Stock du voyage Voyage Alor du 25 Aug 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 87,
+    "fields": {
+        "action_time": "2021-12-10T10:09:21.056Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "stocks",
+            "initialbarstock"
+        ],
+        "object_id": "57",
+        "object_repr": "Stock du voyage Voyage Komodo du 01 Jan 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 88,
+    "fields": {
+        "action_time": "2021-12-10T11:37:25.267Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "10",
+        "object_repr": "Commande d'un article par Rafael Bustante",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 89,
+    "fields": {
+        "action_time": "2021-12-10T11:37:41.694Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "11",
+        "object_repr": "Commande d'un article par Rafael Bustante",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 90,
+    "fields": {
+        "action_time": "2021-12-10T11:37:57.379Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "12",
+        "object_repr": "Commande d'un article par Hannah Byron",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 91,
+    "fields": {
+        "action_time": "2021-12-10T11:38:09.282Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "13",
+        "object_repr": "Commande d'un article par Hannah Byron",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 92,
+    "fields": {
+        "action_time": "2021-12-10T11:38:31.275Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "14",
+        "object_repr": "Commande d'un article par Jef Tomato",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 93,
+    "fields": {
+        "action_time": "2021-12-10T11:38:42.180Z",
+        "user": [
+            "jfsubrini"
+        ],
+        "content_type": [
+            "billing",
+            "orderline"
+        ],
+        "object_id": "15",
+        "object_repr": "Commande d'un article par Daniel Sanchez",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 192,
+    "fields": {
+        "bar_initial_id": 3,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 3,
+        "created_at": "2021-12-10T11:42:05.687Z",
+        "updated_at": "2021-12-10T11:42:05.687Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 193,
+    "fields": {
+        "bar_initial_id": 4,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 8,
+        "created_at": "2021-12-10T11:42:05.692Z",
+        "updated_at": "2021-12-10T11:42:05.692Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 194,
+    "fields": {
+        "bar_initial_id": 1,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 17,
+        "created_at": "2021-12-10T11:42:05.694Z",
+        "updated_at": "2021-12-10T11:42:05.694Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 195,
+    "fields": {
+        "bar_initial_id": 5,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 13,
+        "created_at": "2021-12-10T11:42:05.697Z",
+        "updated_at": "2021-12-10T11:42:05.697Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 196,
+    "fields": {
+        "bar_initial_id": 7,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:42:05.699Z",
+        "updated_at": "2021-12-10T11:42:05.699Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 197,
+    "fields": {
+        "bar_initial_id": 2,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 6,
+        "created_at": "2021-12-10T11:42:05.701Z",
+        "updated_at": "2021-12-10T11:42:05.701Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 198,
+    "fields": {
+        "bar_initial_id": 6,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 13,
+        "created_at": "2021-12-10T11:42:05.703Z",
+        "updated_at": "2021-12-10T11:42:05.703Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 199,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 3,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:42:23.212Z",
+        "updated_at": "2021-12-10T11:42:23.212Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 200,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 4,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:42:23.216Z",
+        "updated_at": "2021-12-10T11:42:23.216Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 201,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 1,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T11:42:23.218Z",
+        "updated_at": "2021-12-10T11:42:23.218Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 202,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 5,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 4,
+        "created_at": "2021-12-10T11:42:23.220Z",
+        "updated_at": "2021-12-10T11:42:23.220Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 203,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 7,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 2,
+        "created_at": "2021-12-10T11:42:23.222Z",
+        "updated_at": "2021-12-10T11:42:23.222Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 204,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 2,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T11:42:23.224Z",
+        "updated_at": "2021-12-10T11:42:23.224Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 205,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 6,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:42:23.226Z",
+        "updated_at": "2021-12-10T11:42:23.226Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 206,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": 2,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 21,
+        "created_at": "2021-12-10T11:43:07.508Z",
+        "updated_at": "2021-12-10T11:43:07.508Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 207,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": 1,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 30,
+        "created_at": "2021-12-10T11:43:07.513Z",
+        "updated_at": "2021-12-10T11:43:07.513Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 208,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": 2,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 3,
+        "created_at": "2021-12-10T11:43:16.475Z",
+        "updated_at": "2021-12-10T11:43:16.475Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 209,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": 1,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T11:43:16.479Z",
+        "updated_at": "2021-12-10T11:43:16.479Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 210,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": 5,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 14,
+        "created_at": "2021-12-10T11:43:53.678Z",
+        "updated_at": "2021-12-10T11:43:53.678Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 211,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": 2,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 25,
+        "created_at": "2021-12-10T11:43:53.683Z",
+        "updated_at": "2021-12-10T11:43:53.683Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 212,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": 3,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 4,
+        "created_at": "2021-12-10T11:43:53.685Z",
+        "updated_at": "2021-12-10T11:43:53.685Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 213,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": 4,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 6,
+        "created_at": "2021-12-10T11:43:53.688Z",
+        "updated_at": "2021-12-10T11:43:53.688Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 214,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": 1,
+        "kitchen_final_id": null,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 14,
+        "created_at": "2021-12-10T11:43:53.691Z",
+        "updated_at": "2021-12-10T11:43:53.691Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 215,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": 5,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 3,
+        "created_at": "2021-12-10T11:44:15.682Z",
+        "updated_at": "2021-12-10T11:44:15.682Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 216,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": 2,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:44:15.686Z",
+        "updated_at": "2021-12-10T11:44:15.686Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 217,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": 3,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T11:44:15.690Z",
+        "updated_at": "2021-12-10T11:44:15.690Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 218,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": 4,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T11:44:15.692Z",
+        "updated_at": "2021-12-10T11:44:15.692Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 219,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": 1,
+        "trip_id": 1,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 2,
+        "created_at": "2021-12-10T11:44:15.694Z",
+        "updated_at": "2021-12-10T11:44:15.694Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 220,
+    "fields": {
+        "bar_initial_id": 3,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 3,
+        "created_at": "2021-12-10T14:10:28.079Z",
+        "updated_at": "2021-12-10T14:10:28.079Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 221,
+    "fields": {
+        "bar_initial_id": 4,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 4,
+        "created_at": "2021-12-10T14:10:28.085Z",
+        "updated_at": "2021-12-10T14:10:28.085Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 222,
+    "fields": {
+        "bar_initial_id": 1,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 16,
+        "created_at": "2021-12-10T14:10:28.088Z",
+        "updated_at": "2021-12-10T14:10:28.088Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 223,
+    "fields": {
+        "bar_initial_id": 5,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 20,
+        "created_at": "2021-12-10T14:10:28.090Z",
+        "updated_at": "2021-12-10T14:10:28.090Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 224,
+    "fields": {
+        "bar_initial_id": 7,
+        "bar_final_id": null,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 3,
+        "created_at": "2021-12-10T14:10:28.093Z",
+        "updated_at": "2021-12-10T14:10:28.093Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 225,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 3,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T14:11:14.624Z",
+        "updated_at": "2021-12-10T14:11:14.624Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 226,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 4,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T14:11:14.630Z",
+        "updated_at": "2021-12-10T14:11:14.630Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 227,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 1,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 2,
+        "created_at": "2021-12-10T14:11:14.632Z",
+        "updated_at": "2021-12-10T14:11:14.632Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 228,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 5,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 2,
+        "created_at": "2021-12-10T14:11:14.634Z",
+        "updated_at": "2021-12-10T14:11:14.634Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 229,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 7,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 1,
+        "created_at": "2021-12-10T14:11:14.637Z",
+        "updated_at": "2021-12-10T14:11:14.637Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 230,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 2,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T14:11:14.639Z",
+        "updated_at": "2021-12-10T14:11:14.639Z"
+    }
+},
+{
+    "model": "stocks.stock",
+    "pk": 231,
+    "fields": {
+        "bar_initial_id": null,
+        "bar_final_id": 6,
+        "goodies_initial_id": null,
+        "goodies_final_id": null,
+        "kitchen_initial_id": null,
+        "kitchen_final_id": null,
+        "trip_id": 2,
+        "user_id": [
+            "jfsubrini"
+        ],
+        "quantity": 0,
+        "created_at": "2021-12-10T14:11:14.641Z",
+        "updated_at": "2021-12-10T14:11:14.641Z"
+    }
+},
+{
     "model": "stocks.miscellaneous",
     "pk": 1,
     "fields": {
@@ -3069,6 +4765,102 @@
         "bill_id": null,
         "quantity": 2,
         "order_date": "2021-12-06T23:07:39.002Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 10,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 6,
+        "bar_id": null,
+        "goodies_id": 2,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 4,
+        "order_date": "2021-12-10T11:37:25.261Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 11,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 6,
+        "bar_id": null,
+        "goodies_id": null,
+        "miscellaneous_id": 1,
+        "bill_id": null,
+        "quantity": 4,
+        "order_date": "2021-12-10T11:37:41.693Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 12,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 3,
+        "bar_id": 2,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 1,
+        "order_date": "2021-12-10T11:37:57.377Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 13,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 3,
+        "bar_id": 7,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 2,
+        "order_date": "2021-12-10T11:38:09.281Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 14,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 4,
+        "bar_id": 3,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 1,
+        "order_date": "2021-12-10T11:38:31.274Z"
+    }
+},
+{
+    "model": "billing.orderline",
+    "pk": 15,
+    "fields": {
+        "user_id": [
+            "jfsubrini"
+        ],
+        "guest_id": 7,
+        "bar_id": 5,
+        "goodies_id": null,
+        "miscellaneous_id": null,
+        "bill_id": null,
+        "quantity": 3,
+        "order_date": "2021-12-10T11:38:42.179Z"
     }
 }
 ]
