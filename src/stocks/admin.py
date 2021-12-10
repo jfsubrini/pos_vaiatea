@@ -7,6 +7,7 @@
     """
 from django.contrib import admin
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import (
     Trip,
     Bar,
@@ -23,7 +24,7 @@ from .models import (
 )
 
 
-# CUSTOM ADMIN ACTIONS
+# CUSTOM ADMIN ACTIONS TO CREATE INITIAL AND FINAL STOCKS INVENTORIES.
 # Initial Bar Stock inventory action from the Bar list page.
 @admin.action(description='Inventaire du stock initial du bar')
 def make_bar_initial_stocks(modeladmin, request, queryset):
@@ -44,11 +45,13 @@ def make_bar_initial_stocks(modeladmin, request, queryset):
             else:
                 drink_quantity = 0
             i = i + 1
-            drink_id_selected = Bar.objects.filter(id=drink).last()
-            bar_initial_item = Stock(bar_initial_id=drink_id_selected,
-                                     trip_id=trip_id_selected, quantity=drink_quantity,
-                                     user_id=request.user)
-            bar_initial_item.save()
+            if drink_quantity != 0:
+                drink_id_selected = Bar.objects.filter(id=drink).last()
+                bar_initial_item = Stock(bar_initial_id=drink_id_selected,
+                                         trip_id=trip_id_selected, quantity=drink_quantity,
+                                         user_id=request.user)
+                bar_initial_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the drinks registered into the database
     # with the choice of trips.
@@ -88,6 +91,7 @@ def make_bar_final_stocks(modeladmin, request, queryset):
                                    trip_id=trip_id_selected, quantity=drink_quantity,
                                    user_id=request.user)
             bar_final_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the drinks registered into the database
     # with the choice of trips.
@@ -122,11 +126,13 @@ def make_goodies_initial_stocks(modeladmin, request, queryset):
             else:
                 goody_quantity = 0
             i = i + 1
-            goody_id_selected = Goodies.objects.filter(id=goody).last()
-            goodies_initial_item = Stock(goodies_initial_id=goody_id_selected,
-                                         trip_id=trip_id_selected, quantity=goody_quantity,
-                                         user_id=request.user)
-            goodies_initial_item.save()
+            if goody_quantity != 0:
+                goody_id_selected = Goodies.objects.filter(id=goody).last()
+                goodies_initial_item = Stock(goodies_initial_id=goody_id_selected,
+                                             trip_id=trip_id_selected, quantity=goody_quantity,
+                                             user_id=request.user)
+                goodies_initial_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the goodies registered into the database
     # with the choice of trips.
@@ -166,6 +172,7 @@ def make_goodies_final_stocks(modeladmin, request, queryset):
                                        trip_id=trip_id_selected, quantity=goody_quantity,
                                        user_id=request.user)
             goodies_final_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the goodies registered into the database
     # with the choice of trips.
@@ -200,11 +207,13 @@ def make_kitchen_initial_stocks(modeladmin, request, queryset):
             else:
                 food_quantity = 0
             i = i + 1
-            food_id_selected = Kitchen.objects.filter(id=food).last()
-            kitchen_initial_item = Stock(kitchen_initial_id=food_id_selected,
-                                         trip_id=trip_id_selected, quantity=food_quantity,
-                                         user_id=request.user)
-            kitchen_initial_item.save()
+            if food_quantity != 0:
+                food_id_selected = Kitchen.objects.filter(id=food).last()
+                kitchen_initial_item = Stock(kitchen_initial_id=food_id_selected,
+                                             trip_id=trip_id_selected, quantity=food_quantity,
+                                             user_id=request.user)
+                kitchen_initial_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the foods registered into the database
     # with the choice of trips.
@@ -240,10 +249,11 @@ def make_kitchen_final_stocks(modeladmin, request, queryset):
                 food_quantity = 0
             i = i + 1
             food_id_selected = Kitchen.objects.filter(id=food).last()
-            kitchen_final_item = Stock(kitchen_initial_id=food_id_selected,
+            kitchen_final_item = Stock(kitchen_final_id=food_id_selected,
                                        trip_id=trip_id_selected, quantity=food_quantity,
                                        user_id=request.user)
             kitchen_final_item.save()
+        return HttpResponseRedirect('/admin')
 
     # To display the stock inventory with all the foods registered into the database
     # with the choice of trips.
@@ -324,7 +334,15 @@ class MiscellaneousAdmin(admin.ModelAdmin):
 #################################################################################
 
 
-# STOCK INVENTORY
+# STOCK INVENTORY LISTS AND UPDATE
+
+
+# @ admin.register(Stock)
+# class InitialBarStockAdmin(admin.ModelAdmin):
+#     exclude = ("user_id", "bar_initial_id", "bar_final_id", "kitchen_initial_id",
+#                "kitchen_final_id", "goodies_initial_id", "goodies_final_id")
+
+
 @ admin.register(InitialBarStock)
 class InitialBarStockAdmin(admin.ModelAdmin):
     exclude = ("user_id", "bar_final_id", "kitchen_initial_id", "kitchen_final_id",
