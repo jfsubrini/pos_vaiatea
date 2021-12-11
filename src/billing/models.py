@@ -7,7 +7,7 @@
 from django.conf import settings
 from django.db import models
 
-from schedule.models import Guest
+from schedule.models import Guest, Trip
 from stocks.models import Bar, Goodies, Miscellaneous
 
 PAYMENT_MODE = (
@@ -49,6 +49,8 @@ class OrderLine(models.Model):
         related_name="orderlines", verbose_name="Utilisateur")
     guest_id = models.ForeignKey(
         Guest, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Passager.ère")
+    trip_id = models.ForeignKey(
+        Trip, on_delete=models.CASCADE, related_name="orderlines", verbose_name="Voyage")
     bar_id = models.ForeignKey(
         Bar, on_delete=models.PROTECT, blank=True, null=True,
         related_name="orderlines", verbose_name="Boisson de bar")
