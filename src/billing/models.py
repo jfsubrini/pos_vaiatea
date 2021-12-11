@@ -34,8 +34,8 @@ class Bill(models.Model):
     class Meta:
         verbose_name = "Facture"
 
-    # def __str__(self):
-        # return f"Facture du passager.ère {self.guest_id}"  # TODO
+    def __str__(self):
+        return f"Facture nº {self.id}"
 
 
 class OrderLine(models.Model):

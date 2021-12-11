@@ -26,6 +26,7 @@
     {% csrf_token %}
     <input type="checkbox" name="email" value="email_checkbox" checked><label> Voulez-vous recevoir votre facture à l'email <b>{{ email }}</b></label>
     </br></br></br></br></br>
+    <input type="hidden" name="action" value="make_bill" />
     <input type="submit" name="apply" value="Valider la facture" />
 </form>
 {% endblock %}
