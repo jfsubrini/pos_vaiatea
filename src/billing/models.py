@@ -35,7 +35,7 @@ class Bill(models.Model):
         verbose_name = "Facture"
 
     def __str__(self):
-        return f"Facture nº {self.id}"
+        return f"Facture nº {self.pk}"
 
 
 class OrderLine(models.Model):
