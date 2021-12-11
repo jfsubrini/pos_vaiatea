@@ -41,15 +41,16 @@ def amounts_calculation(all_orderlines_qs):
 
 # Function to send the bill by email.
 def send_email(email):
-    pass
+    pass  # TODO
 
 
-# CUSTOM ADMIN ACTION TO MAKE THE BILL WITH THE ORDER LINE(S) SELECTED.
+# CUSTOM ADMIN ACTIONS TO MAKE THE BILL AND THE PAYMENT.
+# Billing action to make the bill with the order line(s) selected from one guest.
 @ admin.action(description='Faire la facture des commandes sélectionnées')
 def make_bill(modeladmin, request, queryset):
     """ Action pour faire la facture des commandes sélectionnées ; \
         envoi vers une page intermédiaire ; enregistrement des données \
-        dans la table de Bill."""
+        dans la table de Bill et OrderLine. Envoi ou non de la facture par email."""
     # Send the order lines data and the guest's email to display in the bill template.
     # Calculation of the amount for each order line and the total amount of the bill.
     all_orderlines = queryset.all()
@@ -58,10 +59,10 @@ def make_bill(modeladmin, request, queryset):
     zipped_data = zip(all_orderlines, all_amounts)
     email_selected = all_orderlines[0].guest_id.email
     print("DEHORS : ", request.POST)  # TODO
-    if "apply" in request.POST:  # Je n'arrive pas à entrer là-dedans
+    if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
         print("DEDANS")  # TODO
         # Saving the data from the order line(s) form of a guest
-        # to create an instance in the Bill table with those data.
+        # to create an instance in the Bill model with those data.
         orderline_list = request.POST.getlist('_selected_action')
         # Create the bill instance with the total amount to pay and tha user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
@@ -74,7 +75,8 @@ def make_bill(modeladmin, request, queryset):
             orderline_selected.bill_id = bill_id
             orderline_selected.save()
         # Envoi ou non de la facture par email.
-        email_check = request.POST.getlist('email_checkbox')
+        email_check = request.POST.getlist(
+            'email_checkbox')  # TODO ne marche pas
         if email_check:
             send_email(email_selected)
         return HttpResponseRedirect('/admin')
@@ -85,6 +87,26 @@ def make_bill(modeladmin, request, queryset):
                            "zipped_data": zipped_data,
                            "total_amount": total_amount,
                            "email": email_selected})
+
+
+# Payment action to make the payment of a selected bill.
+# TODO check qu'il y en a qu'une
+@ admin.action(description="Faire le paiement de la facture sélectionnée")
+def make_payment(modeladmin, request, queryset):
+    """ Action pour faire le paiement de la facture sélectionnée ; \
+        envoi vers une page intermédiaire ; enregistrement des données \
+        dans la table de Payment."""
+    # Send the bill data to display in the payment template that ask for the payment mode.
+    bill_info = queryset.all()
+    if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
+        # Saving the data from the payment form to create an instance in the Payment model.
+        # TODO manque info sur mode de payment
+        new_payment = Payment(user_id=request.user,
+                              bill_id=bill_info[0], payment_mode="Cash USD")
+        new_payment.save()
+    # What to render to the template.
+    return render(request, 'admin/payment.html',
+                  context={"bill": bill_info})
 
 
 #################################################################################
@@ -113,6 +135,7 @@ class BillAdmin(admin.ModelAdmin):
     exclude = ("user_id", "bill_date", "amount")
     list_display = ("id", "amount",  "bill_date")
     list_filter = ("bill_date",)
+    actions = [make_payment]
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user
@@ -122,10 +145,9 @@ class BillAdmin(admin.ModelAdmin):
 # PAYMENT CRUD
 @ admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    exclude = ("user_id", "date")
-    list_filter = ("payment_mode",)
-    ordering = ("payment_mode",)
-    search_fields = ("payment_mode",)
+    exclude = ("user_id", "payment_date")
+    list_filter = ("payment_mode", "payment_date")
+    ordering = ("payment_date",)
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user

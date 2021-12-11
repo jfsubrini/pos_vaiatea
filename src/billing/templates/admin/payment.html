@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ 'Vaiatea Site Admin' }} | {{ 'Vaiatea Payment' }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ 'Vaiatea payment making' }}</a></h1>
+{% endblock %}
+
+{% block content %}
+<h1>Paiement de la {{ bill.0 }} d'un montant de {{ bill.0.amount }} USD</h1>
+<h2>Le {% now "SHORT_DATETIME_FORMAT" %}</h2>
+</br></br>
+<form action="" method="post">
+    {% csrf_token %}
+    <h3>Renseigner le mode de paiement choisi :</h2>
+        </br>
+        <select name="payment_mode">
+            <option hidden disabled selected value> -- Sélectionner un mode de paiement -- </option>
+                <option value="Cash USD">Cash USD</option>
+                <option value="Cash EUR">Cash EUR</option>
+                <option value="Cash IDR">Cash IDR</option>
+                <option value="Credit Card">Credit Card</option>
+        </select>
+    </h3>
+    </br></br></br></br></br>
+    <input type="hidden" name="action" value="make_payment" />
+    <input type="submit" name="apply" value="Paiement effectué" />
+</form>
+{% endblock %}
