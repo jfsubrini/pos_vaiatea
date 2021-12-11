@@ -100,8 +100,6 @@ def make_bar_final_stocks(modeladmin, request, queryset):
         all_trips = Trip.objects.all()
 
     # What to render to the template.
-    all_drinks = queryset.all()
-    all_trips = Trip.objects.all()
     return render(request, 'admin/bar_final_stocks.html',
                   context={"drinks": all_drinks, "trips": all_trips})
 
@@ -141,8 +139,6 @@ def make_goodies_initial_stocks(modeladmin, request, queryset):
         all_trips = Trip.objects.all()
 
     # What to render to the template.
-    all_goodies = queryset.all()
-    all_trips = Trip.objects.all()
     return render(request, 'admin/goodies_initial_stocks.html',
                   context={"goodies": all_goodies, "trips": all_trips})
 
@@ -181,8 +177,6 @@ def make_goodies_final_stocks(modeladmin, request, queryset):
         all_trips = Trip.objects.all()
 
     # What to render to the template.
-    all_goodies = queryset.all()
-    all_trips = Trip.objects.all()
     return render(request, 'admin/goodies_final_stocks.html',
                   context={"goodies": all_goodies, "trips": all_trips})
 
@@ -222,8 +216,6 @@ def make_kitchen_initial_stocks(modeladmin, request, queryset):
         all_trips = Trip.objects.all()
 
     # What to render to the template.
-    all_food = queryset.all()
-    all_trips = Trip.objects.all()
     return render(request, 'admin/kitchen_initial_stocks.html',
                   context={"foods": all_food, "trips": all_trips})
 
@@ -262,8 +254,6 @@ def make_kitchen_final_stocks(modeladmin, request, queryset):
         all_trips = Trip.objects.all()
 
     # What to render to the template.
-    all_food = queryset.all()
-    all_trips = Trip.objects.all()
     return render(request, 'admin/kitchen_final_stocks.html',
                   context={"foods": all_food, "trips": all_trips})
 

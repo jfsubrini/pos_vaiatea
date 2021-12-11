@@ -20,6 +20,7 @@ from .models import (
 
 # Function to calculate the amount of each order line.
 def amounts_calculation(all_orderlines_qs):
+    """Calculation of the amount for each order line of the bill."""
     amounts_list = []
     for orderline in all_orderlines_qs:
         quantity_item = orderline.quantity
@@ -49,14 +50,18 @@ def make_bill(modeladmin, request, queryset):
     """ Action pour faire la facture des commandes sélectionnées ; \
         envoi vers une page intermédiaire ; enregistrement des données \
         dans la table de Bill."""
+    # Send the order lines data and the guest's email to display in the bill template.
+    # Calculation of the amount for each order line and the total amount of the bill.
     all_orderlines = queryset.all()
     all_amounts = amounts_calculation(all_orderlines)
     total_amount = sum(all_amounts)
+    zipped_data = zip(all_orderlines, all_amounts)
     email_selected = all_orderlines[0].guest_id.email
-    print("XXXXXXXXXXX : ", request.POST)
-    if "apply" in request.POST:
+    print("DEHORS : ", request.POST)  # TODO
+    if "apply" in request.POST:  # Je n'arrive pas à entrer là-dedans
         # Saving the data from the order line(s) form of a guest
         # to create an instance in the Bill table with those data.
+        print("DEDANS : ", request.POST)  #  TODO
         orderline_list = request.POST.getlist('_selected_action')
         # Create the bill instance with the total amount to pay and tha user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
@@ -72,14 +77,7 @@ def make_bill(modeladmin, request, queryset):
             send_email(email_selected)
         return HttpResponseRedirect('/admin')
 
-    # To display the stock inventory with all the drinks registered into the database
-    # with the choice of trips.
-    else:
-        all_orderlines = queryset.all()
-        zipped_data = zip(all_orderlines, all_amounts)
-
     # What to render to the template.
-    zipped_data = zip(all_orderlines, all_amounts)
     return render(request, 'admin/bill.html',
                   context={"orderlines": all_orderlines,
                            "zipped_data": zipped_data,
