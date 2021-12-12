@@ -30,12 +30,20 @@ class Bill(models.Model):
     amount = models.DecimalField(
         "Montant de la facture", max_digits=5, decimal_places=2)
     bill_date = models.DateTimeField("Date de la facture", auto_now=True)
+    payment_done = models.BooleanField("Facture payée", default=False)
 
     class Meta:
         verbose_name = "Facture"
 
     def __str__(self):
         return f"Facture nº {self.pk}"
+
+
+class BillPaid(Bill):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Facture payée"
 
 
 class OrderLine(models.Model):
@@ -71,6 +79,13 @@ class OrderLine(models.Model):
 
     def __str__(self):
         return f"Commande d'un article par {self.guest_id}"
+
+
+class InvoicedOrder(OrderLine):
+
+    class Meta:
+        proxy = True
+        verbose_name = "Commande facturée"
 
 
 class Payment(models.Model):

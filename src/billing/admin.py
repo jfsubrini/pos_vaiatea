@@ -3,15 +3,15 @@
 """All the admin pages to create, update, delete and read the order lines, \
     the bills and the payments.
     """
-from types import prepare_class
-from typing import ParamSpecArgs
 from django.contrib import admin
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import (
     Bar,
     Bill,
+    BillPaid,
     Goodies,
+    InvoicedOrder,
     Miscellaneous,
     OrderLine,
     Payment,
@@ -127,6 +127,18 @@ class OrderLineAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user
         super().save_model(request, obj, form, change)
+    # TODO disparaitre si bill_id existe
+
+
+@ admin.register(InvoicedOrder)
+class InvoicedOrderLineAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "date", "bill_id")
+    list_display = ("guest_id",  "quantity", "bar_id", "goodies_id",
+                    "miscellaneous_id")
+    list_filter = ("guest_id",)
+    ordering = ("guest_id",)
+    search_fields = ("guest_id", "bar_id", "goodies_id", "miscellaneous_id")
+    # TODO N'apparaitre que si bill_id existe
 
 
 # BILL CRUD
@@ -140,6 +152,15 @@ class BillAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user
         super().save_model(request, obj, form, change)
+    # TODO N'apparaitre que si payment_done est False
+
+
+@ admin.register(BillPaid)
+class BillPaidAdmin(admin.ModelAdmin):
+    exclude = ("user_id", "bill_date", "amount")
+    list_display = ("id", "amount",  "bill_date")
+    list_filter = ("bill_date",)
+    # TODO N'apparaitre que si payment_done est True
 
 
 # PAYMENT CRUD
