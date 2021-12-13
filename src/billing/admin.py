@@ -16,6 +16,7 @@ from .models import (
     OrderLine,
     Payment,
 )
+from .forms import EmailForm
 
 
 # Function to calculate the amount of each order line.
@@ -41,7 +42,7 @@ def amounts_calculation(all_orderlines_qs):
 
 # Function to send the bill by email.
 def send_email(email):
-    pass  # TODO
+    print("EMAIL")  # TODO
 
 
 # CUSTOM ADMIN ACTIONS TO MAKE THE BILL AND THE PAYMENT.
@@ -58,27 +59,30 @@ def make_bill(modeladmin, request, queryset):
     total_amount = sum(all_amounts)
     zipped_data = zip(all_orderlines, all_amounts)
     email_selected = all_orderlines[0].guest_id.email
-    print("DEHORS : ", request.POST)  # TODO
-    if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
-        print("DEDANS")  # TODO
-        # Saving the data from the order line(s) form of a guest
-        # to create an instance in the Bill model with those data.
-        orderline_list = request.POST.getlist('_selected_action')
-        # Create the bill instance with the total amount to pay and tha user_id
-        new_bill = Bill(user_id=request.user, amount=total_amount)
-        new_bill.save()
-        # Mettre l'id du bill créé dans tous les order lines auquel il se réfère.
-        for orderline in orderline_list:
-            orderline_selected = OrderLine.objects.filter(id=orderline).last()
-            bill_id = Bill.objects.filter(id=new_bill.id).last()
-            #  TODO Attention il met le bill id sur toutes les orderlines, meme des autres guests
-            orderline_selected.bill_id = bill_id
-            orderline_selected.save()
-        # Envoi ou non de la facture par email.
-        email_check = request.POST.getlist(
-            'email_checkbox')  # TODO ne marche pas
-        if email_check:
-            send_email(email_selected)
+    # if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
+    send_email_form = EmailForm(request.POST or None)
+    if request.method == "POST":
+        if send_email_form.is_valid():
+            print("DEDANS POST : ", request.POST)  # TODO
+            # Saving the data from the order line(s) form of a guest
+            # to create an instance in the Bill model with those data.
+            orderline_list = request.POST.getlist('_selected_action')
+            # Create the bill instance with the total amount to pay and tha user_id
+            new_bill = Bill(user_id=request.user, amount=total_amount)
+            new_bill.save()
+            # Mettre l'id du bill créé dans tous les order lines auquel il se réfère.
+            for orderline in orderline_list:
+                orderline_selected = OrderLine.objects.filter(
+                    id=orderline).last()
+                bill_id = Bill.objects.filter(id=new_bill.id).last()
+                #  TODO Attention il met le bill id sur toutes les orderlines, meme des autres guests
+                orderline_selected.bill_id = bill_id
+                orderline_selected.save()
+            # Envoi ou non de la facture par email.
+            email_check = request.POST.getlist(
+                'email_to_send')  # TODO ne marche pas
+            if email_check:
+                send_email(email_selected)
         return HttpResponseRedirect('/admin')
 
     # What to render to the template.
@@ -86,7 +90,8 @@ def make_bill(modeladmin, request, queryset):
                   context={"orderlines": all_orderlines,
                            "zipped_data": zipped_data,
                            "total_amount": total_amount,
-                           "email": email_selected})
+                           "email": email_selected,
+                           "send_email_form": send_email_form})
 
 
 # Payment action to make the payment of a selected bill.
