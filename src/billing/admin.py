@@ -4,8 +4,9 @@
     the bills and the payments.
     """
 from django.contrib import admin
+from django.core import mail
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import (
     Bar,
     Bill,
@@ -41,8 +42,19 @@ def amounts_calculation(all_orderlines_qs):
 
 
 # Function to send the bill by email.
-def send_email(email):
-    print("EMAIL")  # TODO
+def send_email(emailto):
+    connection = mail.get_connection()
+    connection.open()
+    email = mail.EmailMessage(
+        subject="test",
+        body="Salut Léa et William",
+        from_email="jfsubrini@zoho.com",
+        to=[emailto[0]],
+        cc=[emailto[1]],
+        connection=connection,
+    )
+    email.attach_file('billing/test_bill.pdf')
+    email.send()
 
 
 # CUSTOM ADMIN ACTIONS TO MAKE THE BILL AND THE PAYMENT.
@@ -75,14 +87,15 @@ def make_bill(modeladmin, request, queryset):
                 orderline_selected = OrderLine.objects.filter(
                     id=orderline).last()
                 bill_id = Bill.objects.filter(id=new_bill.id).last()
-                #  TODO Attention il met le bill id sur toutes les orderlines, meme des autres guests
                 orderline_selected.bill_id = bill_id
                 orderline_selected.save()
             # Envoi ou non de la facture par email.
-            email_check = request.POST.getlist(
-                'email_to_send')  # TODO ne marche pas
-            if email_check:
-                send_email(email_selected)
+            # email_check = request.POST.getlist(
+            #     'email_to_send')  # TODO ne marche pas
+            # if email_check:
+            # email_list = ["lea@vaiatea-liveaboard.com",
+            #               "william@dragondivekomodo.com"]
+            # send_email(email_list)
         return HttpResponseRedirect('/admin')
 
     # What to render to the template.

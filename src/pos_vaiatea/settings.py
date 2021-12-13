@@ -131,3 +131,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# # Email confirmation for password reset in production TODO
+# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+
+# Sending Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')  TODO
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')  TODO
+EMAIL_HOST_USER = 'jfsubrini'
+EMAIL_HOST_PASSWORD = 'XXXXXXXX'
