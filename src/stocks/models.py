@@ -80,7 +80,8 @@ class Bar(Item):
         "Catégorie du bar", max_length=20, choices=BAR_CATEGORY)
 
     class Meta:
-        verbose_name = "Boisson"
+        verbose_name = "Boisson du bar"
+        verbose_name_plural = "Boissons du bar"
         ordering = ["bar_category", "name"]
 
     def __str__(self):
@@ -103,7 +104,8 @@ class Goodies(Item):
         "Genre", max_length=10, choices=GENDER)
 
     class Meta:
-        verbose_name = "Goodie"
+        verbose_name = "Goody"
+        verbose_name_plural = "Goodies"
         ordering = ["goodies_category", "name"]
 
     def __str__(self):
@@ -135,7 +137,8 @@ class Miscellaneous(Item):
     """
 
     class Meta:
-        verbose_name = "Autre"
+        verbose_name = "Autre article divers"
+        verbose_name_plural = "Autres articles divers"
         ordering = ["name"]
 
     def __str__(self):
@@ -191,6 +194,7 @@ class InitialBarStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock initial du bar"
+        verbose_name_plural = "Stocks initiaux du bar"
 
 
 class FinalBarStock(Stock):
@@ -198,6 +202,7 @@ class FinalBarStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock final du bar"
+        verbose_name_plural = "Stocks finaux du bar"
 
 
 class InitialKitchenStock(Stock):
@@ -205,6 +210,7 @@ class InitialKitchenStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock initial de la cuisine"
+        verbose_name_plural = "Stocks initiaux de la cuisine"
 
 
 class FinalKitchenStock(Stock):
@@ -212,6 +218,7 @@ class FinalKitchenStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock final de la cuisine"
+        verbose_name_plural = "Stocks finaux de la cuisine"
 
 
 class InitialGoodiesStock(Stock):
@@ -219,6 +226,7 @@ class InitialGoodiesStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock initial de goodies"
+        verbose_name_plural = "Stocks initiaux de goodies"
 
 
 class FinalGoodiesStock(Stock):
@@ -226,3 +234,4 @@ class FinalGoodiesStock(Stock):
     class Meta:
         proxy = True
         verbose_name = "Stock final de goodies"
+        verbose_name_plural = "Stocks finaux de goodies"

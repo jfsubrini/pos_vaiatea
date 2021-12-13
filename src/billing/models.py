@@ -44,6 +44,7 @@ class BillPaid(Bill):
     class Meta:
         proxy = True
         verbose_name = "Facture payée"
+        verbose_name_plural = "Factures payées"
 
 
 class OrderLine(models.Model):
@@ -86,6 +87,7 @@ class InvoicedOrder(OrderLine):
     class Meta:
         proxy = True
         verbose_name = "Commande facturée"
+        verbose_name_plural = "Commandes facturées"
 
 
 class Payment(models.Model):
