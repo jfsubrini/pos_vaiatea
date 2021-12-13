@@ -58,7 +58,7 @@ class Item(models.Model):
 
     name = models.CharField("Nom de l'article", max_length=30)
     price_unit_dollar = models.DecimalField(
-        "Prix de vente unitaire en dollar (USD)", max_digits=5, decimal_places=2)
+        "Prix de vente unitaire en dollar (USD)", max_digits=6, decimal_places=2)
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                                 on_delete=models.SET_NULL,
                                 related_name="%(app_label)s_%(class)s_related",

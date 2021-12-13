@@ -28,7 +28,7 @@ class Bill(models.Model):
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
         related_name="bills", verbose_name="Utilisateur")
     amount = models.DecimalField(
-        "Montant de la facture", max_digits=5, decimal_places=2)
+        "Montant de la facture", max_digits=6, decimal_places=2)
     bill_date = models.DateTimeField("Date de la facture", auto_now=True)
     payment_done = models.BooleanField("Facture payée", default=False)
 
