@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ 'Vaiatea Site Admin' }} | {{ 'Vaiatea Billing' }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ 'Vaiatea bill making' }}</a></h1>
+{% endblock %}
+
+{% block content %}
+<h1>Facturation du passager.ère {{ orderlines.0.guest_id }}</h1>
+<h1>Le {% now "SHORT_DATETIME_FORMAT" %}</h1>
+<h1>Croisière plongée {{ orderlines.0.trip_id }}</h1>
+    </br>
+    <h1>Consommations ou achats suivants : </h1>
+    <h2>
+        <ul>
+            {% for orderline, amount in zipped_data %}
+            <li>{{ orderline.quantity }} {{ orderline.bar_id|default_if_none:"" }} {{ orderline.goodies_id|default_if_none:"" }} {{ orderline.miscellaneous_id|default_if_none:"" }}, soit un total de : {{ amount|floatformat:"-2" }} USD</li>
+            {% endfor %}
+        </ul>
+    </h2>
+    <h2>Soit un montant total de : {{ total_amount }} USD.</h2>
+</br></br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ send_email_form.as_p }}
+    {% comment %} <input type="checkbox" name="email" value="email_to_send" checked><label> Voulez-vous recevoir votre facture à l'email <b>{{ email }}</b></label> {% endcomment %}
+</br></br></br></br></br>
+    <input type="hidden" name="action" value="make_bill" />
+    <input type="submit" name="apply" value="Valider la facture" />
+</form>
+{% endblock %}

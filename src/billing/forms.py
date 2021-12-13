@@ -6,6 +6,7 @@ from django.forms import (
     ModelForm,
     Select,
 )
+from django import forms
 from django.forms.widgets import NumberInput
 from .models import OrderLine, Payment
 
@@ -40,3 +41,7 @@ class PaymentForm(ModelForm):
 
         model = Payment
         exclude = ["user_id", "amount", "date"]
+
+
+class EmailForm(forms.Form):
+    something_truthy = forms.BooleanField(required=False)
