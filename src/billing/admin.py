@@ -64,45 +64,51 @@ def make_bill(modeladmin, request, queryset):
     """ Action pour faire la facture des commandes sélectionnées ; \
         envoi vers une page intermédiaire ; enregistrement des données \
         dans la table de Bill et OrderLine. Envoi ou non de la facture par email."""
-    # Send the order lines data and the guest's email to display in the bill template.
     # Calculation of the amount for each order line and the total amount of the bill.
-    if request.method == "gg":
-        send_email_form = EmailForm(request.POST)
-        if send_email_form.is_valid():
-            print("DEDANS : ", send_email_form.cleaned_data)  # TODO
-            # Saving the data from the order line(s) form of a guest
-            # to create an instance in the Bill model with those data.
-            orderline_list = request.POST.getlist('_selected_action')
-            # Create the bill instance with the total amount to pay and tha user_id
+    all_orderlines = queryset.all()
+    all_amounts = amounts_calculation(all_orderlines)
+    total_amount = sum(all_amounts)
+    # Post the order lines data for a guest.
+    if request.method == "POST":
+        # Create a form instance.
+        email_selected = all_orderlines[0].guest_id.email
+        invoiced_order_form = EmailForm()
+        print("VALIDE ? : ", invoiced_order_form.is_valid())
+        print("BOUND ? : ", invoiced_order_form.is_bound)
+        # Check whether the form is valid (not is the bill validation checkbox is not ticked).
+        if invoiced_order_form.is_valid():
+            #  TODO
+            print("DEDANS : ", invoiced_order_form.cleaned_data["send_email"])
+            # Create the bill instance with the total amount to pay and the user_id
             new_bill = Bill(user_id=request.user, amount=total_amount)
             new_bill.save()
-            # Mettre l'id du bill créé dans tous les order lines auquel il se réfère.
+            # Collecting all the guest's order line(s) selected.
+            orderline_list = request.POST.getlist('_selected_action')
+            # Put the new bill id created in the invoiced order line(s) instance(s).
             for orderline in orderline_list:
                 orderline_selected = OrderLine.objects.filter(
                     id=orderline).last()
                 bill_id = Bill.objects.filter(id=new_bill.id).last()
                 orderline_selected.bill_id = bill_id
                 orderline_selected.save()
-            # Envoi ou non de la facture par email.
-            if send_email_form.cleaned_data:
+            # Check if the send email checkbox has been ticked.
+            if invoiced_order_form.cleaned_data["send_email"]:
                 # TODO ["lea@vaiatea-liveaboard.com", "william@dragondivekomodo.com"]
+                # Find the email adress to send to.
                 emailto = queryset.all()[0].guest_id.email
+                # Send the email.
                 send_email(emailto)
             return HttpResponseRedirect('/admin')
-    else:
-        all_orderlines = queryset.all()
-        all_amounts = amounts_calculation(all_orderlines)
-        total_amount = sum(all_amounts)
-        zipped_data = zip(all_orderlines, all_amounts)
-        email_selected = all_orderlines[0].guest_id.email
-        send_email_form = EmailForm()
 
-    # What to render to the template.
+    # What to render to the intermediate django admin/bill action template.
+    zipped_data = zip(all_orderlines, all_amounts)
+    email_selected = all_orderlines[0].guest_id.email
+    invoiced_order_form = EmailForm()
     context = {"orderlines": all_orderlines,
                "zipped_data": zipped_data,
                "total_amount": total_amount,
                "email": email_selected,
-               "send_email_form": send_email_form}
+               "invoiced_order_form": invoiced_order_form}
 
     return render(request, 'admin/bill.html', context)
 

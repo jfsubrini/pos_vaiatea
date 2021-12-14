@@ -23,7 +23,8 @@
 </br></br>
 <form action="" method="post">
     {% csrf_token %}
-    {{ send_email_form.send_email }} <span> Voulez-vous recevoir votre facture à l'email <b>{{ email }}</b></span>
+    <p> Voulez-vous recevoir votre facture à l'email <b>{{ email }}</b> ?</p>
+    {{ invoiced_order_form.send_email }}
 </br></br></br></br></br>
     <input type="hidden" name="action" value="make_bill" />
     <input type="submit" name="apply" value="Valider la facture" />

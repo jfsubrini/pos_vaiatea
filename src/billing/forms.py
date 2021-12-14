@@ -44,4 +44,6 @@ class PaymentForm(ModelForm):
 
 
 class EmailForm(forms.Form):
-    send_email = forms.BooleanField(required=False)
+    CHOICES = [('Y', 'Oui'), ('N', 'Non')]
+    send_email = forms.CharField(
+        widget=forms.RadioSelect(choices=CHOICES))
