@@ -66,16 +66,10 @@ def make_bill(modeladmin, request, queryset):
         dans la table de Bill et OrderLine. Envoi ou non de la facture par email."""
     # Send the order lines data and the guest's email to display in the bill template.
     # Calculation of the amount for each order line and the total amount of the bill.
-    all_orderlines = queryset.all()
-    all_amounts = amounts_calculation(all_orderlines)
-    total_amount = sum(all_amounts)
-    zipped_data = zip(all_orderlines, all_amounts)
-    email_selected = all_orderlines[0].guest_id.email
-    # if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
-    send_email_form = EmailForm(request.POST or None)
-    if request.method == "POST":
+    if request.method == "gg":
+        send_email_form = EmailForm(request.POST)
         if send_email_form.is_valid():
-            print("DEDANS POST : ", request.POST)  # TODO
+            print("DEDANS : ", send_email_form.cleaned_data)  # TODO
             # Saving the data from the order line(s) form of a guest
             # to create an instance in the Bill model with those data.
             orderline_list = request.POST.getlist('_selected_action')
@@ -90,21 +84,27 @@ def make_bill(modeladmin, request, queryset):
                 orderline_selected.bill_id = bill_id
                 orderline_selected.save()
             # Envoi ou non de la facture par email.
-            # email_check = request.POST.getlist(
-            #     'email_to_send')  # TODO ne marche pas
-            # if email_check:
-            # email_list = ["lea@vaiatea-liveaboard.com",
-            #               "william@dragondivekomodo.com"]
-            # send_email(email_list)
-        return HttpResponseRedirect('/admin')
+            if send_email_form.cleaned_data:
+                # TODO ["lea@vaiatea-liveaboard.com", "william@dragondivekomodo.com"]
+                emailto = queryset.all()[0].guest_id.email
+                send_email(emailto)
+            return HttpResponseRedirect('/admin')
+    else:
+        all_orderlines = queryset.all()
+        all_amounts = amounts_calculation(all_orderlines)
+        total_amount = sum(all_amounts)
+        zipped_data = zip(all_orderlines, all_amounts)
+        email_selected = all_orderlines[0].guest_id.email
+        send_email_form = EmailForm()
 
     # What to render to the template.
-    return render(request, 'admin/bill.html',
-                  context={"orderlines": all_orderlines,
-                           "zipped_data": zipped_data,
-                           "total_amount": total_amount,
-                           "email": email_selected,
-                           "send_email_form": send_email_form})
+    context = {"orderlines": all_orderlines,
+               "zipped_data": zipped_data,
+               "total_amount": total_amount,
+               "email": email_selected,
+               "send_email_form": send_email_form}
+
+    return render(request, 'admin/bill.html', context)
 
 
 # Payment action to make the payment of a selected bill.

@@ -44,4 +44,4 @@ class PaymentForm(ModelForm):
 
 
 class EmailForm(forms.Form):
-    something_truthy = forms.BooleanField(required=False)
+    send_email = forms.BooleanField(required=False)
