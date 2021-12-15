@@ -181,6 +181,10 @@ class InvoicedOrderLineAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+    # To disable the change functionality.
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 # BILL CRUD
 @ admin.register(Bill)
@@ -202,6 +206,10 @@ class BillAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+    # To disable the change functionality.
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 @ admin.register(BillPaid)
 class BillPaidAdmin(admin.ModelAdmin):
@@ -215,6 +223,10 @@ class BillPaidAdmin(admin.ModelAdmin):
 
     # To disable the add functionality.
     def has_add_permission(self, request):
+        return False
+
+    # To disable the change functionality.
+    def has_change_permission(self, request, obj=None):
         return False
 
 
