@@ -19,13 +19,13 @@
             {% endfor %}
         </ul>
     </h2>
+    </br></br>
     <h2>Soit un montant total de : {{ total_amount|floatformat:"-2" }} USD.</h2>
-</br></br>
+</br></br></br>
 <form action="" method="post">
     {% csrf_token %}
-    <p> Voulez-vous recevoir votre facture à l'email <b>{{ email }}</b> ?</p>
-    {{ invoiced_order_form.send_email }}
-</br></br></br></br></br>
+    <h3> Vous allez recevoir votre facture à l'email <span style="color:blue">{{ email }}</span>.</h3>
+</br></br></br></br>
     <input type="hidden" name="action" value="make_bill" />
     <input type="submit" name="apply" value="Valider la facture" />
 </form>

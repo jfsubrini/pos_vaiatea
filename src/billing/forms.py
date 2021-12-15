@@ -41,9 +41,3 @@ class PaymentForm(ModelForm):
 
         model = Payment
         exclude = ["user_id", "amount", "date"]
-
-
-class EmailForm(forms.Form):
-    CHOICES = [('Y', 'Oui'), ('N', 'Non')]
-    send_email = forms.CharField(
-        widget=forms.RadioSelect(choices=CHOICES))
