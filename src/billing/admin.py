@@ -189,7 +189,6 @@ class InvoicedOrderLineAdmin(admin.ModelAdmin):
 # BILL CRUD
 @ admin.register(Bill)
 class BillAdmin(admin.ModelAdmin):
-    exclude = ("user_id", "bill_date", "amount", "payment_done")
     list_display = ("id", "amount",  "bill_date")
     list_filter = ("bill_date",)
     actions = [make_payment]
@@ -213,7 +212,6 @@ class BillAdmin(admin.ModelAdmin):
 
 @ admin.register(BillPaid)
 class BillPaidAdmin(admin.ModelAdmin):
-    exclude = ("user_id", "bill_date", "amount")
     list_display = ("id", "amount",  "bill_date")
     list_filter = ("bill_date",)
 
