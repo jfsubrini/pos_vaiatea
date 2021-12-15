@@ -337,6 +337,10 @@ class InitialBarStockAdmin(admin.ModelAdmin):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(bar_initial_id__gt=0)
 
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
+
 
 @ admin.register(FinalBarStock)
 class FinalBarStockAdmin(admin.ModelAdmin):
@@ -349,6 +353,10 @@ class FinalBarStockAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(bar_final_id__gt=0)
+
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
 
 
 @ admin.register(InitialKitchenStock)
@@ -363,6 +371,10 @@ class InitialKitchenStockAdmin(admin.ModelAdmin):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(kitchen_initial_id__gt=0)
 
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
+
 
 @ admin.register(FinalKitchenStock)
 class FinalKitchenStockAdmin(admin.ModelAdmin):
@@ -375,6 +387,10 @@ class FinalKitchenStockAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(kitchen_final_id__gt=0)
+
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
 
 
 @ admin.register(InitialGoodiesStock)
@@ -389,6 +405,10 @@ class InitialGoodiesStockAdmin(admin.ModelAdmin):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(goodies_initial_id__gt=0)
 
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
+
 
 @ admin.register(FinalGoodiesStock)
 class FinalGoodiesStockAdmin(admin.ModelAdmin):
@@ -401,3 +421,7 @@ class FinalGoodiesStockAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         item_queryset = super().get_queryset(request)
         return item_queryset.filter(goodies_final_id__gt=0)
+
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False

@@ -40,4 +40,4 @@ class PaymentForm(ModelForm):
         """Details of the PaymentForm form."""
 
         model = Payment
-        exclude = ["user_id", "amount", "date"]
+        exclude = ["user_id", "bill_id", "amount", "date"]

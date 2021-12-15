@@ -17,6 +17,7 @@ from .models import (
     OrderLine,
     Payment,
 )
+from .forms import PaymentForm
 
 
 # Function to calculate the amount of each order line.
@@ -120,11 +121,13 @@ def make_payment(modeladmin, request, queryset):
         into the Payment table."""
     # Send the bill data to display in the payment template that ask for the payment mode.
     bill_info = queryset.all()
+    print("POST : ", request.POST.getlist('payment_mode'))
     if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
         # Saving the data from the payment form to create an instance in the Payment model.
         # TODO manque info sur mode de payment
+        payment_mode = request.POST.cleaned_data['payment_mode']
         new_payment = Payment(user_id=request.user,
-                              bill_id=bill_info[0], payment_mode="Cash USD")
+                              bill_id=bill_info[0], payment_mode=payment_mode)
         new_payment.save()
         # Mark as a payment done in the Bill model.
         bill_paid = Bill.objects.filter(id=bill_info[0].id).last()
@@ -132,8 +135,9 @@ def make_payment(modeladmin, request, queryset):
         bill_paid.save()
 
     # What to render to the template.
+    payment_form = PaymentForm()
     return render(request, 'admin/payment.html',
-                  context={"bill": bill_info})
+                  context={"bill": bill_info, "payment_form": payment_form})
 
 
 #################################################################################
@@ -173,11 +177,15 @@ class InvoicedOrderLineAdmin(admin.ModelAdmin):
         orderline_queryset = super().get_queryset(request)
         return orderline_queryset.filter(bill_id__isnull=False)
 
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
+
 
 # BILL CRUD
 @ admin.register(Bill)
 class BillAdmin(admin.ModelAdmin):
-    exclude = ("user_id", "bill_date", "amount")
+    exclude = ("user_id", "bill_date", "amount", "payment_done")
     list_display = ("id", "amount",  "bill_date")
     list_filter = ("bill_date",)
     actions = [make_payment]
@@ -190,6 +198,10 @@ class BillAdmin(admin.ModelAdmin):
         obj.user_id = request.user
         super().save_model(request, obj, form, change)
 
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
+
 
 @ admin.register(BillPaid)
 class BillPaidAdmin(admin.ModelAdmin):
@@ -200,6 +212,10 @@ class BillPaidAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         bill_queryset = super().get_queryset(request)
         return bill_queryset.filter(payment_done="t")
+
+    # To disable the add functionality.
+    def has_add_permission(self, request):
+        return False
 
 
 # PAYMENT CRUD
