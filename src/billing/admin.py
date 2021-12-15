@@ -17,7 +17,7 @@ from .models import (
     OrderLine,
     Payment,
 )
-from .forms import PaymentForm
+from .forms import OrderLineForm, PaymentForm
 
 
 # Function to calculate the amount of each order line.
@@ -146,7 +146,7 @@ def make_payment(modeladmin, request, queryset):
 # ORDERLINE CRUD
 @ admin.register(OrderLine)
 class OrderLineAdmin(admin.ModelAdmin):
-    # Si choix de differente categorie d'article raise error : une ligne a la fois  TODO
+    form = OrderLineForm
     exclude = ("user_id", "date", "bill_id")
     list_display = ("guest_id",  "quantity", "bar_id", "goodies_id",
                     "miscellaneous_id")

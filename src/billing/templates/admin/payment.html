@@ -14,13 +14,15 @@
     {% csrf_token %}
     <h3>Renseigner le mode de paiement choisi :</h2>
         </br>
-        <select name="payment_mode">
+        <select name="payment_mode" required>
             <option hidden disabled selected value> -- Sélectionner un mode de paiement -- </option>
                 <option value="Cash USD">Cash USD</option>
                 <option value="Cash EUR">Cash EUR</option>
                 <option value="Cash IDR">Cash IDR</option>
                 <option value="Credit Card">Credit Card</option>
         </select>
+        {% comment %} {{ payment_form }}
+        <input type="hidden" name="payment_mode" value={{ payment_mode.id}} /> {% endcomment %}
     </h3>
     </br></br></br></br></br>
     <input type="hidden" name="action" value="make_payment" />
