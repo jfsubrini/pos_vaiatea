@@ -6,7 +6,7 @@
 from django.contrib import admin
 from django.core import mail
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from .models import (
     Bar,
     Bill,
@@ -69,9 +69,9 @@ def send_email(emailto, guest_name, bill_amount):
 # Billing action to make the bill with the order line(s) selected from one guest.
 @ admin.action(description='Faire la facture des commandes sélectionnées')
 def make_bill(modeladmin, request, queryset):
-    """ Action pour faire la facture des commandes sélectionnées ; \
-        envoi vers une page intermédiaire ; enregistrement des données \
-        dans la table de Bill et OrderLine. Envoi ou non de la facture par email."""
+    """ Admin Action to make the bill with the selected order line(s); \
+        sending to an intermediate page to display the data ; saving the data \
+        into the Bill and OrderLine tables. Sending the bill by email."""
     # Calculation of the amount for each order line and the total amount of the bill.
     all_orderlines = queryset.all()
     all_amounts = amounts_calculation(all_orderlines)
@@ -115,9 +115,9 @@ def make_bill(modeladmin, request, queryset):
 # TODO check qu'il y en a qu'une
 @ admin.action(description="Faire le paiement de la facture sélectionnée")
 def make_payment(modeladmin, request, queryset):
-    """ Action pour faire le paiement de la facture sélectionnée ; \
-        envoi vers une page intermédiaire ; enregistrement des données \
-        dans la table de Payment."""
+    """ Admin Action to make the payment of the selected bill ; \
+        sending to an intermediate page to display the data ; saving the data \
+        into the Payment table."""
     # Send the bill data to display in the payment template that ask for the payment mode.
     bill_info = queryset.all()
     if "apply" in request.POST:  # TODO Je n'arrive pas à entrer là-dedans
