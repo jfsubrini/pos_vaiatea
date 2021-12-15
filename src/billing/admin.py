@@ -3,10 +3,14 @@
 """All the admin pages to create, update, delete and read the order lines, \
     the bills and the payments.
     """
+from io import BytesIO
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.colors import blue
+from datetime import datetime
 from django.contrib import admin
 from django.core import mail
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, FileResponse
 from .models import (
     Bar,
     Bill,
@@ -41,6 +45,29 @@ def amounts_calculation(all_orderlines_qs):
     return amounts_list
 
 
+# Create the Bill PDF file.
+def pdf_bill(emailto):
+    """Create the Bill PDF file to be sent to the guest email.
+    """
+    # Create a file-like buffer to receive PDF data.
+    buffer = BytesIO()
+    # Create the PDF object, using the buffer as its "file."
+    canvas = Canvas(buffer)
+    # Set font to Times New Roman with 12-point size.
+    canvas.setFont("Times-Roman", 12)
+    # Draw blue text from 72 points from the left and 72 points from the bottom.
+    canvas.setFillColor(blue)
+    canvas.drawString(72, 72, "Hello")
+    # Save the PDF file.
+    canvas.showPage()
+    canvas.save()
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    buffer.seek(0)
+    file_name = f"{emailto}-{datetime.now()}.pdf"
+    return FileResponse(buffer, as_attachment=True, filename=file_name)
+
+
 # Send email
 def send_email(emailto, guest_name, bill_amount):
     """Function to send the bill by email to the guest.
@@ -62,7 +89,12 @@ def send_email(emailto, guest_name, bill_amount):
         # cc=[emailto[1]],
         connection=connection,
     )
-    email.attach_file('billing/test_bill.pdf')
+    # Generate the PDF file.
+    pdf_file = pdf_bill(emailto)
+    # Save the PDF file in the Datastore.
+    print("KKKKKK : ", pdf_file, type(pdf_file))  # TODO
+    # Attach the PDF to the email and send the email.
+    email.attach_file(f'billing/{pdf_file}')
     email.send()
 
 
@@ -79,7 +111,7 @@ def make_bill(modeladmin, request, queryset):
     total_amount = sum(all_amounts)
     # Post the invoiced order line(s).
     # if request.method == "POST":
-    if request.POST:
+    if 0 == 0:
         # if request.POST.get('post'):  TODO
         # Create the bill instance with the total amount to pay and the user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
