@@ -4,9 +4,9 @@
     the bills and the payments.
     """
 from io import BytesIO
+from datetime import datetime
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.colors import blue
-from datetime import datetime
 from django.contrib import admin
 from django.core import mail
 from django.shortcuts import render
@@ -179,7 +179,8 @@ def make_payment(modeladmin, request, queryset):
 @ admin.register(OrderLine)
 class OrderLineAdmin(admin.ModelAdmin):
     form = OrderLineForm
-    exclude = ("user_id", "date", "bill_id")
+    fields = ("guest_id",  "trip_id", ("bar_id", "goodies_id",
+              "miscellaneous_id"), "quantity")
     list_display = ("guest_id",  "quantity", "bar_id", "goodies_id",
                     "miscellaneous_id")
     list_filter = ("guest_id",)
@@ -221,13 +222,22 @@ class InvoicedOrderLineAdmin(admin.ModelAdmin):
 # BILL CRUD
 @ admin.register(Bill)
 class BillAdmin(admin.ModelAdmin):
-    list_display = ("id", "amount",  "bill_date")
+    list_display = ("id", "show_guest", "amount",  "bill_date")
     list_filter = ("bill_date",)
     actions = [make_payment]
 
     def get_queryset(self, request):
         bill_queryset = super().get_queryset(request)
         return bill_queryset.filter(payment_done="f")
+
+    def show_guest(self, obj):
+        invoiced_orderline = OrderLine.objects.filter(bill_id=obj).first()
+        guest_billed_ln = invoiced_orderline.guest_id.last_name
+        guest_billed_fn = invoiced_orderline.guest_id.first_name
+        guest_billed = f"{guest_billed_fn} {guest_billed_ln}"
+        return guest_billed
+
+    show_guest.short_description = "Passager.ère"
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user
