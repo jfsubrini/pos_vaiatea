@@ -3,14 +3,9 @@
 """All the admin pages to create, update, delete and read the order lines, \
     the bills and the payments.
     """
-from io import BytesIO
-from datetime import datetime
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.colors import blue
 from django.contrib import admin
-from django.core import mail
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, FileResponse
+from django.http import HttpResponseRedirect
 from .models import (
     Bar,
     Bill,
@@ -22,6 +17,7 @@ from .models import (
     Payment,
 )
 from .forms import OrderLineForm, PaymentForm
+from .emailing import send_email
 
 
 # Function to calculate the amount of each order line.
@@ -45,59 +41,6 @@ def amounts_calculation(all_orderlines_qs):
     return amounts_list
 
 
-# Create the Bill PDF file.
-def pdf_bill(emailto):
-    """Create the Bill PDF file to be sent to the guest email.
-    """
-    # Create a file-like buffer to receive PDF data.
-    buffer = BytesIO()
-    # Create the PDF object, using the buffer as its "file."
-    canvas = Canvas(buffer)
-    # Set font to Times New Roman with 12-point size.
-    canvas.setFont("Times-Roman", 12)
-    # Draw blue text from 72 points from the left and 72 points from the bottom.
-    canvas.setFillColor(blue)
-    canvas.drawString(72, 72, "Hello")
-    # Save the PDF file.
-    canvas.showPage()
-    canvas.save()
-    # FileResponse sets the Content-Disposition header so that browsers
-    # present the option to save the file.
-    buffer.seek(0)
-    file_name = f"{emailto}-{datetime.now()}.pdf"
-    return FileResponse(buffer, as_attachment=True, filename=file_name)
-
-
-# Send email
-def send_email(emailto, guest_name, bill_amount):
-    """Function to send the bill by email to the guest.
-    Args:
-        emailto (str): [description]
-        guest_name (str): guest's first name and last name
-        bill_amount (str): total amount of the bill, formated with 2 decimal digits.
-    """
-    body_message = f"Salut Léa et William,\n\nVoici la facture du passager.ère {guest_name} \
-        pour un  montant total de {bill_amount} USD.\n\n\n"
-    connection = mail.get_connection()
-    connection.open()
-    email = mail.EmailMessage(
-        subject="test",
-        body=body_message,
-        from_email="jfsubrini@zoho.com",
-        to=[emailto],
-        # to=[emailto[0]],
-        # cc=[emailto[1]],
-        connection=connection,
-    )
-    # Generate the PDF file.
-    pdf_file = pdf_bill(emailto)
-    # Save the PDF file in the Datastore.
-    print("KKKKKK : ", pdf_file, type(pdf_file))  # TODO
-    # Attach the PDF to the email and send the email.
-    email.attach_file(f'billing/{pdf_file}')
-    email.send()
-
-
 # CUSTOM ADMIN ACTIONS TO MAKE THE BILL AND THE PAYMENT.
 # Billing action to make the bill with the order line(s) selected from one guest.
 @ admin.action(description='Faire la facture des commandes sélectionnées')
@@ -111,7 +54,7 @@ def make_bill(modeladmin, request, queryset):
     total_amount = sum(all_amounts)
     # Post the invoiced order line(s).
     # if request.method == "POST":
-    if request.POST:
+    if 0 == 0:  # request.method == "POST"
         # if request.POST.get('post'):  TODO
         # Create the bill instance with the total amount to pay and the user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
