@@ -111,7 +111,7 @@ def make_bill(modeladmin, request, queryset):
     total_amount = sum(all_amounts)
     # Post the invoiced order line(s).
     # if request.method == "POST":
-    if 0 == 0:
+    if request.POST:
         # if request.POST.get('post'):  TODO
         # Create the bill instance with the total amount to pay and the user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
@@ -200,7 +200,7 @@ class OrderLineAdmin(admin.ModelAdmin):
 @ admin.register(InvoicedOrder)
 class InvoicedOrderLineAdmin(admin.ModelAdmin):
     exclude = ("user_id", "date", "bill_id")
-    list_display = ("guest_id",  "quantity", "bar_id", "goodies_id",
+    list_display = ("guest_id",  "bill_id", "quantity", "bar_id", "goodies_id",
                     "miscellaneous_id")
     list_filter = ("guest_id",)
     ordering = ("guest_id",)
