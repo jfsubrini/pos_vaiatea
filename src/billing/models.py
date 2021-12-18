@@ -110,3 +110,27 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"Paiement de la facture {self.bill_id} par {self.payment_mode}"
+
+
+class Rate(models.Model):
+    """
+    To create the Rate table in the database.
+    Currency rates for payments.
+    """
+
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+        related_name="rates", verbose_name="Utilisateur")
+    usd_eur = models.DecimalField(
+        "Taux de change USD-EUR", max_digits=6, decimal_places=4)
+    usd_idr = models.PositiveSmallIntegerField("Taux de change USD-IDR")
+    credit_card_fee = models.DecimalField(
+        "Frais de carte de crédit", max_digits=5, decimal_places=4)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Taux de change"
+
+    def __str__(self):
+        return f"Taux de change"
