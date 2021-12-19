@@ -15,6 +15,7 @@ from .models import (
     Miscellaneous,
     OrderLine,
     Payment,
+    Rate,
 )
 from .forms import OrderLineForm, PaymentForm
 from .emailing import send_email
@@ -219,6 +220,24 @@ class PaymentAdmin(admin.ModelAdmin):
     exclude = ("user_id", "payment_date")
     list_filter = ("payment_mode", "payment_date")
     ordering = ("payment_date",)
+
+    def save_model(self, request, obj, form, change):
+        obj.user_id = request.user
+        super().save_model(request, obj, form, change)
+
+
+# RATE CRUD
+@ admin.register(Rate)
+class RateAdmin(admin.ModelAdmin):
+    exclude = ("user_id",)
+    list_display = ("id", "usd_eur",  "usd_idr", "credit_card_fee",
+                    "created_at", "updated_at")
+
+    def has_add_permission(self, request):
+        # Set add permission to False, if an instance already exists.
+        if Rate.objects.only('pk').exists():
+            return False
+        return True
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user

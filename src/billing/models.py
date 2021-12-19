@@ -122,15 +122,17 @@ class Rate(models.Model):
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
         related_name="rates", verbose_name="Utilisateur")
     usd_eur = models.DecimalField(
-        "Taux de change USD-EUR", max_digits=6, decimal_places=4)
-    usd_idr = models.PositiveSmallIntegerField("Taux de change USD-IDR")
+        "Taux de change USD-EUR", max_digits=6, decimal_places=4, default=0.89)
+    usd_idr = models.PositiveSmallIntegerField(
+        "Taux de change USD-IDR", default=14386)
     credit_card_fee = models.DecimalField(
-        "Frais de carte de crédit", max_digits=5, decimal_places=4)
+        "Frais de carte de crédit", blank=True, null=True, max_digits=5, decimal_places=4, default=0.05)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Taux de change"
+        verbose_name_plural = "Taux de change"
 
     def __str__(self):
         return f"Taux de change"
