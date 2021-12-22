@@ -16,6 +16,7 @@ from .models import (
     OrderLine,
     Payment,
     Rate,
+    Trip,
 )
 from .forms import OrderLineForm, PaymentForm
 from .emailing import send_email
@@ -56,6 +57,9 @@ def make_bill(modeladmin, request, queryset):
     # Post the invoiced order line(s).
     # if request.method == "POST":
     if 0 == 0:  # request.method == "POST"
+        # Faire une méthode GET avec id=guest_id pour afficher la facture.
+        # if request.GET.get('apply') or request.method == "GET":
+        print("ICI ICI ICI 2")
         # if request.POST.get('post'):  TODO
         # Create the bill instance with the total amount to pay and the user_id
         new_bill = Bill(user_id=request.user, amount=total_amount)
@@ -123,7 +127,7 @@ def make_payment(modeladmin, request, queryset):
 @ admin.register(OrderLine)
 class OrderLineAdmin(admin.ModelAdmin):
     form = OrderLineForm
-    fields = ("guest_id",  "trip_id", ("bar_id", "goodies_id",
+    fields = ("guest_id", ("bar_id", "goodies_id",
               "miscellaneous_id"), "quantity")
     list_display = ("guest_id",  "quantity", "bar_id", "goodies_id",
                     "miscellaneous_id")
@@ -138,6 +142,8 @@ class OrderLineAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.user_id = request.user
+        guest_id = form.cleaned_data.get('guest_id')
+        obj.trip_id = Trip.objects.filter(guests=guest_id).last()
         super().save_model(request, obj, form, change)
 
 
