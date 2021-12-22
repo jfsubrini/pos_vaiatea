@@ -84,6 +84,8 @@ class Guest(models.Model):
         "Niveau de plongée", max_length=20, choices=DIVING_LEVEL)
     dives_number = models.PositiveSmallIntegerField(
         "Nombre de plongées", blank=True, null=True)
+    insurance = models.CharField(
+        "Assurance plongée", max_length=40, blank=True, null=True)
     email = models.EmailField(
         "Email", max_length=100)
     user_id = models.ForeignKey(

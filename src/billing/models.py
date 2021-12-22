@@ -103,6 +103,7 @@ class Payment(models.Model):
         Bill, on_delete=models.PROTECT, related_name="payments", verbose_name="Facture")
     payment_mode = models.CharField(
         "Mode de paiement", max_length=20, choices=PAYMENT_MODE)
+    amount_paid = models.CharField("Montant payé", max_length=20)
     payment_date = models.DateTimeField("Date de la commande", auto_now=True)
 
     class Meta:
