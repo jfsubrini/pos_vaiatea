@@ -3,6 +3,7 @@
 """All the admin pages to create, update, delete and read the trips and guests.
     """
 from datetime import timedelta
+from rangefilter.filter import DateRangeFilter
 from django.contrib import admin
 from .models import Guest, Trip
 
@@ -33,7 +34,7 @@ class TripAdmin(admin.ModelAdmin):
     exclude = ("user_id", "ending_date")
     list_display = ("itinerary", "duration_days",
                     "starting_date", "ending_date")
-    list_filter = ("starting_date",)
+    list_filter = (('starting_date', DateRangeFilter),)
     ordering = ("starting_date",)
     search_fields = ("itinerary",)
 

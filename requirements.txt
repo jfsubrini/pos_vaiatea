@@ -2,6 +2,7 @@ asgiref==3.4.1
 astroid==2.8.5
 autopep8==1.6.0
 Django==3.2.9
+django-admin-rangefilter==0.8.3
 isort==5.10.1
 lazy-object-proxy==1.6.0
 mccabe==0.6.1
